@@ -26,29 +26,39 @@ export const Navbar = () => {
 
   return (
     <nav style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '0 48px', height: '64px',
-      background: scrolled ? 'rgba(0,0,0,0.65)' : 'rgba(0,0,0,0.35)',
-      backdropFilter: 'blur(24px) saturate(180%)',
-      WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-      borderBottom: '1px solid rgba(255,255,255,0.06)',
-      boxShadow: '0 4px 30px rgba(0,0,0,0.3)',
-      transition: 'background 0.3s ease',
+      position: 'fixed',
+      top: scrolled ? '0' : '20px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      width: scrolled ? '100%' : 'calc(100% - 96px)',
+      maxWidth: scrolled ? '100%' : '1200px',
+      height: '64px',
+      zIndex: 100,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '0 32px',
+      borderRadius: scrolled ? '0' : '999px',
+      background: scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.35)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      border: scrolled ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(255, 255, 255, 0.12)',
+      boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.5)' : '0 12px 32px rgba(0, 0, 0, 0.4)',
+      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
     }}>
       <Logo size={20} />
       
       {/* Navigation Links */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-        <a href="#" style={{ fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#F5F0E8', textDecoration: 'none', transition: 'color 0.2s' }}
-           onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-           onMouseLeave={e => e.currentTarget.style.color = '#F5F0E8'}>Home</a>
-        <a href="#avatar" onClick={(e) => { e.preventDefault(); handleScroll('avatar-explainer'); }} style={{ fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#F5F0E8', textDecoration: 'none', transition: 'color 0.2s' }}
-           onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-           onMouseLeave={e => e.currentTarget.style.color = '#F5F0E8'}>AI Avatar</a>
-        <a href="#features" onClick={(e) => { e.preventDefault(); handleScroll('explainer-video'); }} style={{ fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#F5F0E8', textDecoration: 'none', transition: 'color 0.2s' }}
-           onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-           onMouseLeave={e => e.currentTarget.style.color = '#F5F0E8'}>Features</a>
+        <a href="#" style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+           onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+           onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}>Home</a>
+        <a href="#avatar" onClick={(e) => { e.preventDefault(); handleScroll('avatar-explainer'); }} style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+           onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+           onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}>AI Avatar</a>
+        <a href="#features" onClick={(e) => { e.preventDefault(); handleScroll('explainer-video'); }} style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+           onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+           onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}>Features</a>
         
         {/* Resources Dropdown Container */}
         <div 
@@ -61,12 +71,12 @@ export const Navbar = () => {
           onMouseLeave={() => setDropdownOpen(false)}
         >
           <span style={{ 
-            fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#F5F0E8', 
+            fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', 
             cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4,
             transition: 'color 0.2s' 
           }}
-             onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-             onMouseLeave={e => e.currentTarget.style.color = '#F5F0E8'}
+             onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+             onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
              onClick={() => setDropdownOpen(!dropdownOpen)}
           >
             Resources
@@ -107,27 +117,26 @@ export const Navbar = () => {
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
         <a
           href="/login"
-          style={{ fontFamily: 'Outfit, sans-serif', fontSize: 13, fontWeight: 500, color: '#F5F0E8', textDecoration: 'none', transition: 'color 0.2s' }}
-          onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-          onMouseLeave={e => e.currentTarget.style.color = '#F5F0E8'}
+          style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+          onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+          onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
         >
           Sign In
         </a>
         <button
           onClick={() => handleScroll('contact')}
           style={{
-            fontFamily: 'Outfit, sans-serif', fontSize: '13px', fontWeight: 500,
-            background: 'transparent', color: '#C9A84C',
-            border: '1px solid #C9A84C', borderRadius: '8px',
-            padding: '8px 22px', cursor: 'pointer',
-            boxShadow: '0 0 14px rgba(201,168,76,0.15)',
-            transition: 'box-shadow 0.2s ease, transform 0.15s ease',
+            fontFamily: 'Outfit, sans-serif', fontSize: '14px', fontWeight: 600,
+            background: '#C9A84C', color: '#0A0A0A',
+            border: 'none', borderRadius: '99px',
+            padding: '6px 16px', cursor: 'pointer',
+            transition: 'all 0.2s ease',
           }}
-          onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 28px rgba(201,168,76,0.35)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-          onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 14px rgba(201,168,76,0.15)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#DFBE60'; e.currentTarget.style.transform = 'scale(1.03)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = '#C9A84C'; e.currentTarget.style.transform = 'scale(1)'; }}
         >
           Book a Demo
         </button>

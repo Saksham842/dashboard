@@ -32,7 +32,7 @@ export const HeroSection = () => {
         zIndex: 1,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
       }}>
         <video
           id="hero-pipeline-video"
@@ -43,10 +43,11 @@ export const HeroSection = () => {
           playsInline
           style={{
             width: '100%',
-            height: '95%',
+            height: '100%',
             objectFit: 'contain',
             display: 'block',
             marginTop: '18vh',
+            marginRight: '-6vw',
             opacity: visible ? 1 : 0,
             transform: visible ? 'scale(1)' : 'scale(0.95)',
             transition: 'opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s',
@@ -119,10 +120,10 @@ export const HeroSection = () => {
           fontWeight: 700,
           letterSpacing: '-0.02em',
           lineHeight: 1.08,
-          marginBottom: 'clamp(12px, 2.5vh, 24px)',
+          marginBottom: 'clamp(40px, 6vh, 56px)',
           color: '#F5F0E8',
         }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.4rem, 7.5vh, 4.2rem)', marginBottom: 'clamp(4px, 1vh, 8px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.8rem, 9vh, 5rem)', marginBottom: 'clamp(4px, 1vh, 8px)' }}>
             {words1.map((w, i) => (
               <span key={i} style={{
                 display: 'inline-block',
@@ -132,7 +133,7 @@ export const HeroSection = () => {
               }}>{w}</span>
             ))}
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.4rem, 7.5vh, 4.2rem)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.8rem, 9vh, 5rem)' }}>
             {words2.map((w, i) => (
               <span key={i} style={{
                 display: 'inline-block',
@@ -151,12 +152,12 @@ export const HeroSection = () => {
         {/* Subheadline */}
         <p style={{
           fontFamily: 'Outfit, sans-serif',
-          fontSize: 'clamp(15px, 2.2vh, 18px)',
+          fontSize: 'clamp(17px, 2.8vh, 22px)',
           fontWeight: 400,
           color: '#888880',
           lineHeight: 1.6,
           maxWidth: 520,
-          marginBottom: 'clamp(16px, 3.5vh, 32px)',
+          marginBottom: 'clamp(44px, 7vh, 60px)',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s',
@@ -177,7 +178,7 @@ export const HeroSection = () => {
         {/* Stats row */}
         <div style={{
           display: 'flex', gap: 0,
-          marginTop: 'clamp(20px, 4.5vh, 48px)',
+          marginTop: 'clamp(32px, 6vh, 60px)',
           flexWrap: 'wrap',
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.8s ease 1.1s',
@@ -195,7 +196,7 @@ export const HeroSection = () => {
             }}>
               <div style={{
                 fontFamily: 'Space Grotesk, sans-serif',
-                fontSize: 'clamp(21px, 3.4vh, 26px)',
+                fontSize: 'clamp(24px, 4vh, 32px)',
                 fontWeight: 700,
                 color: '#C9A84C',
                 letterSpacing: '-0.02em',
@@ -203,7 +204,7 @@ export const HeroSection = () => {
               }}>{s.num}</div>
               <div style={{
                 fontFamily: 'Outfit, sans-serif',
-                fontSize: 'clamp(11px, 1.8vh, 13px)',
+                fontSize: 'clamp(13px, 2.2vh, 15px)',
                 color: '#555550',
                 lineHeight: 1.3
               }}>{s.text}</div>
