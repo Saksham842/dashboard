@@ -3,7 +3,7 @@
 /* intervieHire landing — base */
 .ih-landing *, .ih-landing *::before, .ih-landing *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; margin: 0; padding: 0; }
-body { background: #0A0A0A; color: #F5F0E8; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
+body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
@@ -84,3 +84,38 @@ body { background: #0A0A0A; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
 @media (max-width: 900px) {
   .comparison-connector { display: none !important; }
 }
+
+/* Entrance scrollytelling animations */
+
+/* Title: sweeps up from below like a page rising into view */
+@keyframes titlePageReveal {
+  0%   { opacity: 0; transform: translateY(72px) scale(0.97); filter: blur(6px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Centre avatar: BOOM — explodes from a tiny bright point */
+@keyframes centerBoomReveal {
+  0%   { opacity: 0; transform: scale(0.08); filter: brightness(5) blur(20px); }
+  40%  { opacity: 1; transform: scale(1.25); filter: brightness(1.8) blur(4px); }
+  65%  { transform: scale(0.92); filter: brightness(1) blur(0); }
+  82%  { transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
+}
+
+/* Left card: BOOM — explodes from a tiny bright point like the centre */
+@keyframes leftBoomReveal {
+  0%   { opacity: 0; transform: scale(0.1) translateX(-40px); filter: brightness(5) blur(20px); }
+  40%  { opacity: 1; transform: scale(1.25) translateX(6px); filter: brightness(1.8) blur(4px); }
+  65%  { transform: scale(0.92) translateX(-2px); filter: brightness(1) blur(0); }
+  82%  { transform: scale(1.06) translateX(1px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); filter: brightness(1) blur(0); }
+}
+
+/* Right card: swings in from off-screen right with slight tilt */
+@keyframes rightCardSlide {
+  0%   { opacity: 0; transform: translateX(140px) rotate(3deg); }
+  65%  { transform: translateX(-10px) rotate(-0.4deg); }
+  100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Eyebrow, RevealCard } from './Primitives';
+import { Eyebrow, RevealCard, FadeUpOnScroll } from './Primitives';
 
 // SolutionSection.jsx
 export const SolutionSection = () => {
@@ -60,10 +60,14 @@ export const SolutionSection = () => {
   return (
     <section style={{ background: '#0A0A0A', padding: '120px 48px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <Eyebrow>The Solution</Eyebrow>
-        <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#F5F0E8', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 80, maxWidth: 560 }}>
-          One platform. Every layer of hiring, handled.
-        </h2>
+        <FadeUpOnScroll delay={0.1}>
+          <Eyebrow>The Solution</Eyebrow>
+        </FadeUpOnScroll>
+        <FadeUpOnScroll delay={0.25} y={40}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#F5F0E8', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 80, maxWidth: 560 }}>
+            One platform. Every layer of hiring, handled.
+          </h2>
+        </FadeUpOnScroll>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
           {layers.map((layer, i) => (
             <RevealCard key={i} delay={0.1}>

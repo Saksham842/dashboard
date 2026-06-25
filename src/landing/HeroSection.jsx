@@ -3,15 +3,30 @@ import React from 'react';
 
 // HeroSection.jsx — gydexp.com-style: left text + right video half-half
 export const HeroSection = () => {
-  const [visible, setVisible] = React.useState(false);
-  React.useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
+  const [phase, setPhase] = React.useState(0);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => setPhase(1), 100);
+        setTimeout(() => setPhase(2), 300);
+        setTimeout(() => setPhase(3), 700);
+        observer.disconnect();
+      }
+    }, { threshold: 0.15 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const words1 = ["Interview", "Smarter,"];
   const words2 = ["Hire", "Faster."];
 
   return (
-    <section style={{
+    <section ref={ref} style={{
       minHeight: '100vh',
+      marginBottom: '15vh',
       background: '#000000',
       display: 'flex',
       alignItems: 'center',
@@ -48,9 +63,9 @@ export const HeroSection = () => {
             display: 'block',
             marginTop: '18vh',
             marginRight: '-6vw',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'scale(1)' : 'scale(0.95)',
-            transition: 'opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s',
+            opacity: 1,
+            transform: phase >= 2 ? 'scale(1)' : 'scale(0.6)',
+            transition: 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0s',
           }}
         />
 
@@ -127,9 +142,9 @@ export const HeroSection = () => {
             {words1.map((w, i) => (
               <span key={i} style={{
                 display: 'inline-block',
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(40px)',
-                transition: `opacity 0.7s ease ${0.2 + i * 0.07}s, transform 0.7s ease ${0.2 + i * 0.07}s`,
+                opacity: phase >= 1 ? 1 : 0,
+                transform: phase >= 1 ? 'translateY(0)' : 'translateY(70px)',
+                transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.1}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.1}s`,
               }}>{w}</span>
             ))}
           </div>
@@ -141,9 +156,9 @@ export const HeroSection = () => {
                 WebkitBackgroundClip: i === 1 ? 'text' : 'unset',
                 WebkitTextFillColor: i === 1 ? 'transparent' : '#F5F0E8',
                 backgroundClip: i === 1 ? 'text' : 'unset',
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(40px)',
-                transition: `opacity 0.7s ease ${0.41 + i * 0.07}s, transform 0.7s ease ${0.41 + i * 0.07}s`,
+                opacity: phase >= 1 ? 1 : 0,
+                transform: phase >= 1 ? 'translateY(0)' : 'translateY(70px)',
+                transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + i * 0.1}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + i * 0.1}s`,
               }}>{w}</span>
             ))}
           </div>
@@ -158,9 +173,9 @@ export const HeroSection = () => {
           lineHeight: 1.6,
           maxWidth: 520,
           marginBottom: 'clamp(44px, 7vh, 60px)',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s',
+          opacity: phase >= 3 ? 1 : 0,
+          transform: phase >= 3 ? 'translateX(0)' : 'translateX(-50px)',
+          transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s',
         }}>
           AI-powered interviews 24/7 with built-in cheating detection, helping teams screen candidates faster and more reliably. No scheduling needed.
         </p>
@@ -168,8 +183,8 @@ export const HeroSection = () => {
         {/* CTAs */}
         <div style={{
           display: 'flex', gap: 14, flexWrap: 'wrap',
-          opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s',
+          opacity: phase >= 3 ? 1 : 0, transform: phase >= 3 ? 'translateX(0)' : 'translateX(-50px)',
+          transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s',
         }}>
           <HeroBtn primary onClick={() => window.triggerPageTransition ? window.triggerPageTransition('contact') : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Book a Demo</HeroBtn>
           <HeroBtn onClick={() => window.triggerPageTransition ? window.triggerPageTransition('explainer-video') : document.getElementById('explainer-video')?.scrollIntoView({ behavior: 'smooth' })}>See How It Works</HeroBtn>
@@ -180,8 +195,9 @@ export const HeroSection = () => {
           display: 'flex', gap: 0,
           marginTop: 'clamp(32px, 6vh, 60px)',
           flexWrap: 'wrap',
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 0.8s ease 1.1s',
+          opacity: phase >= 3 ? 1 : 0,
+          transform: phase >= 3 ? 'translateX(0)' : 'translateX(-50px)',
+          transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s',
         }}>
           {[
             { num: '$100B', text: 'lost yearly to inefficient hiring' },

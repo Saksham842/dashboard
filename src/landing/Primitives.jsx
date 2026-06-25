@@ -40,6 +40,26 @@ export const Eyebrow = ({ children, style = {} }) => {
   );
 };
 
+export const FadeUpOnScroll = ({ children, delay = 0, y = 50, threshold = 0.4 }) => {
+  const ref = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : `translateY(${y}px)`,
+      transition: `opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform 2.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+    }}>{children}</div>
+  );
+};
+
 export const RevealCard = ({ children, delay = 0 }) => {
   const ref = React.useRef(null);
   const [visible, setVisible] = React.useState(false);

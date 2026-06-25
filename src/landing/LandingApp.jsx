@@ -3,6 +3,7 @@ import React from 'react';
 import { Navbar } from './Navbar';
 import { HeroSection } from './HeroSection';
 import { TransitionSection } from './TransitionSection';
+import { DemoVideoSection } from './DemoVideoSection';
 import { SolutionSection } from './SolutionSection';
 import {
   ExplainerVideoSection,
@@ -24,6 +25,7 @@ export default function LandingApp() {
       <Navbar />
       <HeroSection />
       <TransitionSection />
+      <DemoVideoSection />
       <SolutionSection />
       <ExplainerVideoSection />
       <CalculatorSection />
