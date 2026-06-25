@@ -11,8 +11,8 @@ export const HeroSection = () => {
 
   return (
     <section style={{
-      height: '100vh',
-      background: '#0A0A0A',
+      minHeight: '100vh',
+      background: '#000000',
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
@@ -26,9 +26,9 @@ export const HeroSection = () => {
         position: 'absolute',
         top: 0,
         right: 0,
-        width: '62%',
+        width: '65%',
         height: '100%',
-        background: '#0A0A0A',
+        background: '#000000',
         zIndex: 1,
         display: 'flex',
         alignItems: 'center',
@@ -43,9 +43,13 @@ export const HeroSection = () => {
           playsInline
           style={{
             width: '100%',
-            height: '100%',
-            objectFit: 'contain',   /* show full video, no cropping */
+            height: '95%',
+            objectFit: 'contain',
             display: 'block',
+            marginTop: '18vh',
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'scale(1)' : 'scale(0.95)',
+            transition: 'opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s',
           }}
         />
 
@@ -56,7 +60,7 @@ export const HeroSection = () => {
           left: 0,
           width: '38%',
           height: '100%',
-          background: 'linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0.7) 55%, rgba(10,10,10,0) 100%)',
+          background: 'linear-gradient(to right, #000000 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -67,7 +71,7 @@ export const HeroSection = () => {
           left: 0,
           right: 0,
           height: 160,
-          background: 'linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0) 100%)',
+          background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -78,7 +82,7 @@ export const HeroSection = () => {
           left: 0,
           right: 0,
           height: 130,
-          background: 'linear-gradient(to bottom, #0A0A0A 0%, rgba(10,10,10,0) 100%)',
+          background: 'linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0) 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -89,7 +93,7 @@ export const HeroSection = () => {
           right: 0,
           width: 70,
           height: '100%',
-          background: 'linear-gradient(to left, #0A0A0A 0%, rgba(10,10,10,0) 100%)',
+          background: 'linear-gradient(to left, #000000 0%, rgba(0,0,0,0) 100%)',
           pointerEvents: 'none',
         }} />
       </div>
@@ -99,9 +103,9 @@ export const HeroSection = () => {
         position: 'absolute',
         top: 0,
         left: 0,
-        width: '42%',
+        width: '35%',
         height: '100%',
-        background: '#0A0A0A',
+        background: '#000000',
         zIndex: 2,
         pointerEvents: 'none',
       }} />
@@ -118,7 +122,7 @@ export const HeroSection = () => {
           marginBottom: 'clamp(12px, 2.5vh, 24px)',
           color: '#F5F0E8',
         }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2rem, 6.5vh, 3.8rem)', marginBottom: 'clamp(4px, 1vh, 8px)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.4rem, 7.5vh, 4.2rem)', marginBottom: 'clamp(4px, 1vh, 8px)' }}>
             {words1.map((w, i) => (
               <span key={i} style={{
                 display: 'inline-block',
@@ -128,7 +132,7 @@ export const HeroSection = () => {
               }}>{w}</span>
             ))}
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2rem, 6.5vh, 3.8rem)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0 14px', fontSize: 'clamp(2.4rem, 7.5vh, 4.2rem)' }}>
             {words2.map((w, i) => (
               <span key={i} style={{
                 display: 'inline-block',
@@ -147,7 +151,7 @@ export const HeroSection = () => {
         {/* Subheadline */}
         <p style={{
           fontFamily: 'Outfit, sans-serif',
-          fontSize: 'clamp(15px, 2vh, 18px)',
+          fontSize: 'clamp(15px, 2.2vh, 18px)',
           fontWeight: 400,
           color: '#888880',
           lineHeight: 1.6,
@@ -191,7 +195,7 @@ export const HeroSection = () => {
             }}>
               <div style={{
                 fontFamily: 'Space Grotesk, sans-serif',
-                fontSize: 'clamp(20px, 3vh, 25px)',
+                fontSize: 'clamp(21px, 3.4vh, 26px)',
                 fontWeight: 700,
                 color: '#C9A84C',
                 letterSpacing: '-0.02em',
@@ -199,7 +203,7 @@ export const HeroSection = () => {
               }}>{s.num}</div>
               <div style={{
                 fontFamily: 'Outfit, sans-serif',
-                fontSize: 'clamp(11px, 1.6vh, 13px)',
+                fontSize: 'clamp(11px, 1.8vh, 13px)',
                 color: '#555550',
                 lineHeight: 1.3
               }}>{s.text}</div>
@@ -219,8 +223,8 @@ export const HeroBtn = ({ children, primary, onClick }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        fontFamily: 'Outfit, sans-serif', fontSize: 14, fontWeight: 500,
-        padding: 'clamp(10px, 1.5vh, 13px) clamp(20px, 2.5vw, 30px)', borderRadius: 8, cursor: 'pointer',
+        fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500,
+        padding: 'clamp(11px, 1.6vh, 14px) clamp(22px, 2.8vw, 34px)', borderRadius: 8, cursor: 'pointer',
         transition: 'all 0.2s ease',
         background: primary ? '#C9A84C' : 'transparent',
         color: primary ? '#0A0A0A' : '#C9A84C',

@@ -29,10 +29,11 @@ export const Navbar = () => {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '0 48px', height: '64px',
-      background: scrolled ? 'rgba(10,10,10,0.95)' : 'rgba(10,10,10,0.7)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      borderBottom: '1px solid rgba(201,168,76,0.08)',
+      background: scrolled ? 'rgba(0,0,0,0.65)' : 'rgba(0,0,0,0.35)',
+      backdropFilter: 'blur(24px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
+      boxShadow: '0 4px 30px rgba(0,0,0,0.3)',
       transition: 'background 0.3s ease',
     }}>
       <Logo size={20} />
