@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Eyebrow, GlassCard, RevealCard } from './Primitives';
+import { Eyebrow, GlassCard, RevealCard, FadeUpOnScroll } from './Primitives';
 import { GoldWaveSVG } from './GoldWaveSVG';
 import { Logo } from './Navbar';
 
@@ -93,21 +93,87 @@ export const ManifestoSection = () => {
 };
 
 export const CalculatorSection = () => {
-  const [hires, setHires] = React.useState(10);
-  const [salary, setSalary] = React.useState(60000);
+  const [hires, setHires] = React.useState(2); // Start at min
+  const [salary, setSalary] = React.useState(20000); // Start at min
+  const [displayMoney, setDisplayMoney] = React.useState(0);
+  const [displayHours, setDisplayHours] = React.useState(0);
   const [vibe, setVibe] = React.useState(false);
+  const [hasEntered, setHasEntered] = React.useState(false);
+  const [isAnimating, setIsAnimating] = React.useState(true);
+  const sectionRef = React.useRef(null);
 
   const triggerVibe = () => {
     setVibe(true);
     setTimeout(() => setVibe(false), 60);
   };
 
+  React.useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasEntered || !isAnimating) return;
+
+    const duration = 3800; // 3.8s for slower, more deliberate and premium cinematic count-up
+    const startTime = performance.now();
+    let animFrame;
+
+    const targetHires = 15;
+    const targetSalary = 90000;
+    const targetMoney = Math.round(targetHires * targetSalary * 0.08);
+    const targetHours = targetHires * 35;
+
+    const animate = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4); // Ease out quartic
+
+      const currentHires = Math.round(2 + ease * (targetHires - 2));
+      const currentSalary = Math.round(20000 + ease * (targetSalary - 20000));
+      const currentMoney = Math.round(ease * targetMoney);
+      const currentHours = Math.round(ease * targetHours);
+
+      setHires(currentHires);
+      setSalary(currentSalary);
+      setDisplayMoney(currentMoney);
+      setDisplayHours(currentHours);
+
+      if (progress < 1) {
+        animFrame = requestAnimationFrame(animate);
+      } else {
+        setIsAnimating(false);
+      }
+    };
+
+    animFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animFrame);
+  }, [hasEntered, isAnimating]);
+
+  React.useEffect(() => {
+    if (!isAnimating) {
+      setDisplayMoney(Math.round(hires * salary * 0.08));
+      setDisplayHours(hires * 35);
+    }
+  }, [hires, salary, isAnimating]);
+
   const handleHiresChange = (e) => {
+    setIsAnimating(false);
     setHires(parseInt(e.target.value, 10));
     triggerVibe();
   };
 
   const handleSalaryChange = (e) => {
+    setIsAnimating(false);
     setSalary(parseInt(e.target.value, 10));
     triggerVibe();
   };
@@ -116,173 +182,201 @@ export const CalculatorSection = () => {
     return '$' + num.toLocaleString('en-US');
   };
 
-  const savedMoney = Math.round(hires * salary * 0.08);
-  const savedHours = hires * 35;
+  const hiresPercent = ((hires - 2) / (100 - 2)) * 100;
+  const salaryPercent = ((salary - 20000) / (250000 - 20000)) * 100;
 
   return (
-    <section id="calculator" style={{ 
-      background: '#0A0A0A', 
-      padding: '120px 48px', 
-      position: 'relative', 
-      overflow: 'hidden',
-      borderTop: '1px solid rgba(201, 168, 76, 0.08)',
-      borderBottom: '1px solid rgba(201, 168, 76, 0.08)'
-    }}>
+    <section 
+      ref={sectionRef} 
+      id="calculator" 
+      style={{ 
+        background: '#000000', 
+        padding: '80px 48px 40px', 
+        position: 'relative', 
+        overflow: 'hidden',
+        borderTop: '1px solid rgba(201, 168, 76, 0.08)',
+        borderBottom: '1px solid rgba(201, 168, 76, 0.08)',
+        zIndex: 2,
+        marginTop: '-100vh'
+      }}
+    >
+      {/* Glowing cut-line — visible as this section slides over the explainer video */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 1,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(201, 168, 76, 0.55), 0 4px 80px rgba(201, 168, 76, 0.18)',
+        zIndex: 20,
+        pointerEvents: 'none',
+      }} />
+
+      {/* Background Radial Glow */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 1000,
+        height: 600,
+        background: 'radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        opacity: hasEntered ? 1 : 0,
+        transition: 'opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        zIndex: 1
+      }}/>
+
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            padding: '6px 16px',
-            borderRadius: 100,
-            fontSize: '0.8rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            background: 'rgba(201, 168, 76, 0.1)',
-            border: '1px solid rgba(201, 168, 76, 0.2)',
-            color: '#C9A84C',
-            marginBottom: 20
-          }}>
-            Cost Savings
+        <FadeUpOnScroll delay={0.0} y={30}>
+          <div style={{ textAlign: 'center', marginBottom: 16 }}>
           </div>
-          <h2 style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
-            fontWeight: 700,
-            color: '#F5F0E8',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15,
-            marginBottom: 16
-          }}>
-            Measure Your <span style={{
-              background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Savings.</span>
-          </h2>
-          <p style={{
-            fontFamily: 'Outfit, sans-serif',
-            fontSize: 18,
-            color: '#888880',
-            maxWidth: 580,
-            margin: '0 auto',
-            lineHeight: 1.6
-          }}>
-            Use our interactive estimator to see how much recruiting costs and team hours you save with intervieHire.
-          </p>
-        </div>
+        </FadeUpOnScroll>
+
+        {/* ── Scrolling heading ── */}
+        <h2 className="calc-marquee-wrap" style={{ marginBottom: 32 }}>
+          <div className="calc-marquee-track">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="calc-marquee-item">
+                Measure Your{' '}
+                <em>Savings.</em>
+                <span className="calc-marquee-dot">✦</span>
+                Measure{' '}
+                <em>Your Savings.</em>
+                <span className="calc-marquee-dot">✦</span>
+              </span>
+            ))}
+          </div>
+        </h2>
+
+        <FadeUpOnScroll delay={0.15} y={20}>
+          <div style={{ textAlign: 'center', marginBottom: 32 }}>
+            <p style={{
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: 15,
+              color: '#888880',
+              maxWidth: 580,
+              margin: '0 auto',
+              lineHeight: 1.6
+            }}>
+              Use our interactive estimator to see how much recruiting costs and team hours you save with intervieHire.
+            </p>
+          </div>
+        </FadeUpOnScroll>
 
         {/* Calculator Layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: 40,
+          gridTemplateColumns: '1.6fr 1fr',
+          gap: 28,
           alignItems: 'center'
         }}>
           {/* Sliders Container (Glass Card) */}
-          <div style={{
-            background: 'rgba(15, 15, 18, 0.6)',
-            border: '1px solid rgba(201, 168, 76, 0.1)',
-            borderRadius: 24,
-            padding: '40px 32px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)'
-          }}>
-            {/* Slider 1 */}
-            <div style={{ marginBottom: 40 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-                <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8' }}>Hires Planned Per Year</span>
-                <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 18 }}>{hires}</span>
-              </div>
-              <input
-                type="range"
-                min="2"
-                max="100"
-                value={hires}
-                onChange={handleHiresChange}
-                style={{
-                  width: '100%',
-                  accentColor: '#C9A84C',
-                  cursor: 'pointer'
-                }}
-              />
-            </div>
-
-            {/* Slider 2 */}
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-                <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8' }}>Average Annual Role Salary</span>
-                <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 18 }}>{formatCurrency(salary)}</span>
-              </div>
-              <input
-                type="range"
-                min="20000"
-                max="250000"
-                step="5000"
-                value={salary}
-                onChange={handleSalaryChange}
-                style={{
-                  width: '100%',
-                  accentColor: '#C9A84C',
-                  cursor: 'pointer'
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Results Container */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24,
-            transform: vibe ? 'translate(1px, 1px) rotate(0.4deg)' : 'none',
-            transition: 'transform 0.05s ease-out'
-          }}>
-            {/* Money Saved */}
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(233, 30, 140, 0.08) 100%)',
-              border: '1px solid rgba(255, 107, 53, 0.2)',
-              borderRadius: 20,
-              padding: 32,
-              boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
-            }}>
-              <p style={{ fontFamily: 'Outfit, sans-serif', color: '#888880', fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>
-                Annual Recruiting Cost Saved
-              </p>
-              <div style={{
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
-                fontWeight: 700,
-                color: '#FF6B35',
-                lineHeight: 1.1
-              }}>
-                {formatCurrency(savedMoney)}
-              </div>
-            </div>
-
-            {/* Hours Saved */}
+          <FadeUpOnScroll delay={0.1} y={30}>
             <div style={{
               background: 'rgba(15, 15, 18, 0.6)',
               border: '1px solid rgba(201, 168, 76, 0.1)',
               borderRadius: 20,
-              padding: 32,
-              boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
+              padding: '28px 24px',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)'
             }}>
-              <p style={{ fontFamily: 'Outfit, sans-serif', color: '#888880', fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>
-                Manager Interview Hours Saved
-              </p>
-              <div style={{
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
-                fontWeight: 700,
-                color: '#F5F0E8',
-                lineHeight: 1.1
-              }}>
-                {savedHours} hrs
+              {/* Slider 1 */}
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+                  <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8', fontSize: 14 }}>Hires Planned Per Year</span>
+                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{hires}</span>
+                </div>
+                <input
+                  type="range"
+                  min="2"
+                  max="100"
+                  value={hires}
+                  onChange={handleHiresChange}
+                  className="ih-calculator-slider"
+                  style={{
+                    background: `linear-gradient(to right, #C9A84C 0%, #C9A84C ${hiresPercent}%, rgba(255,255,255,0.1) ${hiresPercent}%, rgba(255,255,255,0.1) 100%)`
+                  }}
+                />
+              </div>
+
+              {/* Slider 2 */}
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+                  <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8', fontSize: 14 }}>Average Annual Role Salary</span>
+                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{formatCurrency(salary)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="20000"
+                  max="250000"
+                  step="5000"
+                  value={salary}
+                  onChange={handleSalaryChange}
+                  className="ih-calculator-slider"
+                  style={{
+                    background: `linear-gradient(to right, #C9A84C 0%, #C9A84C ${salaryPercent}%, rgba(255,255,255,0.1) ${salaryPercent}%, rgba(255,255,255,0.1) 100%)`
+                  }}
+                />
               </div>
             </div>
-          </div>
+          </FadeUpOnScroll>
+
+          {/* Results Container */}
+          <FadeUpOnScroll delay={0.25} y={30}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 24,
+              transform: vibe ? 'translate(1px, 1px) rotate(0.4deg)' : 'none',
+              transition: 'transform 0.05s ease-out'
+            }}>
+              {/* Money Saved */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(233, 30, 140, 0.08) 100%)',
+              border: '1px solid rgba(255, 107, 53, 0.2)',
+              borderRadius: 20,
+              padding: 24,
+                boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
+              }}>
+                <p style={{ fontFamily: 'Outfit, sans-serif', color: '#888880', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
+                  Annual Recruiting Cost Saved
+                </p>
+                <div style={{
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
+                  fontWeight: 700,
+                  color: '#FF6B35',
+                  lineHeight: 1.1
+                }}>
+                  {formatCurrency(displayMoney)}
+                </div>
+              </div>
+
+              {/* Hours Saved */}
+              <div style={{
+                background: 'rgba(15, 15, 18, 0.6)',
+              border: '1px solid rgba(201, 168, 76, 0.1)',
+              borderRadius: 20,
+              padding: 24,
+                boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
+              }}>
+                <p style={{ fontFamily: 'Outfit, sans-serif', color: '#888880', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
+                  Manager Interview Hours Saved
+                </p>
+                <div style={{
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
+                  fontWeight: 700,
+                  color: '#F5F0E8',
+                  lineHeight: 1.1
+                }}>
+                  {displayHours} hrs
+                </div>
+              </div>
+            </div>
+          </FadeUpOnScroll>
         </div>
       </div>
     </section>
@@ -671,140 +765,154 @@ export const ExplainerVideoSection = () => {
     { title: "See the Results & Hire Faster", desc: "Review transcripts & scores" }
   ];
 
-  const [hoveredPlayer, setHoveredPlayer] = React.useState(false);
+  const sectionRef = React.useRef(null);
+  const [dissolve, setDissolve] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const heading = document.querySelector('#calculator h2');
+      if (!heading) return;
+      const rect = heading.getBoundingClientRect();
+      const triggerAt = window.innerHeight * 0.8;
+      const range = window.innerHeight * 0.2;
+      const d = Math.max(0, Math.min(1, (triggerAt - rect.top) / range));
+      setDissolve(d);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <section id="explainer-video" style={{ background: '#050505', padding: '100px 48px', borderTop: '1px solid rgba(201,168,76,0.08)' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <Eyebrow>Product Demo</Eyebrow>
-          <h2 style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
-            fontWeight: 700,
-            color: '#F5F0E8',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15
-          }}>
-            See IntervieHire in <span style={{
-              background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Action.</span>
-          </h2>
-        </div>
+    <section
+      ref={sectionRef}
+      id="explainer-video" 
+      style={{ 
+        background: '#050505', 
+        padding: '120px 48px', 
+        marginBottom: '60vh',
+        position: 'relative', 
+        overflow: 'hidden',
+        borderTop: '1px solid rgba(201,168,76,0.08)',
+      }}
+    >
+      {/* Black overlay that fades in as section scrolls past */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none',
+        background: '#050505',
+        opacity: dissolve,
+      }} />
 
+      <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
+        {/* Heading — fades up on scroll */}
+        <FadeUpOnScroll delay={0.0} y={40}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <Eyebrow>Product Demo</Eyebrow>
+            <h2 style={{
+              fontFamily: 'Space Grotesk, sans-serif',
+              fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+              fontWeight: 700,
+              color: '#F5F0E8',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.15
+            }}>
+              See IntervieHire in <span style={{
+                background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Action.</span>
+            </h2>
+          </div>
+        </FadeUpOnScroll>
+
+        {/* Grid — video + steps */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: '1.6fr 1fr',
           gap: 60,
           alignItems: 'center'
         }}>
-          {/* Left: Mock Video Player */}
-          <div 
-            onMouseEnter={() => setHoveredPlayer(true)}
-            onMouseLeave={() => setHoveredPlayer(false)}
-            style={{
+          {/* Left: Video — slides left on scroll-out */}
+          <div style={{ transform: `translateX(${-dissolve * 200}px)`, opacity: 1 - dissolve }}>
+            <FadeUpOnScroll delay={0.15} y={40}>
+            <div style={{
               position: 'relative',
-              background: 'rgba(15, 15, 18, 0.6)',
+              background: '#000',
               border: '1px solid rgba(201, 168, 76, 0.15)',
               borderRadius: 24,
               aspectRatio: '16/9',
               overflow: 'hidden',
-              cursor: 'pointer',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
-            }}
-          >
-            {/* Mock Thumbnail Image (Gradient mesh representation) */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(233, 30, 140, 0.12) 0%, transparent 50%)',
-              display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+              boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
             }}>
-              {/* Overlay Logo watermark */}
-              <div style={{ opacity: 0.15, transform: 'scale(1.5)', marginBottom: 20 }}>
-                <Logo size={22} />
-              </div>
+              <video
+                src="/mp_.mp4"
+                autoPlay muted loop playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
             </div>
-
-            {/* Play Button Overlay */}
-            <div style={{
-              position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-              width: 80, height: 80, borderRadius: '50%',
-              background: hoveredPlayer ? 'rgba(201, 168, 76, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-              border: '2px solid #C9A84C',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: hoveredPlayer ? '0 0 32px rgba(201,168,76,0.4)' : '0 0 16px rgba(0,0,0,0.4)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-            }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ marginLeft: 4 }}>
-                <path d="M8 5V19L19 12L8 5Z" fill="#C9A84C" stroke="#C9A84C" strokeWidth="2" strokeLinejoin="round"/>
-              </svg>
-            </div>
-
-            {/* Mock Player UI Overlay */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-              padding: '20px 24px',
-              display: 'flex', alignItems: 'center', gap: 16,
-              opacity: hoveredPlayer ? 1 : 0.6,
-              transition: 'opacity 0.2s'
-            }}>
-              {/* Play icon */}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ color: '#F5F0E8' }}>
-                <path d="M8 5V19L19 12L8 5Z"/>
-              </svg>
-              {/* Progress bar */}
-              <div style={{ flex: 1, height: 4, background: 'rgba(255,255,255,0.2)', borderRadius: 2, position: 'relative' }}>
-                <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '35%', background: '#C9A84C', borderRadius: 2 }}/>
-                <div style={{ position: 'absolute', left: '35%', top: '50%', transform: 'translate(-50%, -50%)', width: 10, height: 10, borderRadius: '50%', background: '#F5F0E8' }}/>
-              </div>
-              {/* Time display */}
-              <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12, color: '#888880' }}>01:24 / 04:00</span>
-            </div>
+          </FadeUpOnScroll>
           </div>
 
-          {/* Right: Step-by-Step Checklist */}
+          {/* Right: Step-by-Step Checklist — slides right on scroll-out */}
+          <div style={{ transform: `translateX(${dissolve * 200}px)`, opacity: 1 - dissolve }}>
           <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', paddingLeft: 20 }}>
-            {/* Timeline Vertical Line */}
+            {/* Timeline track line */}
             <div style={{
-              position: 'absolute', left: 31, top: 20, bottom: 20,
-              width: 2, background: 'linear-gradient(to bottom, #C9A84C, rgba(201,168,76,0.1))',
-              zIndex: 1
-            }}/>
+              position: 'absolute', 
+              left: 31, 
+              top: 20, 
+              bottom: 20,
+              width: 2, 
+              background: 'rgba(201, 168, 76, 0.15)',
+              zIndex: 1,
+            }} />
 
             {steps.map((step, idx) => (
-              <div key={idx} style={{
-                display: 'flex', alignItems: 'flex-start', gap: 24,
-                marginBottom: idx < steps.length - 1 ? 32 : 0,
-                position: 'relative', zIndex: 2
-              }}>
-                {/* Number Indicator */}
+              <FadeUpOnScroll key={idx} delay={0.1 + idx * 0.1} y={30}>
                 <div style={{
-                  width: 24, height: 24, borderRadius: '50%',
-                  background: '#050505', border: '2px solid #C9A84C',
-                  color: '#C9A84C', fontFamily: 'Space Grotesk, sans-serif',
-                  fontSize: 12, fontWeight: 700,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 0 10px rgba(201,168,76,0.2)'
+                  display: 'flex', 
+                  alignItems: 'flex-start', 
+              gap: 16,
+                  marginBottom: idx < steps.length - 1 ? 32 : 0,
+                  position: 'relative', 
+                  zIndex: 2,
                 }}>
-                  {idx + 1}
+                  <div style={{
+                    width: 24, 
+                    height: 24, 
+                    borderRadius: '50%',
+                    background: '#C9A84C',
+                    border: '2px solid #C9A84C',
+                    color: '#050505',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontSize: 12, 
+                    fontWeight: 700,
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    boxShadow: '0 0 15px rgba(201, 168, 76, 0.3)',
+                  }}>
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <h3 style={{
+                      fontFamily: 'Space Grotesk, sans-serif', 
+                      fontSize: 18,
+                      fontWeight: 700, 
+                      color: '#F5F0E8',
+                      marginBottom: 4,
+                    }}>{step.title}</h3>
+                    <p style={{
+                      fontFamily: 'Outfit, sans-serif', 
+                      fontSize: 14,
+                      color: '#888880', 
+                      lineHeight: 1.4,
+                    }}>{step.desc}</p>
+                  </div>
                 </div>
-                {/* Content */}
-                <div>
-                  <h3 style={{
-                    fontFamily: 'Space Grotesk, sans-serif', fontSize: 18,
-                    fontWeight: 700, color: '#F5F0E8', marginBottom: 4
-                  }}>{step.title}</h3>
-                  <p style={{
-                    fontFamily: 'Outfit, sans-serif', fontSize: 14,
-                    color: '#888880', lineHeight: 1.4
-                  }}>{step.desc}</p>
-                </div>
-              </div>
+              </FadeUpOnScroll>
             ))}
+          </div>
           </div>
         </div>
       </div>

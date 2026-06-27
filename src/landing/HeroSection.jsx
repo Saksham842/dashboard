@@ -5,6 +5,8 @@ import React from 'react';
 export const HeroSection = () => {
   const [phase, setPhase] = React.useState(0);
   const ref = React.useRef(null);
+  const [dissolve, setDissolve] = React.useState(0);
+
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -20,8 +22,32 @@ export const HeroSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  React.useEffect(() => {
+    const onScroll = () => {
+      if (!ref.current) return;
+      const outer = ref.current.parentElement?.parentElement;
+      if (!outer) return;
+      const rect = outer.getBoundingClientRect();
+      const scrollable = outer.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) { setDissolve(0); return; }
+      setDissolve(Math.max(0, Math.min(1, -rect.top / scrollable)));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const words1 = ["Interview", "Smarter,"];
   const words2 = ["Hire", "Faster."];
+
+  const contentStyle = {
+    opacity: 1 - dissolve,
+    transform: `scale(${1 - dissolve * 0.15}) translateY(${dissolve * 30}px)`,
+  };
+
+  const videoStyle = {
+    opacity: 1 - dissolve * 0.7,
+    transform: `scale(${1 - dissolve * 0.2})`,
+  };
 
   return (
     <section ref={ref} style={{
@@ -32,7 +58,7 @@ export const HeroSection = () => {
       alignItems: 'center',
       position: 'relative',
       overflow: 'hidden',
-      padding: '84px 48px 40px',
+      padding: '110px 48px 40px',
       boxSizing: 'border-box',
     }}>
 
@@ -48,6 +74,7 @@ export const HeroSection = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
+        ...videoStyle,
       }}>
         <video
           id="hero-pipeline-video"
@@ -61,7 +88,7 @@ export const HeroSection = () => {
             height: '100%',
             objectFit: 'contain',
             display: 'block',
-            marginTop: '18vh',
+            marginTop: '24vh',
             marginRight: '-6vw',
             opacity: 1,
             transform: phase >= 2 ? 'scale(1)' : 'scale(0.6)',
@@ -127,7 +154,7 @@ export const HeroSection = () => {
       }} />
 
       {/* ── Content ── */}
-      <div style={{ position: 'relative', zIndex: 3, maxWidth: 620}}>
+      <div style={{ position: 'relative', zIndex: 3, maxWidth: 620, ...contentStyle }}>
 
         {/* Headline */}
         <h1 style={{

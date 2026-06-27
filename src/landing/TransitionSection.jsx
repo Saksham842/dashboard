@@ -2,42 +2,6 @@
 import React from 'react';
 import { FadeUpOnScroll } from './Primitives';
 
-// ── CSS 3D metallic polyhedron (poly-block style background shapes) ────────────
-const MetalPoly = ({ size = 240, rotX = 20, rotY = 30, rotZ = 0, style = {} }) => (
-  <div style={{
-    width: size, height: size,
-    transformStyle: 'preserve-3d',
-    transform: `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`,
-    position: 'relative',
-    ...style,
-  }}>
-    {/* Front */}
-    <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(55,55,60,0.88) 0%,rgba(20,20,22,0.95) 45%,rgba(75,75,80,0.75) 100%)', border:'1px solid rgba(130,130,140,0.22)', transform:`translateZ(${size*0.18}px)`, boxShadow:'inset 0 0 40px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.1)' }} />
-    {/* Top */}
-    <div style={{ position:'absolute', width:'100%', height:size*0.36, background:'linear-gradient(180deg,rgba(85,85,90,0.82) 0%,rgba(30,30,34,0.9) 100%)', border:'1px solid rgba(140,140,150,0.18)', transform:`rotateX(-90deg) translateZ(${size*0.18}px)`, transformOrigin:'top center', boxShadow:'inset 0 0 20px rgba(255,255,255,0.07)' }} />
-    {/* Right */}
-    <div style={{ position:'absolute', width:size*0.36, height:'100%', background:'linear-gradient(90deg,rgba(18,18,20,0.96) 0%,rgba(45,45,50,0.82) 100%)', border:'1px solid rgba(100,100,110,0.16)', transform:`rotateY(90deg) translateZ(${size*0.64}px)`, transformOrigin:'right center', boxShadow:'inset -2px 0 30px rgba(255,255,255,0.05)' }} />
-    {/* Specular */}
-    <div style={{ position:'absolute', width:'32%', height:'55%', top:'7%', left:'9%', background:'linear-gradient(135deg,rgba(255,255,255,0.16) 0%,transparent 70%)', transform:`translateZ(${size*0.19}px)`, pointerEvents:'none' }} />
-    <div style={{ position:'absolute', width:'48%', height:'28%', bottom:'14%', left:'26%', background:'radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.1) 0%,transparent 100%)', transform:`translateZ(${size*0.19}px)`, pointerEvents:'none' }} />
-  </div>
-);
-
-const MetalDiamond = ({ size = 100, rotZ = 45, style = {} }) => (
-  <div style={{
-    width: size, height: size,
-    transform: `rotate(${rotZ}deg)`,
-    background: 'linear-gradient(135deg,rgba(65,65,70,0.82) 0%,rgba(18,18,20,0.96) 55%,rgba(85,85,90,0.72) 100%)',
-    border: '1px solid rgba(150,150,160,0.18)',
-    boxShadow: '0 0 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.14)',
-    position: 'relative',
-    overflow: 'hidden',
-    ...style,
-  }}>
-    <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(255,255,255,0.13) 0%,transparent 55%)', pointerEvents:'none' }} />
-  </div>
-);
-
 // ── TiltCard with spotlight ────────────────────────────────────────────────────
 const TiltCard = ({ children, style = {}, className = '' }) => {
   const cardRef = React.useRef(null);
@@ -137,12 +101,10 @@ const MorphBlob = ({ progress }) => {
 export const TransitionSection = () => {
   const sectionRef = React.useRef(null);
   const [progress, setProgress] = React.useState(0);
-  const [scrollY, setScrollY] = React.useState(0);
   const [shakeTrigger, setShakeTrigger] = React.useState(false);
   const [inView, setInView] = React.useState(false);
   const [hasEntered, setHasEntered] = React.useState(false);
   const prevProgress = React.useRef(0);
-  const [autoRot, setAutoRot] = React.useState(0);
 
   // Scroll tracker
   React.useEffect(() => {
@@ -152,7 +114,6 @@ export const TransitionSection = () => {
       const total = sectionRef.current.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const p = Math.max(0, Math.min(1, scrolled / total));
-      setScrollY(Math.max(0, scrolled));
       setProgress(p);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -179,23 +140,8 @@ export const TransitionSection = () => {
     prevProgress.current = progress;
   }, [progress]);
 
-  // Slow auto-rotation for bg shapes
-  React.useEffect(() => {
-    let raf;
-    const tick = () => { setAutoRot(r => r + 0.08); raf = requestAnimationFrame(tick); };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   const chaosOpacity   = progress < 0.25 ? 1 : progress < 0.45 ? 1-(progress-0.25)/0.2 : 0;
   const clarityOpacity = progress < 0.55 ? 0 : progress < 0.75 ? (progress-0.55)/0.2    : 1;
-
-  // Background shape parallax amounts
-  const bg1Y = scrollY * -0.14;
-  const bg1X = scrollY * 0.03;
-  const bg2Y = scrollY * -0.20;
-  const bg2X = scrollY * -0.04;
-  const bg3Y = scrollY * -0.10;
 
   const cons = [
     'Endless scheduling and coordination delays',
@@ -211,78 +157,23 @@ export const TransitionSection = () => {
   ];
 
   return (
-    <div id="avatar-explainer" ref={sectionRef} style={{ height:'400vh', position:'relative' }}>
+    <div id="avatar-explainer" ref={sectionRef} style={{ height:'400vh', position:'relative', zIndex:2, marginTop:'-100vh' }}>
       <div style={{
         position:'sticky', top:0, height:'100vh', background:'#000',
         display:'flex', flexDirection:'column', alignItems:'center',
-        justifyContent:'center', overflow:'hidden', padding:'0 48px',
-        perspective:'1400px',
+        justifyContent:'center', overflow:'hidden', padding:'80px 48px 40px',
+        zIndex:2,
       }}>
 
-        {/* ════════════════════════════════════════════
-            POLY-BLOCK BACKGROUND LAYER
-            Floating metallic 3D shapes that parallax on scroll
-            ════════════════════════════════════════════ */}
-
-        {/* Shape 1 — large cube, top-center drifts down-left as you scroll */}
+        {/* ── Glowing cut-line — visible as this section slides over the hero ── */}
         <div style={{
-          position:'absolute',
-          top:'2%', left:'50%', marginLeft:'-160px',
-          transform:`translateY(${bg1Y}px) translateX(${bg1X}px)`,
-          zIndex:1, opacity:0.55,
-          pointerEvents:'none',
-        }}>
-          <MetalPoly size={340} rotX={18+autoRot*0.08} rotY={autoRot*0.3} rotZ={6} />
-        </div>
-
-        {/* Shape 2 — medium cube, top-right */}
-        <div style={{
-          position:'absolute',
-          top:'-6%', right:'-4%',
-          transform:`translateY(${bg2Y}px) translateX(${bg2X}px)`,
-          zIndex:1, opacity:0.42,
-          pointerEvents:'none',
-        }}>
-          <MetalPoly size={260} rotX={-16-autoRot*0.06} rotY={-autoRot*0.25} rotZ={-14} />
-        </div>
-
-        {/* Shape 3 — diamond, top-left */}
-        <div style={{
-          position:'absolute',
-          top:'4%', left:'-2%',
-          transform:`translateY(${bg3Y}px)`,
-          zIndex:1, opacity:0.48,
-          pointerEvents:'none',
-        }}>
-          <MetalDiamond size={140} rotZ={24 + autoRot*0.18} />
-        </div>
-
-        {/* Shape 4 — small diamond, far right mid */}
-        <div style={{
-          position:'absolute',
-          top:'22%', right:'6%',
-          transform:`translateY(${bg1Y*0.6}px)`,
-          zIndex:1, opacity:0.32,
-          pointerEvents:'none',
-        }}>
-          <MetalDiamond size={72} rotZ={-autoRot*0.22} />
-        </div>
-
-        {/* Ambient glow behind shapes */}
-        <div style={{
-          position:'absolute', top:'-5%', left:'35%',
-          width:600, height:500, borderRadius:'50%',
-          background:'radial-gradient(ellipse,rgba(35,35,40,0.55) 0%,transparent 70%)',
-          filter:'blur(70px)',
-          transform:`translateY(${bg1Y*0.5}px)`,
-          pointerEvents:'none', zIndex:0,
+          position:'absolute', top:0, left:0, right:0, height:1,
+          background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
+          boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+          zIndex:20, pointerEvents:'none',
         }} />
 
-        {/* Edge vignette over shapes */}
-        <div style={{
-          position:'absolute', inset:0, zIndex:2, pointerEvents:'none',
-          background:'radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(0,0,0,0.65) 100%)',
-        }} />
+
 
         {/* ════════════════════════════════════════════
             EXISTING UI — title + 3 column grid
@@ -290,7 +181,7 @@ export const TransitionSection = () => {
 
         {/* Title — page-rise entrance */}
         <div style={{
-          textAlign:'center', marginBottom:48, zIndex:10,
+          textAlign:'center', marginBottom:30, zIndex:10,
           opacity:0,
           animation: inView ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none',
         }}>
@@ -301,7 +192,7 @@ export const TransitionSection = () => {
             fontSize:11, fontFamily:'Outfit,sans-serif',
             color: progress<0.5?'#FF6B35':'#C9A84C',
             letterSpacing:'0.1em', textTransform:'uppercase',
-            marginBottom:14, transition:'border-color 0.4s, color 0.4s',
+            marginBottom:10, transition:'border-color 0.4s, color 0.4s',
           }}>
             Workflow Shift
           </div>
@@ -329,9 +220,9 @@ export const TransitionSection = () => {
           <div style={{ opacity:0, animation: inView ? 'leftBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards' : 'none' }}>
             <TiltCard style={{
               background:'rgba(255,107,53,0.01)',
-              border:'1px solid rgba(255,107,53,0.08)',
+              border:'1.5px solid rgba(255,107,53,0.3)',
               borderRadius:20, padding:'40px 32px',
-              boxShadow:'0 15px 30px rgba(0,0,0,0.4)',
+              boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)',
             }}>
               <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#FF6B35', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>From Chaos</div>
               <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:26, fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em' }}>Traditional Hiring</h3>
@@ -361,9 +252,9 @@ export const TransitionSection = () => {
               style={{
                 opacity:clarityOpacity,
                 background:'rgba(201,168,76,0.02)',
-                border:'1px solid rgba(201,168,76,0.12)',
+                border:'1.5px solid rgba(201,168,76,0.3)',
                 borderRadius:20, padding:'40px 32px',
-                boxShadow:'0 15px 30px rgba(0,0,0,0.4)',
+                boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)',
                 pointerEvents:clarityOpacity<0.1?'none':'auto',
                 transition:'opacity 0.15s',
               }}

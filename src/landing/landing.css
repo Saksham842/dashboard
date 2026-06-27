@@ -119,3 +119,138 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   100% { opacity: 1; transform: translateX(0) rotate(0deg); }
 }
 
+/* ─── Awards Transition — rotating starburst ─────────────────────── */
+@keyframes awardsBurstRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.awards-burst-rotator {
+  animation: awardsBurstRotate 24s linear infinite;
+  transform-origin: center center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Custom premium range slider styling */
+.ih-calculator-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 10px;
+  outline: none;
+  transition: background 0.15s ease;
+}
+
+.ih-calculator-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #C9A84C;
+  border: 2px solid #0A0A0A;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+  transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.1s ease;
+}
+
+.ih-calculator-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  background: #E8C97A;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.7);
+}
+
+.ih-calculator-slider::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  background: #B8973B;
+}
+
+.ih-calculator-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #C9A84C;
+  border: 2px solid #0A0A0A;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+  transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.1s ease;
+}
+
+.ih-calculator-slider::-moz-range-thumb:hover {
+  transform: scale(1.25);
+  background: #E8C97A;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.7);
+}
+
+.ih-calculator-slider::-moz-range-thumb:active {
+  transform: scale(1.1);
+  background: #B8973B;
+}
+
+/* ─── Measure Your Savings — scrolling marquee banner ──────────────────── */
+@keyframes calcMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.calc-marquee-wrap {
+  overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  transform: rotate(-1.6deg);
+  background: rgba(201, 168, 76, 0.05);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 24px 0;
+  font-weight: 700;
+}
+
+.calc-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: calcMarquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+.calc-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #C9A84C;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.calc-marquee-item em {
+  font-style: italic;
+  background: linear-gradient(90deg, #FF6B35, #E91E8C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Georgia', serif;
+  font-size: 1em;
+  margin-left: 0.2em;
+}
+
+.calc-marquee-dot {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 20px;
+  color: rgba(201, 168, 76, 0.35);
+  font-size: 0.5em;
+  line-height: 1;
+  font-style: normal;
+  -webkit-text-fill-color: rgba(201, 168, 76, 0.35);
+}
