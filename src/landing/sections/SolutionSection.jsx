@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const cards = [
   {
@@ -28,7 +29,7 @@ const cards = [
     num: "03",
     label: "IDE Sandboxes",
     title: "Technical Tasks & Coding Playgrounds",
-    body: "Candidates solve real-world problems and write code in secure, proctored environments with support for multi-language IDEs and task sandboxes.",
+    body: "Candidates solve real-world problems and write code in secure, proctored environments with support for proctored multi-language IDEs and task sandboxes.",
     pills: ["Interactive IDE", "Multi-Language Support", "AI-Powered Proctoring", "Plagiarism Detection", "Auto-Run Test Cases"],
     uiType: "code",
     accent: "#38BDF8",
@@ -39,7 +40,7 @@ const cards = [
     num: "04",
     label: "Expert Panels",
     title: "Global Human Expert Interviews",
-    body: "Shortlisted candidates are paired with certified industry professionals (ex-Google tech leads, SaaS sales directors) who run calibrated 1-on-1 technical rounds.",
+    body: "Shortlisted candidates are paired with certified industry professionals (ex-Google tech leads, ex-Stripe engineers) who run calibrated 1-on-1 technical rounds.",
     pills: ["Verified Expert Network", "Live Coding Collab", "1-on-1 Deep Technical", "Calibrated Evaluation"],
     uiType: "expert",
     accent: "#FBBF24",
@@ -63,6 +64,7 @@ export const SolutionSection = () => {
   const sectionRef = React.useRef(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [progress, setProgress] = React.useState(0);
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   React.useEffect(() => {
     const onScroll = () => {
@@ -86,16 +88,16 @@ export const SolutionSection = () => {
     if (!sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
     const totalHeight = sectionRef.current.offsetHeight - window.innerHeight;
-    const sectionTop = window.scrollY + rect.top;
+    const sectionTop = (window.__lenis?.scroll ?? 0) + rect.top;
     
-    // Scroll to the center of the target index's scroll range for stability
     const targetProgress = index * 0.2 + 0.1;
     const targetScroll = sectionTop + targetProgress * totalHeight;
     
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    });
+    if (window.__lenis) {
+      window.__lenis.scrollTo(targetScroll, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
   };
 
   const handleNext = () => {
@@ -324,15 +326,15 @@ export const SolutionSection = () => {
   const dissolve = Math.max(0, Math.min(1, (progress - 0.82) / 0.18)) * 0.3;
 
   return (
-    <section ref={sectionRef} style={{
+    <section data-scroll ref={sectionRef} style={{
       height: '600vh',
       background: '#000000',
       position: 'relative',
     }}>
       {/* Heading scrolls normally — NOT sticky */}
-      <div style={{
+      <div data-scroll data-scroll-speed="-0.1" style={{
         textAlign: 'center',
-        padding: '100px 48px 40px',
+        padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px)',
         boxSizing: 'border-box',
         opacity: 1 - dissolve,
         transform: `translateY(${dissolve * 20}px)`,
@@ -370,8 +372,8 @@ export const SolutionSection = () => {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        paddingLeft: '48px',
-        paddingRight: '48px',
+        paddingLeft: 'clamp(12px, 4vw, 48px)',
+        paddingRight: 'clamp(12px, 4vw, 48px)',
         paddingTop: '16px',
         paddingBottom: '24px',
         boxSizing: 'border-box',
@@ -397,7 +399,7 @@ export const SolutionSection = () => {
                 borderRadius: '999px',
                 padding: '6px 18px',
                 fontFamily: 'Outfit, sans-serif',
-                fontSize: '13px',
+                fontSize: 'clamp(11px, 1.8vw, 13px)',
                 fontWeight: 500,
                 color: activeIndex === idx ? '#F5F0E8' : '#888880',
                 cursor: 'pointer',
@@ -422,6 +424,7 @@ export const SolutionSection = () => {
             return (
               <div
                 key={i}
+                className="sol-card-grid"
                 style={{
                   position: 'absolute',
                   inset: 0,
@@ -436,12 +439,14 @@ export const SolutionSection = () => {
                   maxWidth: '1200px',
                   background: '#0D0D0E',
                   border: `1.5px solid ${card.border}`,
-                  borderRight: 'none', /* Blend off-screen */
-                  borderRadius: '32px 0 0 32px',
-                  padding: '40px 0 40px 48px',
+                  borderRight: isMobile ? `1.5px solid ${card.border}` : 'none', /* Blend off-screen on desktop */
+                  borderRadius: isMobile ? '24px' : '32px 0 0 32px',
+                  padding: isMobile 
+                    ? 'clamp(20px, 3vw, 40px) clamp(16px, 4vw, 32px)' 
+                    : 'clamp(20px, 3vw, 40px) 0 clamp(20px, 3vw, 40px) clamp(16px, 4vw, 48px)',
                   boxSizing: 'border-box',
                   display: 'grid',
-                  gridTemplateColumns: 'minmax(350px, 42%) 1fr',
+                  gridTemplateColumns: isMobile ? '1fr' : 'minmax(350px, 42%) 1fr',
                   gap: '40px',
                   alignItems: 'center',
                   boxShadow: '0 30px 60px rgba(0, 0, 0, 0.8), -15px 0 35px rgba(0, 0, 0, 0.4)',
@@ -590,7 +595,7 @@ export const SolutionSection = () => {
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                 }}>
-                  <div style={{
+                  <div className="sol-card-mockup" style={{
                     width: '120%', /* Extends off screen */
                     maxWidth: '800px',
                     display: 'flex',
@@ -653,7 +658,7 @@ export const SolutionSection = () => {
                     {/* Active Screen Content Area */}
                     <div style={{
                       background: '#0B0B0C',
-                      height: '330px',
+                      height: 'clamp(200px, 25vw, 330px)',
                       width: '100%',
                       position: 'relative',
                       overflow: 'hidden',
@@ -672,6 +677,10 @@ export const SolutionSection = () => {
         @keyframes voiceWavePulse {
           0%, 100% { transform: scale(1); opacity: 0.2; }
           50% { transform: scale(1.1); opacity: 0.45; }
+        }
+        @media (max-width: 768px) {
+          .sol-card-grid { grid-template-columns: 1fr !important; }
+          .sol-card-mockup { display: none !important; }
         }
       `}} />
     </section>

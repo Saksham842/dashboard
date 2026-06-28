@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-// Shared UI primitives
+// ─── GlassCard ────────────────────────────────────────────────────────────────
 export const GlassCard = ({ children, style = {} }) => {
   const [hov, setHov] = React.useState(false);
   return (
@@ -14,7 +14,7 @@ export const GlassCard = ({ children, style = {} }) => {
         borderRadius: 12,
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        padding: 28,
+        padding: 'clamp(20px, 3vw, 28px)',
         transform: hov ? 'translateY(-2px)' : 'translateY(0)',
         boxShadow: hov ? '0 8px 32px rgba(201,168,76,0.07)' : 'none',
         transition: 'border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease',
@@ -24,6 +24,7 @@ export const GlassCard = ({ children, style = {} }) => {
   );
 };
 
+// ─── Eyebrow ──────────────────────────────────────────────────────────────────
 export const Eyebrow = ({ children, style = {} }) => {
   const finalColor = style.color || '#C9A84C';
   return (
@@ -40,6 +41,7 @@ export const Eyebrow = ({ children, style = {} }) => {
   );
 };
 
+// ─── FadeUpOnScroll ───────────────────────────────────────────────────────────
 export const FadeUpOnScroll = ({ children, delay = 0, y = 50, threshold = 0.4 }) => {
   const ref = React.useRef(null);
   const [visible, setVisible] = React.useState(false);
@@ -60,6 +62,7 @@ export const FadeUpOnScroll = ({ children, delay = 0, y = 50, threshold = 0.4 })
   );
 };
 
+// ─── RevealCard ───────────────────────────────────────────────────────────────
 export const RevealCard = ({ children, delay = 0 }) => {
   const ref = React.useRef(null);
   const [visible, setVisible] = React.useState(false);
@@ -81,4 +84,3 @@ export const RevealCard = ({ children, delay = 0 }) => {
     }}>{children}</div>
   );
 };
-

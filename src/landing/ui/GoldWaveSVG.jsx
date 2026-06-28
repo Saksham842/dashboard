@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 
-// GoldWaveSVG.jsx, Reusable animated gold wave decoration
+// ─── GoldWaveSVG ──────────────────────────────────────────────────────────────
+// Reusable animated gold wave decoration used across multiple sections.
 export const GoldWaveSVG = ({ opacity = 1, style = {} }) => (
   <svg
     viewBox="0 0 600 500"
@@ -11,7 +12,7 @@ export const GoldWaveSVG = ({ opacity = 1, style = {} }) => (
     aria-hidden="true"
   >
     {[
-      { d: "M20,250 C100,120 200,380 300,250 C400,120 500,360 580,230", delay: 0, alpha: 0.7 },
+      { d: "M20,250 C100,120 200,380 300,250 C400,120 500,360 580,230", delay: 0,   alpha: 0.7 },
       { d: "M20,200 C120,320 220,80  320,210 C420,340 520,100 580,280", delay: 0.3, alpha: 0.5 },
       { d: "M20,310 C80,160  200,420 320,290 C440,160 530,380 580,300", delay: 0.6, alpha: 0.4 },
       { d: "M20,160 C140,300 240,60  340,190 C440,320 540,140 580,200", delay: 0.9, alpha: 0.35 },
@@ -43,4 +44,3 @@ export const GoldWaveSVG = ({ opacity = 1, style = {} }) => (
     `}</style>
   </svg>
 );
-

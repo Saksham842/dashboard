@@ -1,26 +1,27 @@
 'use client';
 import React from 'react';
-import { Navbar } from './Navbar';
-import { HeroSection } from './HeroSection';
-import { TransitionSection } from './TransitionSection';
-import { DemoVideoSection } from './DemoVideoSection';
-import { SolutionSection } from './SolutionSection';
+import { Navbar, PageTransition } from './layout';
 import {
+  HeroSection,
+  TransitionSection,
+  DemoVideoSection,
+  SolutionSection,
   ExplainerVideoSection,
   CalculatorSection,
   SolvingForSection,
-  ImpactSection,
   ManifestoSection,
+  HiringChaosSection,
   FAQSection,
   AboutFounderSection,
   BlogsSection,
   ContactSection,
   FooterCTA,
-} from './Sections';
-import { PageTransition } from './PageTransition';
+} from './sections';
+import { SmoothScrollProvider } from './SmoothScrollProvider';
 
 export default function LandingApp() {
   return (
+    <SmoothScrollProvider>
     <div className="ih-landing">
       <Navbar />
       {/* Wrapper to limit the sticky lifetime of HeroSection */}
@@ -40,8 +41,8 @@ export default function LandingApp() {
       </div>
       <CalculatorSection />
       <SolvingForSection />
-      <ImpactSection />
       <ManifestoSection />
+      <HiringChaosSection/>
       <FAQSection />
       <AboutFounderSection />
       <BlogsSection />
@@ -49,5 +50,6 @@ export default function LandingApp() {
       <FooterCTA />
       <PageTransition />
     </div>
+    </SmoothScrollProvider>
   );
 }

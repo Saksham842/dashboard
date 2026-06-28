@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { FadeUpOnScroll } from './Primitives';
+import { FadeUpOnScroll } from '../ui';
 
 // ── TiltCard with spotlight ────────────────────────────────────────────────────
 const TiltCard = ({ children, style = {}, className = '' }) => {
@@ -43,7 +43,7 @@ const MorphBlob = ({ progress }) => {
 
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-      <div style={{ position:'relative', width:300, height:300, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(201,168,76,0.35)':'rgba(201,168,76,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
+      <div className="morph-blob-inner" style={{ position:'relative', width:300, height:300, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(201,168,76,0.35)':'rgba(201,168,76,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
 
         {/* Chaos blob */}
         <div style={{ position:'absolute', inset:0, opacity:chaosOpacity*0.65, transition:'opacity 0.2s', pointerEvents:'none' }}>
@@ -97,7 +97,7 @@ const MorphBlob = ({ progress }) => {
   );
 };
 
-// ── Main Section ──────────────────────────────────────────────────────────────
+// ─── TransitionSection ────────────────────────────────────────────────────────
 export const TransitionSection = () => {
   const sectionRef = React.useRef(null);
   const [progress, setProgress] = React.useState(0);
@@ -106,7 +106,6 @@ export const TransitionSection = () => {
   const [hasEntered, setHasEntered] = React.useState(false);
   const prevProgress = React.useRef(0);
 
-  // Scroll tracker
   React.useEffect(() => {
     const onScroll = () => {
       if (!sectionRef.current) return;
@@ -120,7 +119,6 @@ export const TransitionSection = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Entrance observer
   React.useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !hasEntered) { setInView(true); setHasEntered(true); }
@@ -129,7 +127,6 @@ export const TransitionSection = () => {
     return () => observer.disconnect();
   }, [hasEntered]);
 
-  // Shake at 50% crossover
   React.useEffect(() => {
     const crossed = (prevProgress.current < 0.5 && progress >= 0.5) || (prevProgress.current > 0.5 && progress <= 0.5);
     if (crossed) {
@@ -140,8 +137,7 @@ export const TransitionSection = () => {
     prevProgress.current = progress;
   }, [progress]);
 
-  const chaosOpacity   = progress < 0.25 ? 1 : progress < 0.45 ? 1-(progress-0.25)/0.2 : 0;
-  const clarityOpacity = progress < 0.55 ? 0 : progress < 0.75 ? (progress-0.55)/0.2    : 1;
+  const clarityOpacity = progress < 0.55 ? 0 : progress < 0.75 ? (progress-0.55)/0.2 : 1;
 
   const cons = [
     'Endless scheduling and coordination delays',
@@ -158,50 +154,23 @@ export const TransitionSection = () => {
 
   return (
     <div id="avatar-explainer" ref={sectionRef} style={{ height:'400vh', position:'relative', zIndex:2, marginTop:'-100vh' }}>
-      <div style={{
-        position:'sticky', top:0, height:'100vh', background:'#000',
-        display:'flex', flexDirection:'column', alignItems:'center',
-        justifyContent:'center', overflow:'hidden', padding:'80px 48px 40px',
-        zIndex:2,
-      }}>
+      <div data-scroll style={{ position:'sticky', top:0, height:'100vh', background:'#000', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', overflow:'hidden', padding:'clamp(40px, 6vw, 80px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px)', zIndex:2 }}>
 
-        {/* ── Glowing cut-line — visible as this section slides over the hero ── */}
-        <div style={{
-          position:'absolute', top:0, left:0, right:0, height:1,
-          background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-          boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
-          zIndex:20, pointerEvents:'none',
-        }} />
+        {/* Glowing cut-line */}
+        <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)', boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)', zIndex:20, pointerEvents:'none' }} />
 
+        <style dangerouslySetInnerHTML={{__html:`
+          .ts-grid { display: grid; grid-template-columns: 1fr 320px 1fr; gap: 60px; }
+          @media (max-width: 768px) { .ts-grid { grid-template-columns: 1fr; gap: 30px; } .ts-grid > :nth-child(2) { order: -1; } }
+          @media (max-width: 768px) { .morph-blob-inner { width: 200px !important; height: 200px !important; } }
+        `}} />
 
-
-        {/* ════════════════════════════════════════════
-            EXISTING UI — title + 3 column grid
-            ════════════════════════════════════════════ */}
-
-        {/* Title — page-rise entrance */}
-        <div style={{
-          textAlign:'center', marginBottom:30, zIndex:10,
-          opacity:0,
-          animation: inView ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none',
-        }}>
-          <div style={{
-            display:'inline-block', padding:'5px 14px', borderRadius:999,
-            border:`1px solid ${progress<0.5?'rgba(255,107,53,0.35)':'rgba(201,168,76,0.35)'}`,
-            background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)',
-            fontSize:11, fontFamily:'Outfit,sans-serif',
-            color: progress<0.5?'#FF6B35':'#C9A84C',
-            letterSpacing:'0.1em', textTransform:'uppercase',
-            marginBottom:10, transition:'border-color 0.4s, color 0.4s',
-          }}>
+        {/* Title */}
+        <div style={{ textAlign:'center', marginBottom:30, zIndex:10, opacity:0, animation: inView ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none' }}>
+          <div style={{ display:'inline-block', padding:'5px 14px', borderRadius:999, border:`1px solid ${progress<0.5?'rgba(255,107,53,0.35)':'rgba(201,168,76,0.35)'}`, background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)', fontSize:11, fontFamily:'Outfit,sans-serif', color: progress<0.5?'#FF6B35':'#C9A84C', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:10, transition:'border-color 0.4s, color 0.4s' }}>
             Workflow Shift
           </div>
-          <h2 style={{
-            fontFamily:'Space Grotesk,sans-serif',
-            fontSize:'clamp(2rem,4.5vw,3.2rem)',
-            fontWeight:700, color:'#F5F0E8',
-            letterSpacing:'-0.02em', lineHeight:1.15, margin:0,
-          }}>
+          <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2rem,4.5vw,3.2rem)', fontWeight:700, color:'#F5F0E8', letterSpacing:'-0.02em', lineHeight:1.15, margin:0 }}>
             From{' '}
             <span style={{ color:'#FF6B35', opacity:progress<0.55?1:0.4, transition:'opacity 0.3s' }}>Chaos</span>
             {' '}to{' '}
@@ -210,22 +179,13 @@ export const TransitionSection = () => {
         </div>
 
         {/* 3-column grid */}
-        <div style={{
-          display:'grid', gridTemplateColumns:'1fr 320px 1fr',
-          gap:60, width:'100%', maxWidth:1200,
-          alignItems:'center', position:'relative', zIndex:10,
-        }}>
+        <div className="ts-grid" style={{ display:'grid', gridTemplateColumns:'1fr 320px 1fr', gap:'clamp(24px, 4vw, 60px)', width:'100%', maxWidth:1200, alignItems:'center', position:'relative', zIndex:10 }}>
 
-          {/* LEFT CARD — booms in, always present */}
+          {/* LEFT CARD */}
           <div style={{ opacity:0, animation: inView ? 'leftBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards' : 'none' }}>
-            <TiltCard style={{
-              background:'rgba(255,107,53,0.01)',
-              border:'1.5px solid rgba(255,107,53,0.3)',
-              borderRadius:20, padding:'40px 32px',
-              boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)',
-            }}>
+            <TiltCard style={{ background:'rgba(255,107,53,0.01)', border:'1.5px solid rgba(255,107,53,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)' }}>
               <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#FF6B35', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>From Chaos</div>
-              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:26, fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em' }}>Traditional Hiring</h3>
+              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em' }}>Traditional Hiring</h3>
               <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>The Old Way</p>
               <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
                 {cons.map((item, idx) => (
@@ -238,29 +198,21 @@ export const TransitionSection = () => {
             </TiltCard>
           </div>
 
-          {/* CENTRE — slow fade-up */}
+          {/* CENTRE */}
           <FadeUpOnScroll delay={0.1} y={30} threshold={0.6}>
             <div className={shakeTrigger ? 'morph-shake' : ''}>
               <MorphBlob progress={progress} />
             </div>
           </FadeUpOnScroll>
 
-          {/* RIGHT CARD — slow fade-up */}
+          {/* RIGHT CARD */}
           <FadeUpOnScroll delay={0.2} y={30} threshold={0.6}>
             <TiltCard
               className={progress > 0.75 ? 'pulse-glow' : ''}
-              style={{
-                opacity:clarityOpacity,
-                background:'rgba(201,168,76,0.02)',
-                border:'1.5px solid rgba(201,168,76,0.3)',
-                borderRadius:20, padding:'40px 32px',
-                boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)',
-                pointerEvents:clarityOpacity<0.1?'none':'auto',
-                transition:'opacity 0.15s',
-              }}
+              style={{ opacity:clarityOpacity, background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:clarityOpacity<0.1?'none':'auto', transition:'opacity 0.15s' }}
             >
               <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#C9A84C', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>To Clarity</div>
-              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:26, fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em' }}>With IntervieHire</h3>
+              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em' }}>With IntervieHire</h3>
               <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>AI-Powered Hiring That Scales</p>
               <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
                 {pros.map((item, idx) => (
@@ -275,11 +227,7 @@ export const TransitionSection = () => {
         </div>
 
         {/* Scroll hint */}
-        <div style={{
-          position:'absolute', bottom:32, left:'50%', transform:'translateX(-50%)',
-          opacity:progress<0.05?0.5:0, transition:'opacity 0.4s',
-          color:'#555550', fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', zIndex:10,
-        }}>
+        <div style={{ position:'absolute', bottom:32, left:'50%', transform:'translateX(-50%)', opacity:progress<0.05?0.5:0, transition:'opacity 0.4s', color:'#555550', fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', zIndex:10 }}>
           SCROLL
         </div>
 

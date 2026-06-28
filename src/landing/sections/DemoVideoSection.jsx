@@ -37,13 +37,17 @@ export const DemoVideoSection = () => {
 
   return (
     <section ref={sectionRef} style={{ height: '300vh', position: 'relative' }}>
+      <style dangerouslySetInnerHTML={{__html:`
+        .demo-heading { padding: 0 48px; }
+        @media (max-width: 768px) { .demo-heading { padding: 0 16px; } }
+      `}} />
       <div style={{
         position: 'sticky', top: 0, height: '100vh',
         display: 'flex', flexDirection: 'column',
         background: '#000', overflow: 'hidden',
       }}>
         {/* Heading — sits above video, shrinks to 0 as video expands */}
-        <div style={{
+        <div className="demo-heading" style={{
           flexShrink: 0, textAlign: 'center', overflow: 'hidden',
           opacity: Math.min(headingOpacity, entered ? 1 : 0),
           height: entered ? `${headingHeight}px` : '0px',

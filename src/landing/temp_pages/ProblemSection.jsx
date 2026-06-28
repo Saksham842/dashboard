@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Eyebrow, GlassCard, RevealCard } from './Primitives';
+import { Eyebrow, GlassCard, RevealCard } from '../ui';
 
 // ProblemSection.jsx
 export const ProblemSection = () => {

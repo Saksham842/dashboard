@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap');
+@import 'locomotive-scroll/dist/locomotive-scroll.css';
 
 /* intervieHire landing — base */
 .ih-landing *, .ih-landing *::before, .ih-landing *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -242,6 +243,26 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   font-family: 'Georgia', serif;
   font-size: 1em;
   margin-left: 0.2em;
+}
+
+/* ─── Mobile Responsive Overrides ─────────────────────────────── */
+@media (max-width: 768px) {
+  .sf-grid-head { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .sf-pairs { grid-template-columns: 1fr !important; }
+  .solve-pair { grid-template-columns: 1fr !important; height: auto !important; }
+  .solve-pair > div { height: 300px !important; }
+  .hc-pill { white-space: normal !important; font-size: 11px !important; padding: 8px 14px !important; }
+  .footer-right { text-align: left !important; }
+  .footer-flex { flex-direction: column !important; }
+  .ts-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+  .ts-grid > :nth-child(2) { order: -1; }
+  .morph-blob-inner { width: 200px !important; height: 200px !important; }
+  .demo-heading { padding: 0 16px !important; }
+  .sol-card-grid { grid-template-columns: 1fr !important; }
+  .sol-card-mockup { display: none !important; }
+  .ev-grid { grid-template-columns: 1fr !important; }
+  .ev-steps { padding-left: 0 !important; }
+  .calc-grid { grid-template-columns: 1fr !important; }
 }
 
 .calc-marquee-dot {
