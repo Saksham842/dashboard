@@ -104,6 +104,7 @@ export const TransitionSection = () => {
   const [shakeTrigger, setShakeTrigger] = React.useState(false);
   const [inView, setInView] = React.useState(false);
   const [hasEntered, setHasEntered] = React.useState(false);
+  const [rightRevealed, setRightRevealed] = React.useState(false);
   const prevProgress = React.useRef(0);
 
   React.useEffect(() => {
@@ -126,6 +127,11 @@ export const TransitionSection = () => {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [hasEntered]);
+
+  // Trigger right card boom after human → AI morph completes
+  React.useEffect(() => {
+    if (!rightRevealed && progress >= 0.65) setRightRevealed(true);
+  }, [progress, rightRevealed]);
 
   React.useEffect(() => {
     const crossed = (prevProgress.current < 0.5 && progress >= 0.5) || (prevProgress.current > 0.5 && progress <= 0.5);
@@ -163,6 +169,13 @@ export const TransitionSection = () => {
           .ts-grid { display: grid; grid-template-columns: 1fr 320px 1fr; gap: 60px; }
           @media (max-width: 768px) { .ts-grid { grid-template-columns: 1fr; gap: 30px; } .ts-grid > :nth-child(2) { order: -1; } }
           @media (max-width: 768px) { .morph-blob-inner { width: 200px !important; height: 200px !important; } }
+          @keyframes rightBoomReveal {
+            0%   { opacity:0; transform:scale(0.1) translateX(40px); filter:brightness(5) blur(20px); }
+            40%  { opacity:1; transform:scale(1.25) translateX(-6px); filter:brightness(1.8) blur(4px); }
+            65%  { transform:scale(0.92) translateX(2px); filter:brightness(1) blur(0); }
+            82%  { transform:scale(1.06) translateX(-1px); }
+            100% { opacity:1; transform:scale(1) translateX(0); filter:brightness(1) blur(0); }
+          }
         `}} />
 
         {/* Title */}
@@ -205,11 +218,11 @@ export const TransitionSection = () => {
             </div>
           </FadeUpOnScroll>
 
-          {/* RIGHT CARD */}
-          <FadeUpOnScroll delay={0.2} y={30} threshold={0.6}>
+          {/* RIGHT CARD — boom in after human → AI morph */}
+          <div style={{ opacity:0, animation: rightRevealed ? 'rightBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0s forwards' : 'none' }}>
             <TiltCard
               className={progress > 0.75 ? 'pulse-glow' : ''}
-              style={{ opacity:clarityOpacity, background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:clarityOpacity<0.1?'none':'auto', transition:'opacity 0.15s' }}
+              style={{ background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:rightRevealed?'auto':'none' }}
             >
               <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#C9A84C', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>To Clarity</div>
               <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em' }}>With IntervieHire</h3>
@@ -223,7 +236,7 @@ export const TransitionSection = () => {
                 ))}
               </ul>
             </TiltCard>
-          </FadeUpOnScroll>
+          </div>
         </div>
 
         {/* Scroll hint */}

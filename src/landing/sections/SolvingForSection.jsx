@@ -46,41 +46,32 @@ export const SolvingForSection = () => {
   ];
 
   useGSAP(function () {
-    // Defer until Lenis proxy is ready
     const wrapper = window.__scrollWrapper;
-    if (!window.__lenis || !wrapper) {
-      const retry = setInterval(() => {
-        if (window.__lenis && window.__scrollWrapper) {
-          clearInterval(retry);
-          gsap.from('.solve-pair', {
-            height: '100px',
-            stagger: { amount: 0.5 },
-            scrollTrigger: {
-              trigger: '.pairs-container',
-              scroller: window.__scrollWrapper,
-              start: 'top 100%',
-              end: 'top -150%',
-              scrub: true,
-            },
-          });
-        }
-      }, 100);
-      return () => clearInterval(retry);
-    }
+    if (!wrapper) return;
     gsap.from('.solve-pair', {
       height: '100px',
-      stagger: {
-        amount: 0.5
-      },
+      stagger: { amount: 0.5 },
       scrollTrigger: {
         trigger: '.pairs-container',
         scroller: wrapper,
         start: 'top 100%',
         end: 'top -150%',
-        scrub: true
+        scrub: true,
+      },
+    });
+  }, { scope: sectionRef });
+
+  // Refresh ScrollTrigger once Lenis + its proxy are ready
+  useEffect(() => {
+    if (window.__lenis) { ScrollTrigger.refresh(); return; }
+    const check = setInterval(() => {
+      if (window.__lenis) {
+        clearInterval(check);
+        ScrollTrigger.refresh();
       }
-    })
-  }, { scope: sectionRef })
+    }, 100);
+    return () => clearInterval(check);
+  }, []);
 
   return (
     <section data-scroll data-scroll-class="reveal-text"
