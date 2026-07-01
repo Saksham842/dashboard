@@ -5,7 +5,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { NAV_LINKS, DROPDOWN_LINKS } from '../constants';
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
-export const Navbar = () => {
+export const Navbar = ({ simple }) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
@@ -20,10 +20,15 @@ export const Navbar = () => {
   }, []);
 
   React.useEffect(() => {
+    if (simple) {
+      setLoaded(true);
+      setContentReady(true);
+      return;
+    }
     const t1 = setTimeout(() => setLoaded(true), 200);
     const t2 = setTimeout(() => setContentReady(true), 1500);
     return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
+  }, [simple]);
 
   const handleScroll = (id) => {
     if (window.triggerPageTransition) {
@@ -77,8 +82,8 @@ export const Navbar = () => {
             {NAV_LINKS.map((link, idx) => (
               <a
                 key={idx}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); handleScroll(link.target); }}
+                href={link.path || link.href}
+                onClick={(e) => { if (link.path) { e.preventDefault(); window.location.href = link.path; } else { e.preventDefault(); handleScroll(link.target); } }}
                 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
                 onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
@@ -86,6 +91,16 @@ export const Navbar = () => {
                 {link.label}
               </a>
             ))}
+
+            {/* Pricing Link */}
+            <a
+              href="/pricing"
+              style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
+              onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
+            >
+              Pricing
+            </a>
 
             {/* Resources Dropdown */}
             <div
@@ -115,7 +130,7 @@ export const Navbar = () => {
                   {DROPDOWN_LINKS.map((item, idx) => (
                     <div
                       key={idx}
-                      onClick={() => handleScroll(item.target)}
+                      onClick={() => { window.location.href = item.path; setDropdownOpen(false); }}
                       style={{ fontFamily: 'Outfit, sans-serif', fontSize: 13, color: '#888880', padding: '8px 16px', cursor: 'pointer', transition: 'all 0.2s' }}
                       onMouseEnter={e => { e.currentTarget.style.color = '#C9A84C'; e.currentTarget.style.background = 'rgba(201,168,76,0.05)'; }}
                       onMouseLeave={e => { e.currentTarget.style.color = '#888880'; e.currentTarget.style.background = 'transparent'; }}
@@ -161,7 +176,7 @@ export const Navbar = () => {
             Sign In
           </a>
           <button
-            onClick={() => handleScroll('contact')}
+            onClick={() => window.location.href = '/book-demo'}
             style={{
               fontFamily: 'Outfit, sans-serif', fontSize: '14px', fontWeight: 600,
               background: '#C9A84C', color: '#0A0A0A',
@@ -190,14 +205,19 @@ export const Navbar = () => {
           {NAV_LINKS.map((link, idx) => (
             <a
               key={idx}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); handleScroll(link.target); }}
+              href={link.path || link.href}
+              onClick={(e) => { if (link.path) { e.preventDefault(); window.location.href = link.path; } else { e.preventDefault(); handleScroll(link.target); } }}
               style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', padding: '10px 0', transition: 'color 0.2s' }}
             >
               {link.label}
             </a>
           ))}
-
+          <a
+            href="/pricing"
+            style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#888880', textDecoration: 'none', padding: '10px 0' }}
+          >
+            Pricing
+          </a>
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 8, marginTop: 4 }}>
             <div
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -213,7 +233,7 @@ export const Navbar = () => {
                 {DROPDOWN_LINKS.map((item, idx) => (
                   <div
                     key={idx}
-                    onClick={() => handleScroll(item.target)}
+                    onClick={() => { window.location.href = item.path; setMobileMenuOpen(false); }}
                     style={{ fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#888880', padding: '8px 0', cursor: 'pointer' }}
                   >
                     {item.label}

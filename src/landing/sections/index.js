@@ -1,4 +1,5 @@
 export { HeroSection } from './HeroSection';
+export { TheProblemSection } from './TheProblemSection';
 export { TransitionSection } from './TransitionSection';
 export { DemoVideoSection } from './DemoVideoSection';
 export { SolutionSection } from './SolutionSection';
@@ -7,8 +8,10 @@ export { CalculatorSection } from './CalculatorSection';
 export { SolvingForSection } from './SolvingForSection';
 export { ManifestoSection } from './ManifestoSection';
 export { HiringChaosSection } from './HiringChaosSection';
+export { BudgetCtaSection } from './BudgetCtaSection';
 export { FAQSection } from './FAQSection';
 export { AboutFounderSection } from './AboutFounderSection';
 export { BlogsSection } from './BlogsSection';
 export { ContactSection } from './ContactSection';
 export { FooterCTA } from './FooterCTA';
+export { PricingSection } from './PricingSection';

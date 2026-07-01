@@ -3,6 +3,28 @@ import React from 'react';
 import { Eyebrow } from '../ui';
 
 export const FAQSection = () => {
+  const [activeIndex, setActiveIndex] = React.useState(null);
+  const [visible, setVisible] = React.useState([]);
+  const sectionRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+    const items = sectionRef.current.querySelectorAll('.faq-item');
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = parseInt(entry.target.dataset.idx, 10);
+            setVisible(prev => prev.includes(idx) ? prev : [...prev, idx]);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    items.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
   const faqs = [
     {
       q: "How does the AI prevent candidate cheating?",
@@ -22,14 +44,12 @@ export const FAQSection = () => {
     }
   ];
 
-  const [activeIndex, setActiveIndex] = React.useState(null);
-
   const toggleFAQ = (idx) => {
     setActiveIndex(activeIndex === idx ? null : idx);
   };
 
   return (
-    <section data-scroll data-scroll-class="reveal-text" id="faq" style={{ background: '#050505', padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px)', borderTop: '1px solid rgba(201,168,76,0.08)' }}>
+    <section ref={sectionRef} data-scroll id="faq" style={{ background: '#050505', padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px)', borderTop: '1px solid rgba(201,168,76,0.08)' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <Eyebrow>Questions</Eyebrow>
@@ -54,14 +74,19 @@ export const FAQSection = () => {
           {faqs.map((faq, idx) => {
             const isOpen = activeIndex === idx;
             return (
-              <div data-scroll-repeat
+              <div className="faq-item"
+                data-idx={idx}
                 key={idx}
                 style={{
-                  background: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(201,168,76,0.1)',
+                  background: isOpen ? 'rgba(201,168,76,0.04)' : 'rgba(255,255,255,0.02)',
+                  border: isOpen ? '1px solid rgba(201,168,76,0.2)' : '1px solid rgba(201,168,76,0.1)',
+                  boxShadow: isOpen ? '0 0 30px rgba(201,168,76,0.06)' : 'none',
                   borderRadius: 12,
                   overflow: 'hidden',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
+                  opacity: visible.includes(idx) ? 1 : 0,
+                  transform: visible.includes(idx) ? 'translateY(0)' : 'translateY(30px)',
+                  transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s, background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease`,
                 }}
               >
                 <div 
@@ -81,15 +106,23 @@ export const FAQSection = () => {
                     <path d="M1 1L7 7L13 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                {isOpen && (
-                  <div style={{
-                    padding: '0 clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px)',
-                    fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)',
-                    color: '#888880', lineHeight: 1.6
-                  }}>
-                    {faq.a}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateRows: isOpen ? '1fr' : '0fr',
+                  transition: 'grid-template-rows 0.4s cubic-bezier(0.16,1,0.3,1)',
+                }}>
+                  <div style={{ overflow: 'hidden' }}>
+                    <div style={{
+                      padding: isOpen ? '0 clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px)' : '0 clamp(16px, 3vw, 24px)',
+                      fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)',
+                      color: '#888880', lineHeight: 1.6,
+                      opacity: isOpen ? 1 : 0,
+                      transition: 'opacity 0.3s ease 0.1s',
+                    }}>
+                      {faq.a}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

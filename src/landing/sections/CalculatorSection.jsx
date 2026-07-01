@@ -34,7 +34,7 @@ export const CalculatorSection = () => {
   React.useEffect(() => {
     if (!hasEntered || !isAnimating) return;
 
-    const duration = 3800; // 3.8s for slower, more deliberate and premium cinematic count-up
+    const duration = 6500;
     const startTime = performance.now();
     let animFrame;
 
@@ -101,13 +101,12 @@ export const CalculatorSection = () => {
       id="calculator" 
       style={{ 
         background: '#000000', 
-        padding: 'clamp(40px, 6vw, 80px) clamp(16px, 4vw, 48px) clamp(40px, 6vw, 80px)', 
+        padding: 'clamp(40px, 6vw, 80px) clamp(16px, 4vw, 48px) clamp(80px, 10vw, 140px)', 
         position: 'relative', 
         overflow: 'hidden',
         borderTop: '1px solid rgba(201, 168, 76, 0.08)',
         borderBottom: 'none',
         zIndex: 2,
-        marginTop: '-100vh'
       }}
     >
       {/* Glowing cut-line — visible as this section slides over the explainer video */}
@@ -150,11 +149,7 @@ export const CalculatorSection = () => {
           <div className="calc-marquee-track">
             {[...Array(6)].map((_, i) => (
               <span key={i} className="calc-marquee-item">
-                Measure Your{' '}
-                <em>Savings.</em>
-                <span className="calc-marquee-dot">✦</span>
-                Measure{' '}
-                <em>Your Savings.</em>
+                Measure Your <em>Savings.</em>
                 <span className="calc-marquee-dot">✦</span>
               </span>
             ))}
@@ -196,7 +191,7 @@ export const CalculatorSection = () => {
               <div style={{ marginBottom: 28 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                   <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8', fontSize: 'clamp(12px, 2vw, 14px)' }}>Hires Planned Per Year</span>
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{hires}</span>
+                  <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{hires}</span>
                 </div>
                 <input
                   type="range"
@@ -215,7 +210,7 @@ export const CalculatorSection = () => {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                   <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600, color: '#F5F0E8', fontSize: 'clamp(12px, 2vw, 14px)' }}>Average Annual Role Salary</span>
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{formatCurrency(salary)}</span>
+                  <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, color: '#C9A84C', fontSize: 16 }}>{formatCurrency(salary)}</span>
                 </div>
                 <input
                   type="range"
@@ -235,7 +230,7 @@ export const CalculatorSection = () => {
 
           {/* Results Container */}
           <FadeUpOnScroll delay={0.25} y={30}>
-            <div data-scroll data-scroll-speed="0.2" style={{
+            <div style={{
               display: 'flex',
               flexDirection: 'column',
               gap: 'clamp(16px, 3vw, 24px)',
@@ -254,7 +249,7 @@ export const CalculatorSection = () => {
                   Annual Recruiting Cost Saved
                 </p>
                 <div style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontFamily: 'Outfit, sans-serif',
                   fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
                   fontWeight: 700,
                   color: '#FF6B35',
@@ -276,7 +271,7 @@ export const CalculatorSection = () => {
                   Manager Interview Hours Saved
                 </p>
                 <div style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontFamily: 'Outfit, sans-serif',
                   fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
                   fontWeight: 700,
                   color: '#F5F0E8',

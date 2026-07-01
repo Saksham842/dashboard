@@ -3,8 +3,9 @@ import React from 'react';
 
 export const DemoVideoSection = () => {
   const sectionRef = React.useRef(null);
+  const headingRef = React.useRef(null);
   const [progress, setProgress] = React.useState(0);
-  const [entered, setEntered] = React.useState(false);
+  const [headingIn, setHeadingIn] = React.useState(0);
 
   React.useEffect(() => {
     const onScroll = () => {
@@ -19,24 +20,34 @@ export const DemoVideoSection = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Slow smooth fade-in as section enters viewport from bottom
+  const maxRatio = React.useRef(0);
   React.useEffect(() => {
-    if (!sectionRef.current || entered) return;
+    if (!headingRef.current) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setEntered(true); obs.disconnect(); } },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.intersectionRatio > maxRatio.current) {
+          maxRatio.current = entry.intersectionRatio;
+          setHeadingIn(entry.intersectionRatio);
+        }
+      },
+      { threshold: Array.from({ length: 21 }, (_, i) => i / 20) }
     );
-    obs.observe(sectionRef.current);
+    obs.observe(headingRef.current);
     return () => obs.disconnect();
-  }, [entered]);
+  }, []);
 
   const t = progress;
   const scale = t < 0.5 ? 0.7 + (t / 0.5) * 0.3 : 1 - ((t - 0.5) / 0.5) * 0.3;
   const radius = t < 0.5 ? 20 * (1 - t / 0.5) : 20 * ((t - 0.5) / 0.5);
-  const headingOpacity = t < 0.2 ? 1 : t < 0.4 ? 1 - (t - 0.2) / 0.2 : 0;
+
+  // Fade out: 1 → 0 between 20% and 40%
+  const fadeOut = t < 0.2 ? 1 : t < 0.4 ? 1 - (t - 0.2) / 0.2 : 0;
+  const headingOpacity = headingIn * fadeOut;
   const headingHeight = t < 0.2 ? 120 : t < 0.4 ? 120 * (1 - (t - 0.2) / 0.2) : 0;
 
   return (
-    <section ref={sectionRef} style={{ height: '300vh', position: 'relative' }}>
+    <section data-scroll ref={sectionRef} style={{ height: '300vh', position: 'relative', marginTop: 'clamp(40px, 4vw, 80px)' }}>
       <style dangerouslySetInnerHTML={{__html:`
         .demo-heading { padding: 0 48px; }
         @media (max-width: 768px) { .demo-heading { padding: 0 16px; } }
@@ -46,22 +57,20 @@ export const DemoVideoSection = () => {
         display: 'flex', flexDirection: 'column',
         background: '#000', overflow: 'hidden',
       }}>
-        {/* Heading — sits above video, shrinks to 0 as video expands */}
-        <div className="demo-heading" style={{
+        {/* Heading — fade in as section enters viewport, shrink out on scroll */}
+        <div ref={headingRef} className="demo-heading" style={{
           flexShrink: 0, textAlign: 'center', overflow: 'hidden',
-          opacity: Math.min(headingOpacity, entered ? 1 : 0),
-          height: entered ? `${headingHeight}px` : '0px',
-          transform: entered ? 'translateY(0)' : 'translateY(40px)',
-          transition: entered
-            ? 'opacity 0.2s ease, height 0.2s ease'
-            : 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, height 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+          opacity: headingOpacity,
+          height: `${headingHeight}px`,
+          transform: `translateY(${(1 - headingIn) * 24}px)`,
           display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
           paddingBottom: 4,
         }}>
           <div style={{
             fontFamily: 'Outfit, sans-serif', fontSize: 11, fontWeight: 500,
             letterSpacing: '0.18em', textTransform: 'uppercase', color: '#FF6B35',
-            marginBottom: 8,
+            marginBottom: 8, opacity: headingIn,
+            transform: `translateY(${(1 - headingIn) * 16}px)`,
           }}>
             The Problem
           </div>
@@ -72,7 +81,15 @@ export const DemoVideoSection = () => {
             letterSpacing: '-0.02em', lineHeight: 1.15, maxWidth: 520,
             margin: '0 auto',
           }}>
-            Traditional hiring is <span style={{ color: '#FF6B35' }}>broken</span>.
+            <span style={{ display: 'inline-block', opacity: headingIn, transform: `translateY(${(1 - headingIn) * 20}px)` }}>
+              Traditional hiring is{' '}
+            </span>
+            <span style={{ display: 'inline-block', color: '#FF6B35', opacity: Math.min(1, Math.max(0, headingIn * 2 - 0.5)), transform: `translateY(${(1 - headingIn) * 24}px)` }}>
+              broken
+            </span>
+            <span style={{ display: 'inline-block', opacity: headingIn, transform: `translateY(${(1 - headingIn) * 20}px)` }}>
+              .
+            </span>
           </h2>
         </div>
 

@@ -20,15 +20,14 @@ export const FONTS = {
 
 // ─── Navbar Links ─────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
-  { label: 'Home',       target: '',                href: '#' },
-  { label: 'AI Avatar',  target: 'avatar-explainer', href: '#avatar' },
-  { label: 'Features',   target: 'explainer-video',  href: '#features' },
+  { label: 'Home',       target: '',                href: '#', path: '/' },
+  { label: 'Features',   target: 'explainer-video',  href: '#features', path: '/features' },
 ];
 
 export const DROPDOWN_LINKS = [
-  { label: "FAQ's",           target: 'faq' },
-  { label: 'About Founder',   target: 'about-founder' },
-  { label: 'Blogs',           target: 'blogs' },
+  { label: "FAQ's",           path: '/resources/faq' },
+  { label: 'About Founder',   path: '/resources/about-founder' },
+  { label: 'Blogs',           path: '/resources/blogs' },
 ];
 
 // ─── FAQ Data ─────────────────────────────────────────────────────────────────

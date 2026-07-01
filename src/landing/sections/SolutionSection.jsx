@@ -60,6 +60,162 @@ const cards = [
   }
 ];
 
+const SeeAllFeaturesCTA = () => {
+  const ctaRef = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = ctaRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const [hovered, setHovered] = React.useState(false);
+
+  return (
+    <div
+      ref={ctaRef}
+      style={{
+        textAlign: 'center',
+        padding: 'clamp(32px, 5vw, 60px) clamp(16px, 4vw, 48px)',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(40px)',
+        transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)',
+        position: 'relative',
+      }}
+    >
+      {/* Subtle glow behind the block */}
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 500, height: 200,
+        background: 'radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Kicker line */}
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: 10,
+        marginBottom: 20,
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        transition: 'opacity 0.7s 0.15s, transform 0.7s 0.15s',
+      }}>
+        <div style={{ width: 28, height: 1, background: 'rgba(201,168,76,0.4)' }} />
+        <span style={{
+          fontFamily: 'Outfit, sans-serif',
+          fontSize: 11,
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: '#C9A84C',
+          fontWeight: 600,
+        }}>5 capabilities. One platform.</span>
+        <div style={{ width: 28, height: 1, background: 'rgba(201,168,76,0.4)' }} />
+      </div>
+
+      {/* Headline */}
+      <h3 style={{
+        fontFamily: 'Space Grotesk, sans-serif',
+        fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
+        fontWeight: 700,
+        color: '#F5F0E8',
+        letterSpacing: '-0.02em',
+        lineHeight: 1.2,
+        margin: '0 0 10px 0',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.7s 0.25s, transform 0.7s 0.25s',
+      }}>
+        There's a lot more under the hood.
+      </h3>
+
+      {/* Sub-line */}
+      <p style={{
+        fontFamily: 'Outfit, sans-serif',
+        fontSize: 'clamp(14px, 1.6vw, 16px)',
+        color: '#888880',
+        margin: '0 0 36px 0',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        transition: 'opacity 0.7s 0.35s, transform 0.7s 0.35s',
+      }}>
+        Dive into every feature — from AI resume parsing to expert panel analytics.
+      </p>
+
+      {/* Button */}
+      <div style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+        transition: 'opacity 0.7s 0.45s, transform 0.7s 0.45s',
+        display: 'inline-block',
+      }}>
+        <a
+          href="/features"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 10,
+            padding: '14px 32px',
+            borderRadius: 999,
+            background: hovered
+              ? 'linear-gradient(135deg, #E8C97A, #C9A84C)'
+              : 'linear-gradient(135deg, #C9A84C, #A07830)',
+            color: '#0A0A0A',
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontSize: 15,
+            fontWeight: 700,
+            letterSpacing: '-0.01em',
+            textDecoration: 'none',
+            boxShadow: hovered
+              ? '0 0 40px rgba(201,168,76,0.5), 0 8px 24px rgba(0,0,0,0.4)'
+              : '0 0 20px rgba(201,168,76,0.2), 0 4px 16px rgba(0,0,0,0.3)',
+            transform: hovered ? 'scale(1.04)' : 'scale(1)',
+            transition: 'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',
+            cursor: 'pointer',
+          }}
+        >
+          <span>Explore All Features</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#0A0A0A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      {/* Ghost secondary link */}
+      <div style={{
+        marginTop: 18,
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 0.7s 0.55s',
+      }}>
+        <a
+          href="/resources/blogs"
+          style={{
+            fontFamily: 'Outfit, sans-serif',
+            fontSize: 13,
+            color: '#555550',
+            textDecoration: 'none',
+            letterSpacing: '0.04em',
+            borderBottom: '1px solid rgba(85,85,80,0.3)',
+            paddingBottom: 2,
+            transition: 'color 0.2s, border-color 0.2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.color='#C9A84C'; e.currentTarget.style.borderColor='rgba(201,168,76,0.5)'; }}
+          onMouseLeave={e => { e.currentTarget.style.color='#555550'; e.currentTarget.style.borderColor='rgba(85,85,80,0.3)'; }}
+        >
+          Read more about IntervieHire in our blogs →
+        </a>
+      </div>
+    </div>
+  );
+};
+
 export const SolutionSection = () => {
   const sectionRef = React.useRef(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -323,9 +479,10 @@ export const SolutionSection = () => {
     }
   };
 
-  const dissolve = Math.max(0, Math.min(1, (progress - 0.82) / 0.18)) * 0.3;
+  const dissolve = 0;
 
   return (
+    <>
     <section data-scroll ref={sectionRef} style={{
       height: '600vh',
       background: '#000000',
@@ -334,7 +491,7 @@ export const SolutionSection = () => {
       {/* Heading scrolls normally — NOT sticky */}
       <div data-scroll data-scroll-speed="-0.1" style={{
         textAlign: 'center',
-        padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px)',
+        padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px) clamp(48px, 6vw, 80px)',
         boxSizing: 'border-box',
         opacity: 1 - dissolve,
         transform: `translateY(${dissolve * 20}px)`,
@@ -684,5 +841,11 @@ export const SolutionSection = () => {
         }
       `}} />
     </section>
+
+    {/* CTA after 5th card — normal document flow, NOT inside the sticky section */}
+    <div style={{ background: '#000000', position: 'relative', zIndex: 2, marginBottom: 'clamp(40px, 5vw, 80px)' }}>
+      <SeeAllFeaturesCTA />
+    </div>
+    </>
   );
 };

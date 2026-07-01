@@ -43,7 +43,7 @@ const MorphBlob = ({ progress }) => {
 
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-      <div className="morph-blob-inner" style={{ position:'relative', width:300, height:300, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(201,168,76,0.35)':'rgba(201,168,76,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
+      <div className="morph-blob-inner" style={{ position:'relative', width:240, height:240, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(201,168,76,0.35)':'rgba(201,168,76,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
 
         {/* Chaos blob */}
         <div style={{ position:'absolute', inset:0, opacity:chaosOpacity*0.65, transition:'opacity 0.2s', pointerEvents:'none' }}>
@@ -91,33 +91,51 @@ const MorphBlob = ({ progress }) => {
       {/* Label */}
       <div style={{ marginTop:20, height:20, position:'relative', width:300, textAlign:'center' }}>
         <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:humanOpacity>0.5?1:0, color:'#888880', position:'absolute', width:'100%', left:0 }}>The Traditional Interviewer</div>
-        <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:aiOpacity>0.5?1:0, color:'#C9A84C', position:'absolute', width:'100%', left:0 }}>Your IntervieHire Agent</div>
+        <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:aiOpacity>0.5?1:0, color:'#C9A84C', position:'absolute', width:'100%', left:0 }}>Lina, Your AI Agent</div>
       </div>
     </div>
   );
+
 };
 
-// ─── TransitionSection ────────────────────────────────────────────────────────
 export const TransitionSection = () => {
   const sectionRef = React.useRef(null);
+  const headingRef = React.useRef(null);
   const [progress, setProgress] = React.useState(0);
+  const [headingIn, setHeadingIn] = React.useState(false);
   const [shakeTrigger, setShakeTrigger] = React.useState(false);
   const [inView, setInView] = React.useState(false);
   const [hasEntered, setHasEntered] = React.useState(false);
   const [rightRevealed, setRightRevealed] = React.useState(false);
+  const [isMobileDevice, setIsMobileDevice] = React.useState(false);
   const prevProgress = React.useRef(0);
 
+  React.useEffect(() => {
+    setIsMobileDevice(window.innerWidth <= 768);
+  }, []);
+
+  // Pause animation after 100vh (once heading scrolls past viewport)
   React.useEffect(() => {
     const onScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
-      const total = sectionRef.current.offsetHeight - window.innerHeight;
+      const total = Math.min(sectionRef.current.offsetHeight - window.innerHeight, window.innerHeight);
       const scrolled = -rect.top;
       const p = Math.max(0, Math.min(1, scrolled / total));
       setProgress(p);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Incoming transition on heading
+  React.useEffect(() => {
+    if (!headingRef.current) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setHeadingIn(true); obs.disconnect(); }
+    }, { threshold: 0.15 });
+    obs.observe(headingRef.current);
+    return () => obs.disconnect();
   }, []);
 
   React.useEffect(() => {
@@ -128,7 +146,6 @@ export const TransitionSection = () => {
     return () => observer.disconnect();
   }, [hasEntered]);
 
-  // Trigger right card boom after human → AI morph completes
   React.useEffect(() => {
     if (!rightRevealed && progress >= 0.65) setRightRevealed(true);
   }, [progress, rightRevealed]);
@@ -143,110 +160,142 @@ export const TransitionSection = () => {
     prevProgress.current = progress;
   }, [progress]);
 
-  const clarityOpacity = progress < 0.55 ? 0 : progress < 0.75 ? (progress-0.55)/0.2 : 1;
-
   const cons = [
-    'Endless scheduling and coordination delays',
-    'Repetitive screening calls waste recruiter hours',
-    'Inconsistent evaluations across interviewer panels',
-    'Candidate cheating and proxy interviews go unnoticed',
+    '40 phone screens, 22 make it to round two, 6 worth the hiring manager\'s time',
+    'Lost a strong candidate because scheduling took 5 days to align three calendars',
+    'Same interviewer running the same script 40×/week, getting robotic by Friday',
+    'Hiring manager says two candidates "felt identical" on paper — no real differentiation',
+    'One no-show mid-loop, no backup, slot wasted',
+    '"We need another recruiter" — but headcount budget says no',
   ];
   const pros = [
-    'AI interviews candidates 24/7 automatically',
-    'Built-in cheating detection ensures interview integrity',
-    'Standardised scoring for fair candidate evaluation',
-    'Hire faster with automated screening and instant insights',
+    'Lina interviews 200 candidates / role / week, 24/7, no calendar Tetris',
+    'Every session flagged for proxy/cheating signals before it reaches your inbox',
+    'First interview happens same-day — candidates don\'t go cold waiting',
+    'Every submit ships with transcript + score, not just a recruiter\'s gut call',
+    'Standardized rubric across every candidate — no panel-to-panel drift',
+    'Shortlist-to-hire time drops because the top 20% surface themselves',
   ];
 
   return (
-    <div id="avatar-explainer" ref={sectionRef} style={{ height:'400vh', position:'relative', zIndex:2, marginTop:'-100vh' }}>
-      <div data-scroll style={{ position:'sticky', top:0, height:'100vh', background:'#000', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', overflow:'hidden', padding:'clamp(40px, 6vw, 80px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px)', zIndex:2 }}>
-
-        {/* Glowing cut-line */}
-        <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)', boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)', zIndex:20, pointerEvents:'none' }} />
-
-        <style dangerouslySetInnerHTML={{__html:`
-          .ts-grid { display: grid; grid-template-columns: 1fr 320px 1fr; gap: 60px; }
-          @media (max-width: 768px) { .ts-grid { grid-template-columns: 1fr; gap: 30px; } .ts-grid > :nth-child(2) { order: -1; } }
-          @media (max-width: 768px) { .morph-blob-inner { width: 200px !important; height: 200px !important; } }
-          @keyframes rightBoomReveal {
-            0%   { opacity:0; transform:scale(0.1) translateX(40px); filter:brightness(5) blur(20px); }
-            40%  { opacity:1; transform:scale(1.25) translateX(-6px); filter:brightness(1.8) blur(4px); }
-            65%  { transform:scale(0.92) translateX(2px); filter:brightness(1) blur(0); }
-            82%  { transform:scale(1.06) translateX(-1px); }
-            100% { opacity:1; transform:scale(1) translateX(0); filter:brightness(1) blur(0); }
-          }
-        `}} />
-
-        {/* Title */}
-        <div style={{ textAlign:'center', marginBottom:30, zIndex:10, opacity:0, animation: inView ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none' }}>
-          <div style={{ display:'inline-block', padding:'5px 14px', borderRadius:999, border:`1px solid ${progress<0.5?'rgba(255,107,53,0.35)':'rgba(201,168,76,0.35)'}`, background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)', fontSize:11, fontFamily:'Outfit,sans-serif', color: progress<0.5?'#FF6B35':'#C9A84C', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:10, transition:'border-color 0.4s, color 0.4s' }}>
-            Workflow Shift
-          </div>
-          <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2rem,4.5vw,3.2rem)', fontWeight:700, color:'#F5F0E8', letterSpacing:'-0.02em', lineHeight:1.15, margin:0 }}>
-            From{' '}
-            <span style={{ color:'#FF6B35', opacity:progress<0.55?1:0.4, transition:'opacity 0.3s' }}>Chaos</span>
-            {' '}to{' '}
-            <span style={{ background:'linear-gradient(90deg,#C9A84C,#E8C97A)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', opacity:progress>=0.45?1:0.4, transition:'opacity 0.3s' }}>Clarity.</span>
-          </h2>
+    <div style={{ position:'relative', zIndex:2, paddingTop:'clamp(40px, 5vw, 80px)', paddingBottom:'30px' }}>
+      {/* Heading above the scroll container */}
+      <div ref={headingRef} data-scroll data-scroll-speed="-0.1" style={{
+        textAlign:'center', padding:'110px clamp(16px, 4vw, 48px) 0',
+        position:'relative', zIndex:3,
+        opacity:0, animation: headingIn ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none',
+      }}>
+        <div style={{ display:'inline-block', padding:'5px 14px', borderRadius:999, border:'1px solid rgba(255,107,53,0.35)', background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)', fontSize:11, fontFamily:'Outfit,sans-serif', color:'#FF6B35', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:10 }}>
+          Every Recruiter's Tuesday
         </div>
+        <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2rem,4.5vw,3.2rem)', fontWeight:700, color:'#F5F0E8', letterSpacing:'-0.02em', lineHeight:1.15, margin:0 }}>
+          The Screening{' '}
+          <span style={{ background:'linear-gradient(90deg,#C9A84C,#E8C97A)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Bottleneck</span>
+        </h2>
+        <p style={{ fontFamily:'Outfit,sans-serif', fontSize:15, color:'#888880', margin:'24px 0 0 0' }}>
+          What Actually Eats Your Hiring Week
+        </p>
+      </div>
 
-        {/* 3-column grid */}
-        <div className="ts-grid" style={{ display:'grid', gridTemplateColumns:'1fr 320px 1fr', gap:'clamp(24px, 4vw, 60px)', width:'100%', maxWidth:1200, alignItems:'center', position:'relative', zIndex:10 }}>
+      {/* Scroll container — heading NOT inside */}
+      <div id="avatar-explainer" ref={sectionRef} style={{ height:'250vh', position:'relative', zIndex:2, margin:'0 0 30px' }}>
+        <div data-scroll style={{ position:'sticky', top:0, height:'100vh', background:'#000', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', overflow:'hidden', padding:'200px clamp(32px, 6vw, 80px) clamp(120px, 12vw, 200px)', zIndex:2 }}>
 
-          {/* LEFT CARD */}
-          <div style={{ opacity:0, animation: inView ? 'leftBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards' : 'none' }}>
-            <TiltCard style={{ background:'rgba(255,107,53,0.01)', border:'1.5px solid rgba(255,107,53,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)' }}>
-              <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#FF6B35', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>From Chaos</div>
-              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em' }}>Traditional Hiring</h3>
-              <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>The Old Way</p>
-              <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
-                {cons.map((item, idx) => (
-                  <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
-                    <span style={{ color:'#FF6B35', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✕</span>
-                    <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#888880', lineHeight:1.5 }}>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </TiltCard>
-          </div>
+          <style dangerouslySetInnerHTML={{__html:`
+            .ts-grid { display: grid; grid-template-columns: 1fr 320px 1fr; gap: 60px; }
+            @media (max-width: 768px) {
+              .ts-grid {
+                grid-template-columns: 1fr;
+                gap: 24px !important;
+                max-width: 440px;
+                margin: 0 auto;
+              }
+              .ts-grid > div > div[style*="borderRadius"] {
+                padding: 20px 16px !important;
+                border-radius: 14px !important;
+              }
+              .ts-grid h3 {
+                font-size: 18px !important;
+                margin-bottom: 4px !important;
+              }
+              .ts-grid p {
+                font-size: 12px !important;
+                margin-bottom: 16px !important;
+              }
+              .ts-grid ul {
+                gap: 10px !important;
+              }
+              .ts-grid li {
+                gap: 8px !important;
+              }
+              .ts-grid li span {
+                font-size: 12.5px !important;
+              }
+              .morph-blob-inner {
+                width: 120px !important;
+                height: 120px !important;
+              }
+            }
+            @keyframes rightBoomReveal {
+              0%   { opacity:0; transform:scale(0.1) translateX(40px); filter:brightness(5) blur(20px); }
+              40%  { opacity:1; transform:scale(1.25) translateX(-6px); filter:brightness(1.8) blur(4px); }
+              65%  { transform:scale(0.92) translateX(2px); filter:brightness(1) blur(0); }
+              82%  { transform:scale(1.06) translateX(-1px); }
+              100% { opacity:1; transform:scale(1) translateX(0); filter:brightness(1) blur(0); }
+            }
+          `}} />
 
-          {/* CENTRE */}
-          <FadeUpOnScroll delay={0.1} y={30} threshold={0.6}>
-            <div className={shakeTrigger ? 'morph-shake' : ''}>
-              <MorphBlob progress={progress} />
+          {/* 3-column grid — no heading inside */}
+          <div className="ts-grid" style={{ display:'grid', gridTemplateColumns:'1fr 320px 1fr', gap:'clamp(24px, 4vw, 60px)', width:'100%', maxWidth:1200, alignItems:'center', position:'relative', zIndex:10 }}>
+
+            {/* LEFT CARD */}
+            <div data-scroll style={{ minHeight:'clamp(500px, 60vh, 700px)', opacity:0, animation: inView ? 'leftBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards' : 'none' }}>
+              <TiltCard style={{ background:'rgba(255,107,53,0.01)', border:'1.5px solid rgba(255,107,53,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)' }}>
+                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A typical hiring week</h3>
+                <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>Where your recruiter hours actually go</p>
+                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
+                  {cons.map((item, idx) => (
+                    <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
+                      <span style={{ color:'#FF6B35', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✕</span>
+                      <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#888880', lineHeight:1.5 }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </TiltCard>
             </div>
-          </FadeUpOnScroll>
 
-          {/* RIGHT CARD — boom in after human → AI morph */}
-          <div style={{ opacity:0, animation: rightRevealed ? 'rightBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0s forwards' : 'none' }}>
-            <TiltCard
-              className={progress > 0.75 ? 'pulse-glow' : ''}
-              style={{ background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:rightRevealed?'auto':'none' }}
-            >
-              <div style={{ fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', color:'#C9A84C', fontFamily:'Outfit,sans-serif', fontWeight:600, marginBottom:6 }}>To Clarity</div>
-              <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em' }}>With IntervieHire</h3>
-              <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>AI-Powered Hiring That Scales</p>
-              <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
-                {pros.map((item, idx) => (
-                  <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
-                    <span style={{ color:'#C9A84C', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✓</span>
-                    <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#F5F0E8', lineHeight:1.5 }}>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </TiltCard>
+            {/* CENTRE */}
+            <FadeUpOnScroll delay={0.1} y={30} threshold={0.6}>
+              <div data-scroll className={shakeTrigger ? 'morph-shake' : ''}>
+                <MorphBlob progress={progress} />
+              </div>
+            </FadeUpOnScroll>
+
+            {/* RIGHT CARD — boom in after human → AI morph */}
+            <div data-scroll style={{ minHeight:'clamp(500px, 60vh, 700px)', opacity:0, animation: rightRevealed ? 'rightBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0s forwards' : 'none' }}>
+              <TiltCard
+                className={progress > 0.75 ? 'pulse-glow' : ''}
+                style={{ background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:rightRevealed?'auto':'none' }}
+              >
+                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A week with Lina running screens</h3>
+                <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>What automated interviews actually ship</p>
+                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
+                  {pros.map((item, idx) => (
+                    <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
+                      <span style={{ color:'#C9A84C', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✓</span>
+                      <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#F5F0E8', lineHeight:1.5 }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </TiltCard>
+            </div>
           </div>
-        </div>
 
-        {/* Scroll hint */}
-        <div style={{ position:'absolute', bottom:32, left:'50%', transform:'translateX(-50%)', opacity:progress<0.05?0.5:0, transition:'opacity 0.4s', color:'#555550', fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', zIndex:10 }}>
-          SCROLL
-        </div>
+          {/* Scroll hint */}
+          <div style={{ position:'absolute', bottom:32, left:'50%', transform:'translateX(-50%)', opacity:progress<0.05?0.5:0, transition:'opacity 0.4s', color:'#555550', fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', zIndex:10 }}>
+            SCROLL
+          </div>
 
-        {/* Progress bar */}
-        <div style={{ position:'absolute', bottom:0, left:0, height:1, width:'100%', background:'rgba(255,255,255,0.04)', zIndex:10 }}>
-          <div style={{ height:'100%', width:`${progress*100}%`, background:'linear-gradient(90deg,rgba(201,168,76,0.5),rgba(201,168,76,0.15))', transition:'width 0.05s linear' }} />
         </div>
       </div>
     </div>

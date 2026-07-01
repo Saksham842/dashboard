@@ -1,4 +1,3 @@
-import '../../src/styles/dashboard/01-tokens.css';
 import '../../src/styles/auth.css';
 
 export const metadata = {

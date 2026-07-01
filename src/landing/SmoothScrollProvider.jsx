@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useSyncExternalStore } from 'react';
 
 const ScrollContext = createContext(null);
@@ -21,11 +21,30 @@ export const useLenis = () => globalLenis;
 export const SmoothScrollProvider = ({ children }) => {
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const content = contentRef.current;
     if (!wrapper || !content) return;
+
+    // Detect touch device
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+
+    if (isTouch) {
+      // On mobile/touch: Use native scrolling. Sync window.__scrollWrapper so GSAP works.
+      window.__scrollWrapper = window;
+      
+      const onNativeScroll = () => {
+        globalScrollY = window.scrollY;
+        listeners.forEach((fn) => fn());
+      };
+      window.addEventListener('scroll', onNativeScroll, { passive: true });
+      return () => {
+        window.removeEventListener('scroll', onNativeScroll);
+      };
+    }
 
     // Set wrapper reference synchronously so GSAP/ScrollTrigger can find it
     window.__scrollWrapper = wrapper;
@@ -80,7 +99,6 @@ export const SmoothScrollProvider = ({ children }) => {
           pinType: wrapper.style.transform ? 'transform' : 'fixed',
         });
         globalLenis.on('scroll', ScrollTrigger.update);
-        // Refresh ScrollTrigger after proxy is set up
         ScrollTrigger.refresh();
       } catch (e) {
         // GSAP not available
@@ -95,9 +113,13 @@ export const SmoothScrollProvider = ({ children }) => {
     };
   }, []);
 
+  const wrapperStyle = isTouchDevice
+    ? { width: '100%', position: 'relative' }
+    : { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' };
+
   return (
     <ScrollContext.Provider value={{}}>
-      <div ref={wrapperRef} data-scroll-wrapper style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}>
+      <div ref={wrapperRef} data-scroll-wrapper style={wrapperStyle}>
         <div ref={contentRef} data-scroll-content>
           {children}
         </div>

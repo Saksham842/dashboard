@@ -204,7 +204,7 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  transform: rotate(-1.6deg);
+  transform: none;
   background: rgba(201, 168, 76, 0.05);
   border-top: 1px solid rgba(201, 168, 76, 0.15);
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
@@ -216,16 +216,16 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: calcMarquee 30s linear infinite;
+  animation: calcMarquee 45s linear infinite;
   white-space: nowrap;
+  gap: 80px;
 }
 
 .calc-marquee-item {
   display: flex;
   align-items: center;
-  gap: 0;
-  padding: 0 32px;
-  font-family: 'Space Grotesk', sans-serif;
+  gap: 16px;
+  font-family: 'Outfit', sans-serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
   color: #C9A84C;
@@ -240,7 +240,7 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Georgia', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 1em;
   margin-left: 0.2em;
 }
@@ -268,7 +268,6 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
 .calc-marquee-dot {
   display: inline-flex;
   align-items: center;
-  margin: 0 20px;
   color: rgba(201, 168, 76, 0.35);
   font-size: 0.5em;
   line-height: 1;
