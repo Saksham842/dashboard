@@ -54,7 +54,7 @@ export const ManifestoSection = () => {
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         gap: 'clamp(8px, 1.5vw, 16px)',
-        padding: 'clamp(8px, 2vw, 24px) clamp(16px, 4vw, 48px) clamp(60px, 8vw, 120px)',
+        padding: 'clamp(4px, 1vw, 8px) clamp(16px, 4vw, 48px) clamp(60px, 8vw, 120px)',
       }}>
         {lines.map((line, li) => (
           <div key={li} style={{

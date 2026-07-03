@@ -114,7 +114,7 @@ export const HeroSection = () => {
 
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', opacity: phase >= 3 ? 1 : 0, transform: phase >= 3 ? 'translateX(0)' : 'translateX(-50px)', transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s' }}>
           <HeroBtn primary onClick={() => window.location.href = '/book-demo'}>Book a Demo</HeroBtn>
-          <HeroBtn onClick={() => window.triggerPageTransition ? window.triggerPageTransition('explainer-video') : document.getElementById('explainer-video')?.scrollIntoView({ behavior: 'smooth' })}>See How It Works</HeroBtn>
+          <HeroBtn onClick={() => document.getElementById('explainer-video')?.scrollIntoView({ behavior: 'smooth' })}>See How It Works</HeroBtn>
         </div>
 
         {/* Stats row */}

@@ -88,10 +88,10 @@ export const SmoothScrollProvider = ({ children }) => {
         gsap.registerPlugin(ScrollTrigger);
         ScrollTrigger.scrollerProxy(wrapper, {
           scrollTop(value) {
-            if (arguments.length) {
+            if (arguments.length && globalLenis) {
               globalLenis.scrollTo(value, { immediate: true });
             }
-            return globalLenis.scroll;
+            return globalLenis ? globalLenis.scroll : 0;
           },
           getBoundingClientRect() {
             return { top: 0, left: 0, bottom: window.innerHeight, right: window.innerWidth };

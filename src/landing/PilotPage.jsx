@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FooterCTA } from './sections/FooterCTA';
+import { Navbar } from './layout';
 
 const Sparkle = ({ delay, x, y, size }) => (
   <div className="bd-sparkle" style={{
@@ -61,37 +62,13 @@ export default function BookDemoPage() {
       <Sparkle delay={0.4} x={60} y={65} size={3} />
 
       {/* Navbar */}
-      <nav style={{
-        position: 'relative', zIndex: 10, flexShrink: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '12px clamp(16px, 4vw, 48px)',
-        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(201,168,76,0.06)',
-      }}>
-        <Link href="/" style={{
-          textDecoration: 'none', fontFamily: 'Space Grotesk, sans-serif',
-          fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em',
-        }}>
-          <span style={{ color: '#F5F0E8' }}>intervie</span>
-          <span style={{ color: '#E91E8C' }}>Hire</span>
-        </Link>
-        <Link href="/" style={{
-          fontSize: 13, fontWeight: 500, color: '#888880', textDecoration: 'none',
-          padding: '6px 18px', border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: 99, transition: 'all 0.3s ease',
-        }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A84C'; e.currentTarget.style.color = '#C9A84C'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#888880'; }}
-        >
-          ← Back to Home
-        </Link>
-      </nav>
+      <Navbar simple />
 
       {/* Content */}
       <div style={{
         flex: 1, position: 'relative', zIndex: 5,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(16px, 3vh, 32px) clamp(16px, 4vw, 48px)',
+        padding: 'clamp(120px, 14vh, 160px) clamp(32px, 6vw, 80px)',
       }}>
         <div style={{
           display: 'flex', gap: 'clamp(24px, 4vw, 56px)',
@@ -144,6 +121,7 @@ export default function BookDemoPage() {
               display: 'flex', gap: 'clamp(16px, 2.5vw, 32px)',
               opacity: loaded ? 1 : 0, transform: loaded ? 'translateX(0)' : 'translateX(-20px)',
               transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.4s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.4s',
+              marginBottom: 32,
             }}>
               {[
                 { num: '10x', label: 'Faster Hiring' },
@@ -155,6 +133,26 @@ export default function BookDemoPage() {
                   <div style={{ fontSize: 11, color: '#666660', marginTop: 3, whiteSpace: 'nowrap' }}>{s.label}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Contact details */}
+            <div style={{
+              display: 'flex', flexDirection: 'column', gap: 16,
+              opacity: loaded ? 1 : 0, transform: loaded ? 'translateX(0)' : 'translateX(-20px)',
+              transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>interviehire@gmail.com</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>interviehire.com</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>Co-Founders: Devasri Bali & Aditya Rana</span>
+              </div>
             </div>
           </div>
 
@@ -269,6 +267,8 @@ export default function BookDemoPage() {
       }} />
 
       <style>{`
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
         .bd-sparkle {
           position: absolute; border-radius: 50%;
           background: #C9A84C;

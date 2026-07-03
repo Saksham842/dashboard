@@ -1,13 +1,9 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useEffect, useRef, useState } from 'react';
 
 export const SolvingForSection = () => {
   const sectionRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
   const solves = [
     {
@@ -45,33 +41,38 @@ export const SolvingForSection = () => {
     }
   ];
 
-  useGSAP(function () {
-    const wrapper = window.__scrollWrapper;
-    if (!wrapper) return;
-    gsap.from('.solve-pair', {
-      height: '100px',
-      stagger: { amount: 0.5 },
-      scrollTrigger: {
-        trigger: '.pairs-container',
-        scroller: wrapper,
-        start: 'top 100%',
-        end: 'top -150%',
-        scrub: true,
-      },
-    });
-  }, { scope: sectionRef });
-
-  // Refresh ScrollTrigger once Lenis + its proxy are ready
+  // Wait for Lenis + scrollWrapper to be ready, then setup GSAP
   useEffect(() => {
-    if (window.__lenis) { ScrollTrigger.refresh(); return; }
     const check = setInterval(() => {
-      if (window.__lenis) {
+      if (window.__lenis && window.__scrollWrapper) {
         clearInterval(check);
-        ScrollTrigger.refresh();
+        setReady(true);
       }
-    }, 100);
+    }, 50);
     return () => clearInterval(check);
   }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    const wrapper = window.__scrollWrapper;
+    (async () => {
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from('.solve-pair', {
+        height: '100px',
+        stagger: { amount: 0.5 },
+        scrollTrigger: {
+          trigger: '.pairs-container',
+          scroller: wrapper,
+          start: 'top 100%',
+          end: 'top -150%',
+          scrub: true,
+        },
+      });
+      ScrollTrigger.refresh();
+    })();
+  }, [ready]);
 
   return (
     <section data-scroll data-scroll-class="reveal-text"

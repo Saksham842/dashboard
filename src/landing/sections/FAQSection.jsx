@@ -49,6 +49,13 @@ export const FAQSection = () => {
   };
 
   return (
+    <div style={{ position: 'relative' }}>
+      {/* Golden cut-line top */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 20,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+      }} />
     <section ref={sectionRef} data-scroll id="faq" style={{ background: '#050505', padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px)', borderTop: '1px solid rgba(201,168,76,0.08)' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
@@ -129,5 +136,6 @@ export const FAQSection = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };

@@ -15,3 +15,4 @@ export { BlogsSection } from './BlogsSection';
 export { ContactSection } from './ContactSection';
 export { FooterCTA } from './FooterCTA';
 export { PricingSection } from './PricingSection';
+export { default as LinaInterviewerSection } from './LinaInterviewerSection';

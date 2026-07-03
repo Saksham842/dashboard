@@ -1,11 +1,13 @@
 'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Logo } from '../ui';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { NAV_LINKS, DROPDOWN_LINKS } from '../constants';
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 export const Navbar = ({ simple }) => {
+  const router = useRouter();
   const [scrolled, setScrolled] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
@@ -25,17 +27,28 @@ export const Navbar = ({ simple }) => {
       setContentReady(true);
       return;
     }
+    if (sessionStorage.getItem('nb_loaded')) {
+      setLoaded(true);
+      setContentReady(true);
+      return;
+    }
     const t1 = setTimeout(() => setLoaded(true), 200);
-    const t2 = setTimeout(() => setContentReady(true), 1500);
+    const t2 = setTimeout(() => { setContentReady(true); sessionStorage.setItem('nb_loaded', '1'); }, 1500);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [simple]);
 
   const handleScroll = (id) => {
-    if (window.triggerPageTransition) {
-      window.triggerPageTransition(id);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleNav = (path, target) => {
+    if (path) {
+      router.push(path);
     } else {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      handleScroll(target);
     }
     setDropdownOpen(false);
     setMobileMenuOpen(false);
@@ -83,7 +96,7 @@ export const Navbar = ({ simple }) => {
               <a
                 key={idx}
                 href={link.path || link.href}
-                onClick={(e) => { if (link.path) { e.preventDefault(); window.location.href = link.path; } else { e.preventDefault(); handleScroll(link.target); } }}
+                onClick={(e) => { e.preventDefault(); handleNav(link.path, link.target); }}
                 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
                 onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
@@ -95,7 +108,8 @@ export const Navbar = ({ simple }) => {
             {/* Pricing Link */}
             <a
               href="/pricing"
-              style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s' }}
+              onClick={(e) => { e.preventDefault(); handleNav('/pricing'); }}
+              style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', transition: 'color 0.2s', cursor: 'pointer' }}
               onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
               onMouseLeave={e => e.currentTarget.style.color = '#A0A0A0'}
             >
@@ -130,7 +144,7 @@ export const Navbar = ({ simple }) => {
                   {DROPDOWN_LINKS.map((item, idx) => (
                     <div
                       key={idx}
-                      onClick={() => { window.location.href = item.path; setDropdownOpen(false); }}
+                      onClick={() => handleNav(item.path)}
                       style={{ fontFamily: 'Outfit, sans-serif', fontSize: 13, color: '#888880', padding: '8px 16px', cursor: 'pointer', transition: 'all 0.2s' }}
                       onMouseEnter={e => { e.currentTarget.style.color = '#C9A84C'; e.currentTarget.style.background = 'rgba(201,168,76,0.05)'; }}
                       onMouseLeave={e => { e.currentTarget.style.color = '#888880'; e.currentTarget.style.background = 'transparent'; }}
@@ -206,7 +220,7 @@ export const Navbar = ({ simple }) => {
             <a
               key={idx}
               href={link.path || link.href}
-              onClick={(e) => { if (link.path) { e.preventDefault(); window.location.href = link.path; } else { e.preventDefault(); handleScroll(link.target); } }}
+              onClick={(e) => { e.preventDefault(); handleNav(link.path, link.target); }}
               style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#A0A0A0', textDecoration: 'none', padding: '10px 0', transition: 'color 0.2s' }}
             >
               {link.label}
@@ -214,7 +228,8 @@ export const Navbar = ({ simple }) => {
           ))}
           <a
             href="/pricing"
-            style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#888880', textDecoration: 'none', padding: '10px 0' }}
+            onClick={(e) => { e.preventDefault(); handleNav('/pricing'); }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontSize: 15, fontWeight: 500, color: '#888880', textDecoration: 'none', padding: '10px 0', cursor: 'pointer' }}
           >
             Pricing
           </a>
@@ -233,7 +248,7 @@ export const Navbar = ({ simple }) => {
                 {DROPDOWN_LINKS.map((item, idx) => (
                   <div
                     key={idx}
-                    onClick={() => { window.location.href = item.path; setMobileMenuOpen(false); }}
+                    onClick={() => { handleNav(item.path); setMobileMenuOpen(false); }}
                     style={{ fontFamily: 'Outfit, sans-serif', fontSize: 14, color: '#888880', padding: '8px 0', cursor: 'pointer' }}
                   >
                     {item.label}
