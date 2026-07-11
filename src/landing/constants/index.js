@@ -1,16 +1,15 @@
-// ─── Brand Design Tokens ─────────────────────────────────────────────────────
 export const COLORS = {
-  gold:       '#C9A84C',
-  goldLight:  '#E8C97A',
-  goldFaint:  'rgba(201, 168, 76, 0.1)',
-  goldBorder: 'rgba(201, 168, 76, 0.15)',
-  pink:       '#E91E8C',
-  orange:     '#FF6B35',
-  white:      '#F5F0E8',
-  muted:      '#888880',
-  dark:       '#050505',
-  darkAlt:    '#0A0A0A',
-  darkWarm:   '#0F0D07',
+  gold:       '#d96424',
+  goldLight:  '#ba5520',
+  goldFaint:  'rgba(217,100,36, 0.1)',
+  goldBorder: 'rgba(217,100,36, 0.15)',
+  pink:       '#d96424',
+  orange:     '#d96424',
+  white:      '#EEEEEE',
+  muted:      '#888888',
+  dark:       '#000000',
+  darkAlt:    '#121212',
+  darkWarm:   '#090909',
 };
 
 export const FONTS = {

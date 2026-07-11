@@ -5,7 +5,7 @@ import { GoldWaveSVG, Logo } from '../ui';
 
 export const FooterCTA = () => {
   return (
-    <footer style={{ background: '#0A0A0A', padding: 'clamp(40px, 6vw, 60px) clamp(16px, 4vw, 48px)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(201, 168, 76, 0.08)' }}>
+    <footer style={{ background: '#000000', padding: 'clamp(40px, 6vw, 60px) clamp(16px, 4vw, 48px)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(217,100,36, 0.08)' }}>
       <div style={{ position: 'absolute', right: 0, top: 0, width: '45%', height: '100%', opacity: 0.5, pointerEvents: 'none' }}>
         <GoldWaveSVG style={{ width: '100%', height: '100%' }}/>
       </div>
@@ -18,7 +18,7 @@ export const FooterCTA = () => {
               <div style={{ marginTop: 16, display: 'flex', gap: 16 }}>
                 {['LinkedIn', 'Twitter'].map(s => (
                   <a key={s} href="#" style={{ fontFamily: 'Outfit, sans-serif', fontSize: 13, color: '#888880', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
+                    onMouseEnter={e => e.currentTarget.style.color = '#d96424'}
                     onMouseLeave={e => e.currentTarget.style.color = '#888880'}
                   >{s}</a>
                 ))}

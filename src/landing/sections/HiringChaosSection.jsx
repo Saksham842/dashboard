@@ -4,13 +4,14 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const THEME = {
   bg:     '#000000',
-  card:   'rgba(255,255,255,0.02)',
-  border: 'rgba(201,168,76,0.1)',
-  gold:   '#C9A84C',
-  pink:   '#E91E8C',
-  white:  '#F5F0E8',
-  muted:  '#888880',
-  faint:  'rgba(201,168,76,0.06)',
+  card:   'rgba(18,18,18, 0.50)',
+  border: 'rgba(217,100,36,0.12)',
+  gold:   '#d96424',
+  teal:   '#121212',
+  pink:   '#d96424',
+  white:  '#EEEEEE',
+  muted:  '#9aaab8',
+  faint:  'rgba(217,100,36,0.07)',
 };
 
 const PAIN_PILLS = [
@@ -108,11 +109,11 @@ function FloatingAndBurstItem({ children, position, baseRotate, seed, animIn, de
 }
 
 const cs = {
-  card:   { background:'rgba(255,255,255,0.03)', border:`1px solid ${THEME.border}`, borderRadius:14, padding:'16px 18px', width:252, boxShadow:'0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.04)' },
+  card:   { background:'rgba(255,255,255,0.03)', border:`1px solid ${THEME.border}`, borderRadius:14, padding:'16px 18px', width:252, boxShadow:'0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(217,100,36,0.04)' },
   label:  { fontFamily:'Inter,sans-serif', fontSize:10, fontWeight:600, letterSpacing:'0.1em', color:THEME.gold, textTransform:'uppercase', marginBottom:10 },
   name:   { fontFamily:'Inter,sans-serif', fontSize:13, fontWeight:600, color:THEME.white, marginBottom:4 },
   sub:    { fontFamily:'Inter,sans-serif', fontSize:11.5, color:THEME.muted, lineHeight:1.4 },
-  divider:{ height:1, background:'rgba(201,168,76,0.08)', margin:'10px 0' },
+  divider:{ height:1, background:'rgba(217,100,36,0.08)', margin:'10px 0' },
 };
 
 const ScoreCard   = ({ card }) => (
@@ -148,8 +149,8 @@ const CalendarCard = ({ card }) => (
         <span style={{ ...cs.sub, color:'#666660' }}>{s.day}</span>
         <span style={{ fontSize:10, fontFamily:'Inter,sans-serif', fontWeight:600, borderRadius:4, padding:'2px 7px',
           color: s.state==='declined' ? THEME.pink : THEME.gold,
-          background: s.state==='declined' ? 'rgba(232,53,109,0.1)' : 'rgba(201,168,76,0.1)',
-          border:`1px solid ${s.state==='declined'?'rgba(232,53,109,0.3)':'rgba(201,168,76,0.3)'}`,
+          background: s.state==='declined' ? 'rgba(232,53,109,0.1)' : 'rgba(217,100,36,0.1)',
+          border:`1px solid ${s.state==='declined'?'rgba(232,53,109,0.3)':'rgba(217,100,36,0.3)'}`,
         }}>{s.state.toUpperCase()}</span>
       </div>
     ))}
@@ -164,7 +165,7 @@ const CostCard = ({ card }) => (
         <div style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:22, fontWeight:700, color:THEME.gold }}>{card.hrs}</div>
         <div style={cs.sub}>{card.hrsLabel}</div>
       </div>
-      <div style={{ width:1, background:'rgba(201,168,76,0.08)' }}/>
+      <div style={{ width:1, background:'rgba(217,100,36,0.08)' }}/>
       <div>
         <div style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:22, fontWeight:700, color:THEME.white }}>{card.cost}</div>
         <div style={cs.sub}>{card.costLabel}</div>
@@ -245,7 +246,7 @@ export const HiringChaosSection = () => {
   if (isMobileOrTablet) {
     return (
       <section ref={sectionRef} data-scroll style={{ background:THEME.bg, padding:'clamp(60px,8vw,100px) clamp(16px,4vw,32px) clamp(80px,10vw,140px)', position:'relative', overflow:'hidden', borderTop:`1px solid ${THEME.border}`, marginBottom:'clamp(40px, 4vw, 60px)' }}>
-        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:500, height:500, background:'radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%)', pointerEvents:'none', zIndex:1 }}/>
+        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:500, height:500, background:'radial-gradient(ellipse, rgba(217,100,36,0.05) 0%, transparent 70%)', pointerEvents:'none', zIndex:1 }}/>
         <div style={{ maxWidth:1200, margin:'0 auto', position:'relative', zIndex:2, display:'flex', flexDirection:'column', gap:'clamp(32px,6vw,48px)', alignItems:'center' }}>
           <div style={{ textAlign:'center' }}>
             <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(1.3rem,3.5vw,2rem)', fontWeight:700, color:THEME.white, letterSpacing:'-0.03em', lineHeight:1.25, margin:0,
@@ -262,7 +263,7 @@ export const HiringChaosSection = () => {
           <div style={{ display:'flex', flexWrap:'wrap', gap:10, justifyContent:'center', maxWidth:800 }}>
             {PAIN_PILLS.map((pill,i) => (
               <div key={i} style={{ fontFamily:'Inter,sans-serif', fontSize:13, fontWeight:500, color:THEME.white,
-                background:'rgba(15,13,7,0.85)', border:'1px solid rgba(201,168,76,0.18)', borderRadius:99, padding:'8px 18px', backdropFilter:'blur(12px)',
+                background:'rgba(15,13,7,0.85)', border:'1px solid rgba(217,100,36,0.18)', borderRadius:99, padding:'8px 18px', backdropFilter:'blur(12px)',
                 opacity: animIn ? 1 : 0, transform: animIn ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
                 transition:`opacity 0.5s ${0.3+i*0.07}s, transform 0.6s ${0.3+i*0.07}s cubic-bezier(0.34,1.56,0.64,1)`,
               }}>
@@ -292,16 +293,16 @@ export const HiringChaosSection = () => {
   return (
     <section ref={sectionRef} data-scroll style={{ background:THEME.bg, height:'100vh', position:'relative', overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'clamp(40px, 4vw, 60px)', padding:'0 clamp(8px, 2vw, 24px) clamp(20px, 3vw, 40px)' }}>
       {/* Radial glows */}
-      <div style={{ position:'absolute', top:'30%', left:'50%', transform:'translate(-50%,-50%)', width:900, height:600, background:'radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
-      <div style={{ position:'absolute', bottom:'20%', right:'10%', width:600, height:400, background:'radial-gradient(ellipse, rgba(233,30,140,0.06) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
-      <div style={{ position:'absolute', top:'15%', left:'5%', width:400, height:400, background:'radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
+      <div style={{ position:'absolute', top:'30%', left:'50%', transform:'translate(-50%,-50%)', width:900, height:600, background:'radial-gradient(ellipse, rgba(217,100,36,0.12) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
+      <div style={{ position:'absolute', bottom:'20%', right:'10%', width:600, height:400, background:'radial-gradient(ellipse, rgba(217,100,36,0.06) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
+      <div style={{ position:'absolute', top:'15%', left:'5%', width:400, height:400, background:'radial-gradient(ellipse, rgba(217,100,36,0.05) 0%, transparent 65%)', pointerEvents:'none', zIndex:1 }}/>
 
       {/* Explosion shockwave ring — fires once on entry */}
       <div style={{
         position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)',
         width: animIn ? 1800 : 0, height: animIn ? 1800 : 0,
         borderRadius:'50%',
-        border:`1px solid rgba(201,168,76,${animIn ? 0 : 0.35})`,
+        border:`1px solid rgba(217,100,36,${animIn ? 0 : 0.35})`,
         opacity: animIn ? 0 : 1,
         transition: animIn ? 'width 3.5s cubic-bezier(0.1,0.8,0.2,1), height 3.5s cubic-bezier(0.1,0.8,0.2,1), opacity 3.5s cubic-bezier(0.1,0.8,0.2,1), border-color 3.5s' : 'none',
         pointerEvents:'none', zIndex:5,
@@ -326,9 +327,9 @@ export const HiringChaosSection = () => {
           return (
             <FloatingAndBurstItem key={`p-${i}`} position={pp} baseRotate={0} seed={i*11+1} animIn={animIn} delay={0.6+i*0.18} type="pill">
               <div style={{ fontFamily:'Inter,sans-serif', fontSize:13.5, fontWeight:500, color:THEME.white,
-                background:'rgba(15,13,7,0.85)', border:'1px solid rgba(201,168,76,0.18)', borderRadius:99,
+                background:'rgba(15,13,7,0.85)', border:'1px solid rgba(217,100,36,0.18)', borderRadius:99,
                 padding:'10px 22px', backdropFilter:'blur(12px)', whiteSpace:'nowrap',
-                boxShadow:'0 4px 20px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.04)',
+                boxShadow:'0 4px 20px rgba(0,0,0,0.5), 0 0 20px rgba(217,100,36,0.04)',
               }}>
                 <span style={{ color:THEME.gold, fontWeight:700, marginRight:6 }}>{pill.num}</span>{pill.label}
               </div>

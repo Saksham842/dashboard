@@ -69,11 +69,11 @@ export const Navbar = ({ simple }) => {
       justifyContent: loaded ? 'space-between' : 'center',
       padding: loaded ? '0 clamp(12px, 4vw, 32px)' : '0',
       borderRadius: loaded ? (scrolled ? '0' : '999px') : '50%',
-      background: loaded ? (scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.35)') : '#C9A84C',
+      background: loaded ? (scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.35)') : '#d96424',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      border: loaded ? (scrolled ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(255, 255, 255, 0.12)') : '1px solid rgba(201, 168, 76, 0.5)',
-      boxShadow: loaded ? (scrolled ? '0 4px 20px rgba(0, 0, 0, 0.5)' : '0 12px 32px rgba(0, 0, 0, 0.4)') : '0 0 50px rgba(201, 168, 76, 0.4)',
+      border: loaded ? (scrolled ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(255, 255, 255, 0.12)') : '1px solid rgba(217,100,36, 0.5)',
+      boxShadow: loaded ? (scrolled ? '0 4px 20px rgba(0, 0, 0, 0.5)' : '0 12px 32px rgba(0, 0, 0, 0.4)') : '0 0 50px rgba(217,100,36, 0.4)',
       transition: 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
     }}>
 
@@ -137,7 +137,7 @@ export const Navbar = ({ simple }) => {
               {dropdownOpen && (
                 <div style={{
                   position: 'absolute', top: '100%', left: 0,
-                  background: '#111111', border: '1px solid rgba(201,168,76,0.15)',
+                  background: '#111111', border: '1px solid rgba(217,100,36,0.15)',
                   borderRadius: 8, padding: '8px 0', minWidth: 160,
                   boxShadow: '0 8px 24px rgba(0,0,0,0.5)', zIndex: 101, marginTop: 0,
                 }}>
@@ -146,7 +146,7 @@ export const Navbar = ({ simple }) => {
                       key={idx}
                       onClick={() => handleNav(item.path)}
                       style={{ fontFamily: 'Outfit, sans-serif', fontSize: 13, color: '#888880', padding: '8px 16px', cursor: 'pointer', transition: 'all 0.2s' }}
-                      onMouseEnter={e => { e.currentTarget.style.color = '#C9A84C'; e.currentTarget.style.background = 'rgba(201,168,76,0.05)'; }}
+                      onMouseEnter={e => { e.currentTarget.style.color = '#d96424'; e.currentTarget.style.background = 'rgba(217,100,36,0.05)'; }}
                       onMouseLeave={e => { e.currentTarget.style.color = '#888880'; e.currentTarget.style.background = 'transparent'; }}
                     >
                       {item.label}
@@ -193,13 +193,13 @@ export const Navbar = ({ simple }) => {
             onClick={() => window.location.href = '/book-demo'}
             style={{
               fontFamily: 'Outfit, sans-serif', fontSize: '14px', fontWeight: 600,
-              background: '#C9A84C', color: '#0A0A0A',
+              background: '#d96424', color: '#0A0A0A',
               border: 'none', borderRadius: '99px',
               padding: '6px 16px', cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={e => { e.currentTarget.style.background = '#DFBE60'; e.currentTarget.style.transform = 'scale(1.03)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = '#C9A84C'; e.currentTarget.style.transform = 'scale(1)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#d96424'; e.currentTarget.style.transform = 'scale(1)'; }}
           >
             Book a Demo
           </button>
@@ -211,7 +211,7 @@ export const Navbar = ({ simple }) => {
         <div style={{
           position: 'absolute', top: '100%', left: 0, right: 0,
           background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(201,168,76,0.15)',
+          borderBottom: '1px solid rgba(217,100,36,0.15)',
           padding: '16px clamp(12px, 4vw, 32px)',
           display: 'flex', flexDirection: 'column', gap: 4,
           zIndex: 99,

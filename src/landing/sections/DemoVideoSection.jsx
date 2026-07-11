@@ -68,7 +68,7 @@ export const DemoVideoSection = () => {
         }}>
           <div style={{
             fontFamily: 'Outfit, sans-serif', fontSize: 11, fontWeight: 500,
-            letterSpacing: '0.18em', textTransform: 'uppercase', color: '#FF6B35',
+            letterSpacing: '0.18em', textTransform: 'uppercase', color: '#DDDDDD',
             marginBottom: 8, opacity: headingIn,
             transform: `translateY(${(1 - headingIn) * 16}px)`,
           }}>
@@ -77,14 +77,14 @@ export const DemoVideoSection = () => {
           <h2 style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(1.4rem, 3vw, 2rem)',
-            fontWeight: 700, color: '#F5F0E8',
+            fontWeight: 700, color: '#EEEEEE',
             letterSpacing: '-0.02em', lineHeight: 1.15, maxWidth: 520,
             margin: '0 auto',
           }}>
             <span style={{ display: 'inline-block', opacity: headingIn, transform: `translateY(${(1 - headingIn) * 20}px)` }}>
               Traditional hiring is{' '}
             </span>
-            <span style={{ display: 'inline-block', color: '#FF6B35', opacity: Math.min(1, Math.max(0, headingIn * 2 - 0.5)), transform: `translateY(${(1 - headingIn) * 24}px)` }}>
+            <span style={{ display: 'inline-block', color: '#DDDDDD', opacity: Math.min(1, Math.max(0, headingIn * 2 - 0.5)), transform: `translateY(${(1 - headingIn) * 24}px)` }}>
               broken
             </span>
             <span style={{ display: 'inline-block', opacity: headingIn, transform: `translateY(${(1 - headingIn) * 20}px)` }}>
@@ -102,10 +102,10 @@ export const DemoVideoSection = () => {
             width: '100%', height: '100%',
             borderRadius: radius,
             overflow: 'hidden',
-            background: '#0A0A0A',
-            border: t < 0.1 || t > 0.9 ? '1px solid rgba(201,168,76,0.1)' : 'none',
+            background: '#000000',
+            border: t < 0.1 || t > 0.9 ? '1px solid rgba(217,100,36,0.1)' : 'none',
             boxShadow: t >= 0.2 && t <= 0.8
-              ? '0 0 100px rgba(201,168,76,0.08)'
+              ? '0 0 100px rgba(217,100,36,0.08)'
               : '0 20px 60px rgba(0,0,0,0.6)',
             transform: `scale(${scale})`,
             willChange: 'transform',

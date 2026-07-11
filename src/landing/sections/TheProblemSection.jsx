@@ -8,69 +8,69 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ── Color Palette ─────────────────────────────────────────────────────────────
 const T = {
-  gold:   '#C9A84C',
-  pink:   '#E91E8C',
-  orange: '#FF6B35',
-  white:  '#F5F0E8',
+  gold:   '#d96424',
+  pink:   '#d96424',
+  orange: '#DDDDDD',
+  white:  '#EEEEEE',
   muted:  '#888880',
   card:   'rgba(255,255,255,0.025)',
-  border: 'rgba(201,168,76,0.12)',
+  border: 'rgba(217,100,36,0.12)',
 };
 
 // ── ROW 1 — Problem facts (scrolls LEFT) ─────────────────────────────────────
 const ROW1_CARDS = [
   {
     type: 'stat',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     stat: '72%',
     source: 'LINKEDIN TALENT TRENDS 2024',
     body: 'Of recruiters say they have encountered at least one fabricated job title or company on a resume in the past year.',
   },
   {
     type: 'quote',
-    accent: '#E91E8C',
+    accent: '#d96424',
     quote: '"We spent 6 weeks interviewing a candidate who had never actually worked at the companies on their CV."',
     author: 'VP of Engineering, Fintech Unicorn',
     via: 'SHARED AT TECHCRUNCH DISRUPT 2024',
   },
   {
     type: 'stat',
-    accent: '#C9A84C',
+    accent: '#d96424',
     stat: '40–60',
     source: 'SHRM HIRING BENCHMARK REPORT',
     body: 'Days. The average time-to-hire for a mid-level tech role — and most of that time is pure scheduling overhead.',
   },
   {
     type: 'stat',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     stat: '$17,000',
     source: 'SOCIETY FOR HUMAN RESOURCE MGMT',
     body: 'Average cost per bad hire. For senior roles it balloons to over 3× the annual salary.',
   },
   {
     type: 'quote',
-    accent: '#E91E8C',
+    accent: '#d96424',
     quote: '"Our panel gave wildly different scores to the same candidate. We had no idea who to believe."',
     author: 'Head of Talent, B2B SaaS Company',
     via: 'GLASSDOOR EMPLOYER STUDY 2025',
   },
   {
     type: 'stat',
-    accent: '#C9A84C',
+    accent: '#d96424',
     stat: '35%',
     source: 'HARVARD BUSINESS REVIEW',
     body: 'Of engineering managers\' time is consumed by screening calls that could be fully automated.',
   },
   {
     type: 'stat',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     stat: '46%',
     source: 'ROBERT HALF STAFFING SURVEY',
     body: 'Of new hires fail within 18 months — not due to skill gaps, but misaligned expectations set during rushed interviews.',
   },
   {
     type: 'quote',
-    accent: '#E91E8C',
+    accent: '#d96424',
     quote: '"I interviewed the same person twice before realising they had two completely different LinkedIn profiles."',
     author: 'Engineering Lead, Series C Startup',
     via: 'HACKER NEWS THREAD, 2025',
@@ -81,56 +81,56 @@ const ROW1_CARDS = [
 const ROW2_CARDS = [
   {
     type: 'stat',
-    accent: '#C9A84C',
+    accent: '#d96424',
     stat: '600%',
     source: 'IDENTITY THEFT RESOURCE CENTER 2024',
     body: 'Increase in synthetic identity fraud targeting HR and onboarding systems since 2020.',
   },
   {
     type: 'quote',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     quote: '"We had a candidate answer every technical question correctly on paper, then couldn\'t write a single line of code on day one."',
     author: 'CTO, Climate Tech Startup',
     via: 'BLIND TECH FORUM, MARCH 2025',
   },
   {
     type: 'stat',
-    accent: '#E91E8C',
+    accent: '#d96424',
     stat: '1 in 3',
     source: 'WORKSTREAM HIRING REPORT 2025',
     body: 'Remote job offers are now accepted by someone other than the person who interviewed — ghost employment is mainstream.',
   },
   {
     type: 'stat',
-    accent: '#C9A84C',
+    accent: '#d96424',
     stat: '$220B',
     source: 'WORLD ECONOMIC FORUM 2024',
     body: 'Lost globally each year to occupational fraud — insider threats now start at the hiring stage.',
   },
   {
     type: 'quote',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     quote: '"The developer we hired for $140k/year was outsourcing their entire job to someone in another country — for years."',
     author: 'Engineering Director, Public SaaS Company',
     via: 'THE VERGE, JANUARY 2025',
   },
   {
     type: 'stat',
-    accent: '#E91E8C',
+    accent: '#d96424',
     stat: '88%',
     source: 'GARTNER TALENT SURVEY 2024',
     body: 'Of CHROs admit their current vetting process would not catch a sophisticated identity spoof or proxy interview.',
   },
   {
     type: 'stat',
-    accent: '#C9A84C',
+    accent: '#d96424',
     stat: '3.2×',
     source: 'MCKINSEY FUTURE OF WORK REPORT',
     body: 'More likely to make a bad hire when interviews are rushed and unstructured versus AI-assisted evaluations.',
   },
   {
     type: 'quote',
-    accent: '#FF6B35',
+    accent: '#DDDDDD',
     quote: '"By the time we realised the candidate was using AI to answer everything live, we had already made the offer."',
     author: 'Director of Engineering, E-Commerce Platform',
     via: 'TECHCRUNCH APRIL 2025',
@@ -198,7 +198,7 @@ const ProblemCard = ({ card }) => {
           <p style={{
             fontFamily: 'Outfit, sans-serif',
             fontSize: 'clamp(12.5px, 1.4vw, 14px)',
-            color: '#F5F0E8',
+            color: '#EEEEEE',
             lineHeight: 1.6,
             fontStyle: 'italic',
             margin: 0, flex: 1,
@@ -264,13 +264,13 @@ const CtaButton = ({ children, primary, onClick }) => {
         padding: 'clamp(11px, 1.6vh, 14px) clamp(22px, 2.8vw, 34px)',
         borderRadius: 10, cursor: 'pointer',
         transition: 'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',
-        background: primary ? 'linear-gradient(90deg, #FF6B35, #E91E8C)' : 'transparent',
-        color: primary ? '#fff' : '#C9A84C',
-        border: primary ? 'none' : '1px solid #C9A84C',
+        background: primary ? 'linear-gradient(90deg, #d96424, #8a3a10)' : 'transparent',
+        color: primary ? '#fff' : '#d96424',
+        border: primary ? 'none' : '1px solid #d96424',
         filter: primary && hov ? 'brightness(1.1) saturate(1.2)' : 'none',
         boxShadow: primary && hov
-          ? '0 8px 30px rgba(233,30,140,0.35)'
-          : !primary && hov ? '0 0 24px rgba(201,168,76,0.3)' : 'none',
+          ? '0 8px 30px rgba(217,100,36,0.35)'
+          : !primary && hov ? '0 0 24px rgba(217,100,36,0.3)' : 'none',
         transform: hov ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
       }}
     >
@@ -411,14 +411,14 @@ export const TheProblemSection = () => {
       {/* ── Glowing cut-line (same as TransitionSection) ─────────────────── */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55), 0 4px 80px rgba(217,100,36,0.18)',
         zIndex: 20, pointerEvents: 'none',
       }} />
 
       {/* Background glows */}
-      <div style={{ position: 'absolute', top: '25%', left: '50%', width: 900, height: 600, background: 'radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%)', transform: 'translateX(-50%)', pointerEvents: 'none', zIndex: 0 }} />
-      <div style={{ position: 'absolute', bottom: '20%', right: '5%', width: 500, height: 500, background: 'radial-gradient(ellipse, rgba(233,30,140,0.05) 0%, transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'absolute', top: '25%', left: '50%', width: 900, height: 600, background: 'radial-gradient(ellipse, rgba(217,100,36,0.06) 0%, transparent 65%)', transform: 'translateX(-50%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'absolute', bottom: '20%', right: '5%', width: 500, height: 500, background: 'radial-gradient(ellipse, rgba(217,100,36,0.05) 0%, transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
       <div style={{ position: 'absolute', top: '10%', left: '3%', width: 400, height: 400, background: 'radial-gradient(ellipse, rgba(255,107,53,0.04) 0%, transparent 65%)', pointerEvents: 'none', zIndex: 0 }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
@@ -436,13 +436,13 @@ export const TheProblemSection = () => {
           <h2 style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(2.4rem, 6vw, 4.5rem)',
-            fontWeight: 700, color: '#F5F0E8',
+            fontWeight: 700, color: '#EEEEEE',
             letterSpacing: '-0.03em', lineHeight: 1.05,
             margin: '0 auto 20px',
           }}>
             The{' '}
             <span style={{
-              background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+              background: 'linear-gradient(90deg, #d96424, #8a3a10)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>
               Problem.
@@ -469,10 +469,10 @@ export const TheProblemSection = () => {
           opacity: inView ? 1 : 0,
           transition: 'opacity 0.6s ease 0.4s',
         }}>
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(201,168,76,0.45)' }}>
+          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(217,100,36,0.45)' }}>
             ← The hiring crisis
           </span>
-          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(233,30,140,0.45)' }}>
+          <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(217,100,36,0.45)' }}>
             Identity & fraud risk →
           </span>
         </div>
@@ -537,13 +537,13 @@ export const TheProblemSection = () => {
           <p style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
-            fontWeight: 700, color: '#F5F0E8',
+            fontWeight: 700, color: '#EEEEEE',
             letterSpacing: '-0.02em', lineHeight: 1.3,
             maxWidth: 640, margin: '0 auto', opacity: 0,
             textAlign: 'center',
           }}>
             Your next hire could be a ghost.{' '}
-            <span style={{ background: 'linear-gradient(90deg, #FF6B35, #E91E8C)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <span style={{ background: 'linear-gradient(90deg, #d96424, #8a3a10)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               intervieHire stops them before they start.
             </span>
           </p>

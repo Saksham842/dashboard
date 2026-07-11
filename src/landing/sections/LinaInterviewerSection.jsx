@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
-const T = { bg:'#000', card:'#0A0A0A', white:'#F5F0E8', muted:'#888880', gold:'#C9A84C', pink:'#E91E8C' };
+const T = { bg:'#000000', card:'#121212', white:'#EEEEEE', muted:'#9aaab8', gold:'#d96424', pink:'#d96424', orange:'#d96424' };
 
 const FEATURES = [
   { label:'Conversational, not scripted', body:'Lina runs a real dialogue, not a fixed question list — she reacts to what a candidate actually says.' },
@@ -31,9 +31,9 @@ export default function LinaInterviewerSection() {
 
         {/* Eyebrow */}
         <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:16, marginBottom:20 }}>
-          <span style={{ width:40, height:1, background:'rgba(201,168,76,0.5)' }} />
+          <span style={{ width:40, height:1, background:'rgba(217,100,36,0.5)' }} />
           <span style={{ fontFamily:'Inter,sans-serif', fontSize:11, fontWeight:700, letterSpacing:'0.28em', color:T.gold }}>THE INTERVIEWER</span>
-          <span style={{ width:40, height:1, background:'rgba(201,168,76,0.5)' }} />
+          <span style={{ width:40, height:1, background:'rgba(217,100,36,0.5)' }} />
         </div>
 
         <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontWeight:900, color:T.white, fontSize:'clamp(2.2rem,4vw,3.6rem)', lineHeight:1.08, letterSpacing:'-0.02em', textAlign:'center', margin:0 }}>
@@ -120,12 +120,12 @@ export default function LinaInterviewerSection() {
           <button style={{
             display:'inline-flex', alignItems:'center', gap:8,
             fontFamily:'Inter,sans-serif', fontSize:13, fontWeight:700, letterSpacing:'0.04em',
-            color:T.gold, background:'rgba(201,168,76,0.06)', border:'1px solid rgba(201,168,76,0.35)',
+            color:T.gold, background:'rgba(217,100,36,0.06)', border:'1px solid rgba(217,100,36,0.35)',
             borderRadius:99, padding:'14px 28px', cursor:'pointer',
             transition:'background 0.3s',
           }}
-            onMouseEnter={e => e.currentTarget.style.background='rgba(201,168,76,0.12)'}
-            onMouseLeave={e => e.currentTarget.style.background='rgba(201,168,76,0.06)'}
+            onMouseEnter={e => e.currentTarget.style.background='rgba(217,100,36,0.12)'}
+            onMouseLeave={e => e.currentTarget.style.background='rgba(217,100,36,0.06)'}
           >
             Watch Lina interview live
             <span style={{ transition:'transform 0.2s' }} className="lina-arrow">→</span>

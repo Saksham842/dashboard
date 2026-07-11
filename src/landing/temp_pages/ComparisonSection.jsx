@@ -30,8 +30,8 @@ export const ComparisonSection = () => {
             letterSpacing: '-0.02em',
             lineHeight: 1.15
           }}>
-            From <span style={{ color: '#FF6B35' }}>Chaos</span> to <span style={{
-              background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+            From <span style={{ color: '#DDDDDD' }}>Chaos</span> to <span style={{
+              background: 'linear-gradient(90deg, #d96424, #8a3a10)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
@@ -57,7 +57,7 @@ export const ComparisonSection = () => {
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(18px, 3vw, 22px)',
               fontWeight: 700,
-              color: '#FF6B35',
+              color: '#DDDDDD',
               marginBottom: 12,
               letterSpacing: '-0.01em'
             }}>Traditional Hiring</h3>
@@ -65,7 +65,7 @@ export const ComparisonSection = () => {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'clamp(14px, 2vw, 20px)' }}>
               {cons.map((item, idx) => (
                 <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                    <span style={{ color: '#FF6B35', fontWeight: 'bold', fontSize: 'clamp(14px, 2.5vw, 16px)' }}>✕</span>
+                    <span style={{ color: '#DDDDDD', fontWeight: 'bold', fontSize: 'clamp(14px, 2.5vw, 16px)' }}>✕</span>
                   <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#888880', lineHeight: 1.5 }}>{item}</span>
                 </li>
               ))}
@@ -82,15 +82,15 @@ export const ComparisonSection = () => {
             pointerEvents: 'none'
           }} className="comparison-connector">
             <svg width="40" height="120" viewBox="0 0 40 120" fill="none">
-              <path d="M20 0V120" stroke="#C9A84C" strokeWidth="1.5" strokeDasharray="4 4"/>
-              <circle cx="20" cy="60" r="6" fill="#C9A84C"/>
+              <path d="M20 0V120" stroke="#d96424" strokeWidth="1.5" strokeDasharray="4 4"/>
+              <circle cx="20" cy="60" r="6" fill="#d96424"/>
             </svg>
           </div>
 
           {/* Clarity Card */}
           <div style={{
-            background: 'rgba(201, 168, 76, 0.03)',
-            border: '1px solid rgba(201, 168, 76, 0.2)',
+            background: 'rgba(217,100,36, 0.03)',
+            border: '1px solid rgba(217,100,36, 0.2)',
             borderRadius: 20,
             padding: 'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)',
             boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
@@ -99,7 +99,7 @@ export const ComparisonSection = () => {
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(18px, 3vw, 22px)',
               fontWeight: 700,
-              color: '#C9A84C',
+              color: '#d96424',
               marginBottom: 12,
               letterSpacing: '-0.01em'
             }}>With IntervieHire</h3>
@@ -107,7 +107,7 @@ export const ComparisonSection = () => {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'clamp(14px, 2vw, 20px)' }}>
               {pros.map((item, idx) => (
                 <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                    <span style={{ color: '#C9A84C', fontWeight: 'bold', fontSize: 'clamp(14px, 2.5vw, 16px)' }}>✓</span>
+                    <span style={{ color: '#d96424', fontWeight: 'bold', fontSize: 'clamp(14px, 2.5vw, 16px)' }}>✓</span>
                   <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', lineHeight: 1.5 }}>{item}</span>
                 </li>
               ))}

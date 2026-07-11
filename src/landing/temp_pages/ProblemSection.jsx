@@ -7,7 +7,7 @@ export const ProblemSection = () => {
   const cards = [
     {
       icon: (
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round">
           <circle cx="18" cy="12" r="5"/>
           <path d="M8 32c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
           <path d="M28 9c2 1 3.5 3 3.5 5.5 0 3.3-2.7 6-6 6" opacity="0.5"/>
@@ -19,7 +19,7 @@ export const ProblemSection = () => {
     },
     {
       icon: (
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round">
           <rect x="4" y="10" width="28" height="18" rx="3"/>
           <path d="M4 16h28M12 10V7M24 10V7"/>
           <path d="M10 22h6M10 26h10" strokeOpacity="0.5"/>
@@ -30,7 +30,7 @@ export const ProblemSection = () => {
     },
     {
       icon: (
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round">
           <circle cx="18" cy="18" r="13"/>
           <path d="M18 10v8l5 5"/>
           <path d="M6 6l4 4M30 6l-4 4" strokeOpacity="0.4"/>

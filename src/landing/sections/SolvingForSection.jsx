@@ -81,7 +81,7 @@ export const SolvingForSection = () => {
       style={{
         background: '#000000',
         padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px)',
-        borderTop: '1px solid rgba(201,168,76,0.08)'
+        borderTop: '1px solid rgba(217,100,36,0.12)'
       }}
     >
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -97,16 +97,16 @@ export const SolvingForSection = () => {
               display: 'inline-flex', alignItems: 'center',
               padding: '6px 16px', borderRadius: 100,
               fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-              background: 'rgba(201,168,76,0.1)',
-              border: '1px solid rgba(201,168,76,0.2)',
-              color: '#C9A84C', marginBottom: 12
+              background: 'rgba(217,100,36,0.10)',
+              border: '1px solid rgba(217,100,36,0.25)',
+              color: '#d96424', marginBottom: 12
             }}>
               Solutions
             </div>
             <h2 style={{
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700,
-              color: '#F5F0E8', letterSpacing: '-0.02em',
+              color: '#EEEEEE', letterSpacing: '-0.02em',
               lineHeight: 1.2, margin: '0 auto'
             }}>
               What We Solve.
@@ -118,16 +118,16 @@ export const SolvingForSection = () => {
               display: 'inline-flex', alignItems: 'center',
               padding: '6px 16px', borderRadius: 100,
               fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-              background: 'rgba(201,168,76,0.1)',
-              border: '1px solid rgba(201,168,76,0.2)',
-              color: '#C9A84C', marginBottom: 12
+              background: 'rgba(217,100,36,0.10)',
+              border: '1px solid rgba(217,100,36,0.25)',
+              color: '#d96424', marginBottom: 12
             }}>
               Audience
             </div>
             <h2 style={{
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700,
-              color: '#F5F0E8', letterSpacing: '-0.02em',
+              color: '#EEEEEE', letterSpacing: '-0.02em',
               lineHeight: 1.2, margin: '0 auto'
             }}>
               Who We Solve For.
@@ -154,7 +154,7 @@ export const SolvingForSection = () => {
                 position: 'relative',
                 borderRadius: 16,
                 overflow: 'hidden',
-                border: '1px solid rgba(201,168,76,0.1)',
+                border: '1px solid rgba(217,100,36,0.12)',
                 boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
                 height: '100%'
               }}>
@@ -188,7 +188,7 @@ export const SolvingForSection = () => {
                   <h3 style={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 'clamp(15px, 2.5vw, 18px)', fontWeight: 700,
-                    color: '#C9A84C',
+                    color: '#d96424',
                     marginBottom: 8, marginTop: 0
                   }}>
                     {solve.title}
@@ -208,7 +208,7 @@ export const SolvingForSection = () => {
                 position: 'relative',
                 borderRadius: 16,
                 overflow: 'hidden',
-                border: '1px solid rgba(201,168,76,0.1)',
+                border: '1px solid rgba(217,100,36,0.12)',
                 boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
                 height: '100%'
               }}>
@@ -239,7 +239,7 @@ export const SolvingForSection = () => {
                   <h3 style={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 'clamp(15px, 2.5vw, 18px)', fontWeight: 700,
-                    color: '#C9A84C',
+                    color: '#d96424',
                     marginBottom: 8, marginTop: 0
                   }}>
                     {targetAudiences[idx].title}

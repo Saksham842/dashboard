@@ -682,9 +682,9 @@ export function initLandingPage() {
   const statusDot = document.querySelector('.video-status-badge .status-dot');
 
   const videoRanges = {
-    layer1: { min: 0.0, max: 4.2, label: "AI Screening & Filtering", color: "#d4af37" },
-    layer2: { min: 4.2, max: 7.2, label: "Expert Human Vetting", color: "#ff0d3f" },
-    layer3: { min: 7.2, max: 10.0, label: "Verified Decisive Hiring", color: "#ffc72c" }
+    layer1: { min: 0.0, max: 4.2, label: "AI Screening & Filtering", color: "#d96424" },
+    layer2: { min: 4.2, max: 7.2, label: "Expert Human Vetting", color: "#d96424" },
+    layer3: { min: 7.2, max: 10.0, label: "Verified Decisive Hiring", color: "#ba5520" }
   };
 
   let currentRange = videoRanges.layer1;

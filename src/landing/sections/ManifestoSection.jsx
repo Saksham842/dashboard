@@ -73,7 +73,7 @@ export const ManifestoSection = () => {
                     fontWeight: 700,
                     fontStyle: 'italic',
                     fontSize: 'clamp(1.5rem, 5vw, 4rem)',
-                    color: '#C9A84C',
+                    color: '#d96424',
                     letterSpacing: '-0.02em',
                     lineHeight: 1.2,
                     opacity: 0,

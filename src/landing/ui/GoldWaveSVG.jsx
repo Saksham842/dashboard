@@ -24,7 +24,7 @@ export const GoldWaveSVG = ({ opacity = 1, style = {} }) => (
       <path
         key={i}
         d={wave.d}
-        stroke={i % 3 === 2 ? "#FF6B35" : "#C9A84C"}
+        stroke={i % 3 === 2 ? "#d96424" : "#ba5520"}
         strokeWidth={i < 3 ? 1 : 0.6}
         strokeOpacity={wave.alpha}
         strokeLinecap="round"

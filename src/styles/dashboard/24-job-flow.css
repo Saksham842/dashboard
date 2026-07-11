@@ -45,8 +45,8 @@
   gap: 16px;
   padding: 18px 24px;
   margin: 0 0 20px 0;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(99, 102, 241, 0.04));
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(217,100,36, 0.06), rgba(99, 102, 241, 0.04));
+  border: 1px solid rgba(217,100,36, 0.2);
   border-radius: 14px;
   animation: jf-banner-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(217,100,36, 0.1);
   border-radius: 10px;
 }
 .jf-banner-content { flex: 1; min-width: 0; }
@@ -107,8 +107,8 @@
   background: rgba(255, 255, 255, 0.03);
 }
 body.light-theme .jf-candidates-banner {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(99, 102, 241, 0.04));
-  border-color: rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, rgba(217,100,36, 0.06), rgba(99, 102, 241, 0.04));
+  border-color: rgba(217,100,36, 0.25);
 }
 body.light-theme .btn-jf-skip {
   border-color: rgba(0, 0, 0, 0.12);

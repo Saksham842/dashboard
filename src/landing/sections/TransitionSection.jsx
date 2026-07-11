@@ -43,47 +43,47 @@ const MorphBlob = ({ progress }) => {
 
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-      <div className="morph-blob-inner" style={{ position:'relative', width:240, height:240, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(201,168,76,0.35)':'rgba(201,168,76,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
+      <div className="morph-blob-inner" style={{ position:'relative', width:240, height:240, display:'flex', alignItems:'center', justifyContent:'center', transform:`scaleY(${morphScaleY}) scaleX(${morphScaleX})`, transition:'transform 0.1s ease-out, box-shadow 0.5s ease', filter:'brightness(1.15) saturate(1.25)', boxShadow:`${progress<0.5?'rgba(217,100,36,0.35)':'rgba(217,100,36,0.45)'} 0px 0px 80px 20px`, borderRadius:'50%' }}>
 
         {/* Chaos blob */}
         <div style={{ position:'absolute', inset:0, opacity:chaosOpacity*0.65, transition:'opacity 0.2s', pointerEvents:'none' }}>
-          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(255,107,53,0.75) 0%,rgba(233,30,140,0.6) 35%,rgba(139,92,246,0.4) 70%,transparent 100%)', borderRadius:'70% 30% 30% 70% / 60% 40% 60% 40%', filter:'blur(3px)', animation:'6s ease-in-out infinite evyMorph' }} />
-          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(233,30,140,0.5) 0%,rgba(139,92,246,0.3) 45%,transparent 100%)', borderRadius:'30% 70% 70% 30% / 30% 30% 70% 70%', filter:'blur(4px)', animation:'12s ease-in-out infinite reverse evyMorph' }} />
-          <div style={{ position:'absolute', inset:9, background:'linear-gradient(135deg,rgba(255,255,255,0.4) 0%,rgba(233,30,140,0.2) 60%,transparent 100%)', borderRadius:'80% 20% 20% 80% / 20% 80% 20% 80%', filter:'blur(3.5px)', animation:'8s ease-in-out infinite reverse evyMorph', boxShadow:'rgba(255,255,255,0.3) 0px 0px 30px inset' }} />
+          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(255,107,53,0.75) 0%,rgba(217,100,36,0.6) 35%,rgba(139,92,246,0.4) 70%,transparent 100%)', borderRadius:'70% 30% 30% 70% / 60% 40% 60% 40%', filter:'blur(3px)', animation:'6s ease-in-out infinite evyMorph' }} />
+          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(217,100,36,0.5) 0%,rgba(139,92,246,0.3) 45%,transparent 100%)', borderRadius:'30% 70% 70% 30% / 30% 30% 70% 70%', filter:'blur(4px)', animation:'12s ease-in-out infinite reverse evyMorph' }} />
+          <div style={{ position:'absolute', inset:9, background:'linear-gradient(135deg,rgba(255,255,255,0.4) 0%,rgba(217,100,36,0.2) 60%,transparent 100%)', borderRadius:'80% 20% 20% 80% / 20% 80% 20% 80%', filter:'blur(3.5px)', animation:'8s ease-in-out infinite reverse evyMorph', boxShadow:'rgba(255,255,255,0.3) 0px 0px 30px inset' }} />
         </div>
 
         {/* Clarity blob */}
         <div style={{ position:'absolute', inset:0, opacity:clarityOpacity*0.65, transition:'opacity 0.2s', pointerEvents:'none' }}>
-          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(201,168,76,0.75) 0%,rgba(34,211,238,0.6) 35%,rgba(16,185,129,0.4) 70%,transparent 100%)', borderRadius:'70% 30% 30% 70% / 60% 40% 60% 40%', filter:'blur(3px)', animation:'6s ease-in-out infinite evyMorph' }} />
+          <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(217,100,36,0.75) 0%,rgba(34,211,238,0.6) 35%,rgba(16,185,129,0.4) 70%,transparent 100%)', borderRadius:'70% 30% 30% 70% / 60% 40% 60% 40%', filter:'blur(3px)', animation:'6s ease-in-out infinite evyMorph' }} />
           <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle,rgba(34,211,238,0.5) 0%,rgba(16,185,129,0.3) 45%,transparent 100%)', borderRadius:'30% 70% 70% 30% / 30% 30% 70% 70%', filter:'blur(4px)', animation:'12s ease-in-out infinite reverse evyMorph' }} />
-          <div style={{ position:'absolute', inset:9, background:'linear-gradient(135deg,rgba(255,255,255,0.4) 0%,rgba(201,168,76,0.2) 60%,transparent 100%)', borderRadius:'80% 20% 20% 80% / 20% 80% 20% 80%', filter:'blur(3.5px)', animation:'8s ease-in-out infinite reverse evyMorph', boxShadow:'rgba(255,255,255,0.3) 0px 0px 30px inset' }} />
+          <div style={{ position:'absolute', inset:9, background:'linear-gradient(135deg,rgba(255,255,255,0.4) 0%,rgba(217,100,36,0.2) 60%,transparent 100%)', borderRadius:'80% 20% 20% 80% / 20% 80% 20% 80%', filter:'blur(3.5px)', animation:'8s ease-in-out infinite reverse evyMorph', boxShadow:'rgba(255,255,255,0.3) 0px 0px 30px inset' }} />
         </div>
 
         {/* Human figure */}
         <div style={{ position:'absolute', inset:24, opacity:humanOpacity, transition:'opacity 0.1s', zIndex:10 }}>
           <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'100%' }}>
-            <circle cx="100" cy="60" r="32" stroke="#F5F0E8" strokeWidth="1.5" />
-            <path d="M88 90 L88 108 M112 90 L112 108" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M40 140 C40 120 70 110 100 110 C130 110 160 120 160 140 L160 220 L40 220 Z" stroke="#F5F0E8" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-            <path d="M40 140 L20 185" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
-            <path d="M160 140 L180 185" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
+            <circle cx="100" cy="60" r="32" stroke="#EEEEEE" strokeWidth="1.5" />
+            <path d="M88 90 L88 108 M112 90 L112 108" stroke="#EEEEEE" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M40 140 C40 120 70 110 100 110 C130 110 160 120 160 140 L160 220 L40 220 Z" stroke="#EEEEEE" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+            <path d="M40 140 L20 185" stroke="#EEEEEE" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
+            <path d="M160 140 L180 185" stroke="#EEEEEE" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
           </svg>
-          <div style={{ position:'absolute', left:-10, right:-10, top:`${scanTop}%`, height:2, background:'linear-gradient(90deg,transparent,#C9A84C,transparent)', boxShadow:'0 0 12px rgba(201,168,76,0.8)', opacity:(progress>0.3&&progress<0.6)?1:0, transition:'opacity 0.2s' }} />
+          <div style={{ position:'absolute', left:-10, right:-10, top:`${scanTop}%`, height:2, background:'linear-gradient(90deg,transparent,#d96424,transparent)', boxShadow:'0 0 12px rgba(217,100,36,0.8)', opacity:(progress>0.3&&progress<0.6)?1:0, transition:'opacity 0.2s' }} />
         </div>
 
         {/* AI figure */}
         <div style={{ position:'absolute', inset:24, opacity:aiOpacity, transition:'opacity 0.1s', zIndex:10 }}>
           <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width:'100%', height:'100%' }}>
-            <path d="M100 28 L130 45 L130 79 L100 96 L70 79 L70 45 Z" stroke="#C9A84C" strokeWidth="1.5" />
-            <path d="M100 28 L100 96 M70 45 L130 79 M130 45 L70 79" stroke="#C9A84C" strokeWidth="0.5" strokeOpacity="0.4" />
-            <rect x="83" y="54" width="8" height="6" rx="1" fill="#C9A84C" fillOpacity="0.7" />
-            <rect x="109" y="54" width="8" height="6" rx="1" fill="#C9A84C" fillOpacity="0.7" />
-            <path d="M88 96 L88 116 M112 96 L112 116" stroke="#C9A84C" strokeWidth="1.5" />
-            <path d="M50 150 L50 116 C50 116 70 110 100 110 C130 110 150 116 150 116 L150 150" stroke="#C9A84C" strokeWidth="1.5" />
-            <rect x="50" y="150" width="100" height="70" rx="4" stroke="#C9A84C" strokeWidth="1.5" />
-            <path d="M50 125 L22 160 L22 195" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
-            <path d="M150 125 L178 160 L178 195" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
-            <ellipse cx="100" cy="62" rx="45" ry="45" stroke="#C9A84C" strokeWidth="0.3" strokeOpacity="0.15" strokeDasharray="4 6" />
+            <path d="M100 28 L130 45 L130 79 L100 96 L70 79 L70 45 Z" stroke="#d96424" strokeWidth="1.5" />
+            <path d="M100 28 L100 96 M70 45 L130 79 M130 45 L70 79" stroke="#d96424" strokeWidth="0.5" strokeOpacity="0.4" />
+            <rect x="83" y="54" width="8" height="6" rx="1" fill="#d96424" fillOpacity="0.7" />
+            <rect x="109" y="54" width="8" height="6" rx="1" fill="#d96424" fillOpacity="0.7" />
+            <path d="M88 96 L88 116 M112 96 L112 116" stroke="#d96424" strokeWidth="1.5" />
+            <path d="M50 150 L50 116 C50 116 70 110 100 110 C130 110 150 116 150 116 L150 150" stroke="#d96424" strokeWidth="1.5" />
+            <rect x="50" y="150" width="100" height="70" rx="4" stroke="#d96424" strokeWidth="1.5" />
+            <path d="M50 125 L22 160 L22 195" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
+            <path d="M150 125 L178 160 L178 195" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
+            <ellipse cx="100" cy="62" rx="45" ry="45" stroke="#d96424" strokeWidth="0.3" strokeOpacity="0.15" strokeDasharray="4 6" />
           </svg>
         </div>
       </div>
@@ -91,7 +91,7 @@ const MorphBlob = ({ progress }) => {
       {/* Label */}
       <div style={{ marginTop:20, height:20, position:'relative', width:300, textAlign:'center' }}>
         <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:humanOpacity>0.5?1:0, color:'#888880', position:'absolute', width:'100%', left:0 }}>The Traditional Interviewer</div>
-        <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:aiOpacity>0.5?1:0, color:'#C9A84C', position:'absolute', width:'100%', left:0 }}>Lina, Your AI Agent</div>
+        <div style={{ fontFamily:'Outfit,sans-serif', fontSize:12, letterSpacing:'0.1em', textTransform:'uppercase', transition:'opacity 0.3s', opacity:aiOpacity>0.5?1:0, color:'#d96424', position:'absolute', width:'100%', left:0 }}>Lina, Your AI Agent</div>
       </div>
     </div>
   );
@@ -185,12 +185,12 @@ export const TransitionSection = () => {
         position:'relative', zIndex:3,
         opacity:0, animation: headingIn ? 'titlePageReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0s forwards' : 'none',
       }}>
-        <div style={{ display:'inline-block', padding:'5px 14px', borderRadius:999, border:'1px solid rgba(255,107,53,0.35)', background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)', fontSize:11, fontFamily:'Outfit,sans-serif', color:'#FF6B35', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:10 }}>
+        <div style={{ display:'inline-block', padding:'5px 14px', borderRadius:999, border:'1px solid rgba(255,107,53,0.35)', background:'rgba(10,10,10,0.7)', backdropFilter:'blur(12px)', fontSize:11, fontFamily:'Outfit,sans-serif', color:'#DDDDDD', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:10 }}>
           Every Recruiter's Tuesday
         </div>
-        <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2rem,4.5vw,3.2rem)', fontWeight:700, color:'#F5F0E8', letterSpacing:'-0.02em', lineHeight:1.15, margin:0 }}>
+        <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2rem,4.5vw,3.2rem)', fontWeight:700, color:'#EEEEEE', letterSpacing:'-0.02em', lineHeight:1.15, margin:0 }}>
           The Screening{' '}
-          <span style={{ background:'linear-gradient(90deg,#C9A84C,#E8C97A)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Bottleneck</span>
+          <span style={{ background:'linear-gradient(90deg,#d96424,#ba5520)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Bottleneck</span>
         </h2>
         <p style={{ fontFamily:'Outfit,sans-serif', fontSize:15, color:'#888880', margin:'24px 0 0 0' }}>
           What Actually Eats Your Hiring Week
@@ -251,12 +251,12 @@ export const TransitionSection = () => {
             {/* LEFT CARD */}
             <div data-scroll style={{ minHeight:'clamp(500px, 60vh, 700px)', opacity:0, animation: inView ? 'leftBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards' : 'none' }}>
               <TiltCard style={{ background:'rgba(255,107,53,0.01)', border:'1.5px solid rgba(255,107,53,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(255,107,53,0.08), 0 15px 30px rgba(0,0,0,0.4)' }}>
-                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#FF6B35', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A typical hiring week</h3>
+                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#DDDDDD', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A typical hiring week</h3>
                 <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>Where your recruiter hours actually go</p>
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
                   {cons.map((item, idx) => (
                     <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
-                      <span style={{ color:'#FF6B35', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✕</span>
+                      <span style={{ color:'#DDDDDD', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✕</span>
                       <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#888880', lineHeight:1.5 }}>{item}</span>
                     </li>
                   ))}
@@ -275,15 +275,15 @@ export const TransitionSection = () => {
             <div data-scroll style={{ minHeight:'clamp(500px, 60vh, 700px)', opacity:0, animation: rightRevealed ? 'rightBoomReveal 1s cubic-bezier(0.34,1.56,0.64,1) 0s forwards' : 'none' }}>
               <TiltCard
                 className={progress > 0.75 ? 'pulse-glow' : ''}
-                style={{ background:'rgba(201,168,76,0.02)', border:'1.5px solid rgba(201,168,76,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(201,168,76,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:rightRevealed?'auto':'none' }}
+                style={{ background:'rgba(217,100,36,0.02)', border:'1.5px solid rgba(217,100,36,0.3)', borderRadius:20, padding:'clamp(24px, 3vw, 40px) clamp(20px, 3vw, 32px)', boxShadow:'0 0 25px rgba(217,100,36,0.08), 0 15px 30px rgba(0,0,0,0.4)', pointerEvents:rightRevealed?'auto':'none' }}
               >
-                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#C9A84C', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A week with Lina running screens</h3>
+                <h3 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(20px, 2.5vw, 26px)', fontWeight:700, color:'#d96424', marginBottom:8, letterSpacing:'-0.01em', textAlign:'center' }}>A week with Lina running screens</h3>
                 <p style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#666660', marginBottom:28 }}>What automated interviews actually ship</p>
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:16 }}>
                   {pros.map((item, idx) => (
                     <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
-                      <span style={{ color:'#C9A84C', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✓</span>
-                      <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#F5F0E8', lineHeight:1.5 }}>{item}</span>
+                      <span style={{ color:'#d96424', fontWeight:'bold', fontSize:15, flexShrink:0 }}>✓</span>
+                      <span style={{ fontFamily:'Outfit,sans-serif', fontSize:14, color:'#EEEEEE', lineHeight:1.5 }}>{item}</span>
                     </li>
                   ))}
                 </ul>

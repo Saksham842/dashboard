@@ -76,7 +76,7 @@ export default function FeaturesPage() {
             }}>
               See IntervieHire in{' '}
               <span style={{
-                background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+                background: 'linear-gradient(90deg, #d96424, #8a3a10)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>Action.</span>
@@ -101,9 +101,9 @@ export default function FeaturesPage() {
                 borderRadius: radius,
                 overflow: 'hidden',
                 background: '#0A0A0A',
-                border: t < 0.1 || t > 0.9 ? '1px solid rgba(201,168,76,0.1)' : 'none',
+                border: t < 0.1 || t > 0.9 ? '1px solid rgba(217,100,36,0.1)' : 'none',
                 boxShadow: t >= 0.2 && t <= 0.8
-                  ? '0 0 100px rgba(201,168,76,0.08)'
+                  ? '0 0 100px rgba(217,100,36,0.08)'
                   : '0 20px 60px rgba(0,0,0,0.6)',
                 transform: `scale(${scale})`,
                 willChange: 'transform',
@@ -127,14 +127,14 @@ export default function FeaturesPage() {
           <style>{`
             .fp-vert-card {
               border-radius: 20px;
-              border: 1px solid rgba(201,168,76,0.1);
+              border: 1px solid rgba(217,100,36,0.1);
               background: rgba(255,255,255,0.02);
               transition: border-color 0.3s, background 0.3s, transform 0.3s;
               position: relative;
               padding: clamp(24px, 3vw, 36px);
             }
             .fp-vert-card:hover {
-              border-color: rgba(201,168,76,0.3);
+              border-color: rgba(217,100,36,0.3);
               background: rgba(255,255,255,0.04);
               transform: translateY(-3px);
             }
@@ -144,7 +144,7 @@ export default function FeaturesPage() {
               top: 0; left: 0; right: 0;
               height: 2px;
               border-radius: 2px 2px 0 0;
-              background: linear-gradient(90deg, #C9A84C, #E91E8C);
+              background: linear-gradient(90deg, #d96424, #d96424);
               opacity: 0.3;
               transition: opacity 0.3s;
             }
@@ -162,7 +162,7 @@ export default function FeaturesPage() {
           `}</style>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: 12 }}>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#d96424', marginBottom: 12 }}>
                 How It Works
               </div>
               <h3 style={{ fontFamily: 'Space Grotesk,sans-serif', fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', fontWeight: 700, color: '#F5F0E8', maxWidth: 600, margin: '0 auto', lineHeight: 1.2 }}>
@@ -182,10 +182,10 @@ export default function FeaturesPage() {
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
                     <div style={{
                       flexShrink: 0, width: 44, height: 44, borderRadius: '50%',
-                      background: 'linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05))',
-                      border: '1px solid rgba(201,168,76,0.2)',
+                      background: 'linear-gradient(135deg, rgba(217,100,36,0.15), rgba(217,100,36,0.05))',
+                      border: '1px solid rgba(217,100,36,0.2)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontFamily: 'Space Grotesk,sans-serif', fontSize: 16, fontWeight: 700, color: '#C9A84C',
+                      fontFamily: 'Space Grotesk,sans-serif', fontSize: 16, fontWeight: 700, color: '#d96424',
                     }}>
                       {i + 1}
                     </div>
@@ -197,7 +197,7 @@ export default function FeaturesPage() {
                         {step.time && (
                           <span style={{
                             fontFamily: 'Inter,sans-serif', fontSize: 11, fontWeight: 500,
-                            color: '#E91E8C', letterSpacing: '0.04em',
+                            color: '#d96424', letterSpacing: '0.04em',
                           }}>
                             ~ {step.time}
                           </span>
@@ -210,8 +210,8 @@ export default function FeaturesPage() {
                         {(step.features || []).map((f, fi) => (
                           <span key={fi} style={{
                             fontFamily: 'Inter,sans-serif', fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
-                            color: 'rgba(201,168,76,0.7)', background: 'rgba(201,168,76,0.06)',
-                            border: '1px solid rgba(201,168,76,0.1)', borderRadius: 99, padding: '4px 12px',
+                            color: 'rgba(217,100,36,0.7)', background: 'rgba(217,100,36,0.06)',
+                            border: '1px solid rgba(217,100,36,0.1)', borderRadius: 99, padding: '4px 12px',
                           }}>
                             {f}
                           </span>

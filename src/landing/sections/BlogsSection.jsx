@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
-const T = { bg:'#000', card:'#0A0A0A', white:'#F5F0E8', muted:'#888880', gold:'#C9A84C', pink:'#E91E8C', orange:'#FF6B35' };
+const T = { bg:'#000000', card:'#121212', white:'#EEEEEE', muted:'#9aaab8', gold:'#d96424', pink:'#d96424', orange:'#d96424' };
 
 const BLOGS = [
   { title:"Preventing AI Interview Cheating", excerpt:"How we screen for screen sharing, web searches, and copy-paste behavior in real-time interviews.", date:"June 2, 2026", tag:"Engineering", readTime:"5 min read" },
@@ -31,7 +31,7 @@ const BlogCard = ({ post, idx }) => {
 
   return (
     <div ref={ref} style={{
-      background:T.card, borderRadius:16, border:'1px solid rgba(201,168,76,0.06)',
+      background:T.card, borderRadius:16, border:'1px solid rgba(217,100,36,0.06)',
       padding:'clamp(20px,3vw,28px)',
       opacity: visible ? 1 : 0,
       transform: visible ? 'translateY(0)' : 'translateY(30px)',
@@ -42,7 +42,7 @@ const BlogCard = ({ post, idx }) => {
           fontFamily:'Inter,sans-serif', fontSize:11, fontWeight:700,
           textTransform:'uppercase', letterSpacing:'0.06em',
           padding:'4px 10px', borderRadius:100,
-          background:'rgba(201,168,76,0.1)', color:T.gold, border:'1px solid rgba(201,168,76,0.15)'
+          background:'rgba(217,100,36,0.1)', color:T.gold, border:'1px solid rgba(217,100,36,0.15)'
         }}>{post.tag}</span>
         <span style={{ fontFamily:'Outfit,sans-serif', fontSize:12, color:T.muted }}>{post.readTime}</span>
       </div>
@@ -76,11 +76,11 @@ export const BlogsSection = () => {
       {/* Golden cut-line top */}
       <div style={{
         position:'absolute', top:0, left:0, right:0, height:1, zIndex:20,
-        background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+        background:'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow:'0 0 40px 2px rgba(217,100,36,0.55), 0 4px 80px rgba(217,100,36,0.18)',
       }} />
 
-      <section data-scroll id="blogs" style={{ background: T.bg, padding:'clamp(100px,14vh,160px) clamp(16px,4vw,48px) clamp(60px,8vw,100px)', borderTop:'1px solid rgba(201,168,76,0.08)' }}>
+      <section data-scroll id="blogs" style={{ background: T.bg, padding:'clamp(100px,14vh,160px) clamp(16px,4vw,48px) clamp(60px,8vw,100px)', borderTop:'1px solid rgba(217,100,36,0.08)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           {/* Heading */}
           <div style={{ textAlign: 'center', marginBottom: 'clamp(40px,6vw,64px)' }}>
@@ -88,7 +88,7 @@ export const BlogsSection = () => {
               display:'inline-flex', alignItems:'center', gap:12, marginBottom:16,
               padding:'6px 16px', borderRadius:100, fontSize:'0.75rem', fontWeight:700,
               textTransform:'uppercase', letterSpacing:'0.12em',
-              background:'rgba(201,168,76,0.1)', border:'1px solid rgba(201,168,76,0.2)', color:T.gold
+              background:'rgba(217,100,36,0.1)', border:'1px solid rgba(217,100,36,0.2)', color:T.gold
             }}>
               Resources
             </div>
@@ -97,7 +97,7 @@ export const BlogsSection = () => {
               color:T.white, letterSpacing:'-0.02em', lineHeight:1.15, margin:0
             }}>
               Our Latest <span style={{
-                background:'linear-gradient(90deg, #FF6B35, #E91E8C)',
+                background:'linear-gradient(90deg, #d96424, #8a3a10)',
                 WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text'
               }}>Articles.</span>
             </h2>
@@ -111,9 +111,9 @@ export const BlogsSection = () => {
                 textTransform:'uppercase', letterSpacing:'0.06em',
                 padding:'8px 18px', borderRadius:100,
                 cursor:'pointer', transition:'all 0.3s ease',
-                background: activeTag === tag ? T.gold : 'rgba(201,168,76,0.06)',
+                background: activeTag === tag ? T.gold : 'rgba(217,100,36,0.06)',
                 color: activeTag === tag ? '#000' : T.muted,
-                border: activeTag === tag ? 'none' : '1px solid rgba(201,168,76,0.15)'
+                border: activeTag === tag ? 'none' : '1px solid rgba(217,100,36,0.15)'
               }}>
                 {tag}
               </button>

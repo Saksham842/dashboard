@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap');
 @import 'locomotive-scroll/dist/locomotive-scroll.css';
 
+/* ── Palette ────────────────────────────────────────────────────
+   #000000  Black          → primary background
+   rgba(22,22,22) Dark gray → card surfaces / secondary bg
+   #d96424  Bright Yellow    → accent / CTA / glow
+   #DDDDDD  Silver Gray    → primary text / light surfaces
+──────────────────────────────────────────────────────────────── */
+
 /* intervieHire landing — base */
 .ih-landing *, .ih-landing *::before, .ih-landing *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; margin: 0; padding: 0; }
-body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
+body { background: #000000; color: #EEEEEE; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
   .ih-landing *, .ih-landing *::before, .ih-landing *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-/* Stitch dynamic transition animations */
+/* ── Keyframes ─────────────────────────────────────────────── */
 @keyframes textReveal {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -27,12 +34,12 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
 }
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(201, 168, 76, 0.15);
-    border-color: rgba(201, 168, 76, 0.15);
+    box-shadow: 0 0 15px rgba(217,100,36, 0.2);
+    border-color: rgba(217,100,36, 0.2);
   }
   50% {
-    box-shadow: 0 0 30px rgba(201, 168, 76, 0.35);
-    border-color: rgba(201, 168, 76, 0.35);
+    box-shadow: 0 0 35px rgba(217,100,36, 0.5);
+    border-color: rgba(217,100,36, 0.5);
   }
 }
 @keyframes evyMorph {
@@ -50,6 +57,8 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
 }
+
+/* ── Marquee strip ─────────────────────────────────────────── */
 .evy-stat-marquee {
   position: relative;
   overflow: hidden;
@@ -67,32 +76,23 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
 .evy-stat-marquee:hover .evy-stat-track {
   animation-play-state: paused;
 }
-.reveal-text {
-  animation: textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.slide-up-fade {
-  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.morph-shake {
-  animation: morphShake 0.4s ease-in-out;
-}
-.pulse-glow {
-  animation: pulseGlow 3s infinite ease-in-out;
-}
+
+/* ── Utility animation classes ─────────────────────────────── */
+.reveal-text   { animation: textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.slide-up-fade { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.morph-shake   { animation: morphShake 0.4s ease-in-out; }
+.pulse-glow    { animation: pulseGlow 3s infinite ease-in-out; }
+
 @media (max-width: 900px) {
   .comparison-connector { display: none !important; }
 }
 
-/* Entrance scrollytelling animations */
-
-/* Title: sweeps up from below like a page rising into view */
+/* ── Scrollytelling entrance animations ────────────────────── */
 @keyframes titlePageReveal {
   0%   { opacity: 0; transform: translateY(72px) scale(0.97); filter: blur(6px); }
   60%  { filter: blur(0); }
   100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
-
-/* Centre avatar: BOOM — explodes from a tiny bright point */
 @keyframes centerBoomReveal {
   0%   { opacity: 0; transform: scale(0.08); filter: brightness(5) blur(20px); }
   40%  { opacity: 1; transform: scale(1.25); filter: brightness(1.8) blur(4px); }
@@ -100,8 +100,6 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   82%  { transform: scale(1.06); }
   100% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
 }
-
-/* Left card: BOOM — explodes from a tiny bright point like the centre */
 @keyframes leftBoomReveal {
   0%   { opacity: 0; transform: scale(0.1) translateX(-40px); filter: brightness(5) blur(20px); }
   40%  { opacity: 1; transform: scale(1.25) translateX(6px); filter: brightness(1.8) blur(4px); }
@@ -109,15 +107,13 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   82%  { transform: scale(1.06) translateX(1px); }
   100% { opacity: 1; transform: scale(1) translateX(0); filter: brightness(1) blur(0); }
 }
-
-/* Right card: swings in from off-screen right with slight tilt */
 @keyframes rightCardSlide {
   0%   { opacity: 0; transform: translateX(140px) rotate(3deg); }
   65%  { transform: translateX(-10px) rotate(-0.4deg); }
   100% { opacity: 1; transform: translateX(0) rotate(0deg); }
 }
 
-/* ─── Awards Transition — rotating starburst ─────────────────────── */
+/* ── Awards starburst ──────────────────────────────────────── */
 @keyframes awardsBurstRotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -130,7 +126,7 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   position: relative;
 }
 
-/* Custom premium range slider styling */
+/* ── Premium range slider ──────────────────────────────────── */
 .ih-calculator-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -147,47 +143,43 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #C9A84C;
-  border: 2px solid #0A0A0A;
+  background: #d96424;
+  border: 2px solid #000000;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 12px rgba(217,100,36, 0.5);
   transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.1s ease;
 }
-
 .ih-calculator-slider::-webkit-slider-thumb:hover {
   transform: scale(1.25);
-  background: #E8C97A;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.7);
+  background: #ba5520;
+  box-shadow: 0 0 20px rgba(217,100,36, 0.8);
 }
-
 .ih-calculator-slider::-webkit-slider-thumb:active {
   transform: scale(1.1);
-  background: #B8973B;
+  background: #a81c43;
 }
 
 .ih-calculator-slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #C9A84C;
-  border: 2px solid #0A0A0A;
+  background: #d96424;
+  border: 2px solid #000000;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 12px rgba(217,100,36, 0.5);
   transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.1s ease;
 }
-
 .ih-calculator-slider::-moz-range-thumb:hover {
   transform: scale(1.25);
-  background: #E8C97A;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.7);
+  background: #ba5520;
+  box-shadow: 0 0 20px rgba(217,100,36, 0.8);
 }
-
 .ih-calculator-slider::-moz-range-thumb:active {
   transform: scale(1.1);
-  background: #B8973B;
+  background: #a81c43;
 }
 
-/* ─── Measure Your Savings — scrolling marquee banner ──────────────────── */
+/* ── Savings Marquee Banner ────────────────────────────────── */
 @keyframes calcMarquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -202,9 +194,9 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   margin-left: -50vw;
   margin-right: -50vw;
   transform: none;
-  background: rgba(201, 168, 76, 0.05);
-  border-top: 1px solid rgba(201, 168, 76, 0.15);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  background: rgba(217,100,36, 0.07);
+  border-top: 1px solid rgba(217,100,36, 0.22);
+  border-bottom: 1px solid rgba(217,100,36, 0.22);
   padding: 24px 0;
   font-weight: 700;
 }
@@ -225,7 +217,7 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   font-family: 'Outfit', sans-serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
-  color: #C9A84C;
+  color: #d96424;
   letter-spacing: -0.03em;
   line-height: 1;
   flex-shrink: 0;
@@ -233,7 +225,7 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
 
 .calc-marquee-item em {
   font-style: italic;
-  background: linear-gradient(90deg, #FF6B35, #E91E8C);
+  background: linear-gradient(90deg, #d96424, #EEEEEE);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -242,7 +234,17 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   margin-left: 0.2em;
 }
 
-/* ─── Mobile Responsive Overrides ─────────────────────────────── */
+.calc-marquee-dot {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(217,100,36, 0.45);
+  font-size: 0.5em;
+  line-height: 1;
+  font-style: normal;
+  -webkit-text-fill-color: rgba(217,100,36, 0.45);
+}
+
+/* ── Mobile overrides ──────────────────────────────────────── */
 @media (max-width: 768px) {
   .sf-grid-head { grid-template-columns: 1fr !important; gap: 20px !important; }
   .sf-pairs { grid-template-columns: 1fr !important; }
@@ -260,14 +262,4 @@ body { background: #000000; color: #F5F0E8; font-family: 'Outfit', sans-serif; -
   .ev-grid { grid-template-columns: 1fr !important; }
   .ev-steps { padding-left: 0 !important; }
   .calc-grid { grid-template-columns: 1fr !important; }
-}
-
-.calc-marquee-dot {
-  display: inline-flex;
-  align-items: center;
-  color: rgba(201, 168, 76, 0.35);
-  font-size: 0.5em;
-  line-height: 1;
-  font-style: normal;
-  -webkit-text-fill-color: rgba(201, 168, 76, 0.35);
 }

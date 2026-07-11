@@ -1,5 +1,5 @@
 'use client';
 
-export default function JobDetailPage() {
+export default function JobsPage() {
   return null;
 }

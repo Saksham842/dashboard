@@ -31,24 +31,24 @@ export default function BookDemoPage() {
       {/* Golden cut-line top */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 20,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55), 0 4px 80px rgba(217,100,36,0.18)',
       }} />
 
       {/* Background glows */}
       <div style={{
         position: 'absolute', top: '20%', left: '50%', width: 800, height: 600,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.08) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1, transform: 'translateX(-50%)',
       }} />
       <div style={{
         position: 'absolute', bottom: '10%', right: '5%', width: 500, height: 400,
-        background: 'radial-gradient(ellipse, rgba(233,30,140,0.05) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.05) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1,
       }} />
       <div style={{
         position: 'absolute', top: '40%', left: '5%', width: 400, height: 400,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.04) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1,
       }} />
 
@@ -85,11 +85,11 @@ export default function BookDemoPage() {
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '6px 16px', borderRadius: 100,
               fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-              background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)',
-              color: '#C9A84C', marginBottom: 20, letterSpacing: '0.04em',
+              background: 'rgba(217,100,36,0.1)', border: '1px solid rgba(217,100,36,0.2)',
+              color: '#d96424', marginBottom: 20, letterSpacing: '0.04em',
             }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ marginRight: 2 }}>
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#C9A84C" />
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#d96424" />
               </svg>
               Book a Demo
             </div>
@@ -103,7 +103,7 @@ export default function BookDemoPage() {
             }}>
               Ready to Hire{' '}
               <span style={{
-                background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+                background: 'linear-gradient(90deg, #d96424, #8a3a10)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>Decisively?</span>
@@ -129,7 +129,7 @@ export default function BookDemoPage() {
                 { num: '4.9/5', label: 'Candidate Rating' },
               ].map((s, i) => (
                 <div key={i} style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(18px, 2.2vw, 24px)', fontWeight: 700, color: '#C9A84C', lineHeight: 1 }}>{s.num}</div>
+                  <div style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(18px, 2.2vw, 24px)', fontWeight: 700, color: '#d96424', lineHeight: 1 }}>{s.num}</div>
                   <div style={{ fontSize: 11, color: '#666660', marginTop: 3, whiteSpace: 'nowrap' }}>{s.label}</div>
                 </div>
               ))}
@@ -142,15 +142,15 @@ export default function BookDemoPage() {
               transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d96424" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>interviehire@gmail.com</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d96424" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                 <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>interviehire.com</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d96424" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(13px, 2vw, 15px)', color: '#F5F0E8', fontWeight: 500 }}>Co-Founders: Devasri Bali & Aditya Rana</span>
               </div>
             </div>
@@ -164,7 +164,7 @@ export default function BookDemoPage() {
           }}>
             <div style={{
               background: 'rgba(15, 15, 18, 0.6)',
-              border: '1px solid rgba(201,168,76,0.1)',
+              border: '1px solid rgba(217,100,36,0.1)',
               borderRadius: 24, padding: 'clamp(24px, 3vh, 32px)',
               boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
             }}>
@@ -176,12 +176,12 @@ export default function BookDemoPage() {
                     value={name} onChange={e => setName(e.target.value)} required
                     style={{
                       fontSize: 'clamp(13px, 1.2vw, 15px)',
-                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.15)',
+                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(217,100,36,0.15)',
                       borderRadius: 12, padding: 'clamp(12px, 1.5vw, 14px) clamp(14px, 2vw, 18px)',
                       color: '#F5F0E8', outline: 'none', transition: 'border-color 0.2s',
                     }}
-                    onFocus={e => e.target.style.borderColor = '#C9A84C'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.15)'}
+                    onFocus={e => e.target.style.borderColor = '#d96424'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(217,100,36,0.15)'}
                   />
                 </div>
 
@@ -192,12 +192,12 @@ export default function BookDemoPage() {
                     value={email} onChange={e => setEmail(e.target.value)} required
                     style={{
                       fontSize: 'clamp(13px, 1.2vw, 15px)',
-                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.15)',
+                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(217,100,36,0.15)',
                       borderRadius: 12, padding: 'clamp(12px, 1.5vw, 14px) clamp(14px, 2vw, 18px)',
                       color: '#F5F0E8', outline: 'none', transition: 'border-color 0.2s',
                     }}
-                    onFocus={e => e.target.style.borderColor = '#C9A84C'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.15)'}
+                    onFocus={e => e.target.style.borderColor = '#d96424'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(217,100,36,0.15)'}
                   />
                 </div>
 
@@ -208,12 +208,12 @@ export default function BookDemoPage() {
                     value={company} onChange={e => setCompany(e.target.value)} required
                     style={{
                       fontSize: 'clamp(13px, 1.2vw, 15px)',
-                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.15)',
+                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(217,100,36,0.15)',
                       borderRadius: 12, padding: 'clamp(12px, 1.5vw, 14px) clamp(14px, 2vw, 18px)',
                       color: '#F5F0E8', outline: 'none', transition: 'border-color 0.2s',
                     }}
-                    onFocus={e => e.target.style.borderColor = '#C9A84C'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.15)'}
+                    onFocus={e => e.target.style.borderColor = '#d96424'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(217,100,36,0.15)'}
                   />
                 </div>
 
@@ -224,19 +224,19 @@ export default function BookDemoPage() {
                     rows={3} value={role} onChange={e => setRole(e.target.value)}
                     style={{
                       fontSize: 'clamp(13px, 1.2vw, 15px)',
-                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.15)',
+                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(217,100,36,0.15)',
                       borderRadius: 12, padding: 'clamp(12px, 1.5vw, 14px) clamp(14px, 2vw, 18px)',
                       color: '#F5F0E8', outline: 'none', resize: 'none', transition: 'border-color 0.2s',
                     }}
-                    onFocus={e => e.target.style.borderColor = '#C9A84C'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.15)'}
+                    onFocus={e => e.target.style.borderColor = '#d96424'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(217,100,36,0.15)'}
                   />
                 </div>
 
                 <button type="submit"
                   style={{
                     fontSize: 16, fontWeight: 700, fontFamily: 'Outfit, sans-serif',
-                    background: 'linear-gradient(90deg, #FF6B35, #E91E8C)', color: '#fff',
+                    background: 'linear-gradient(90deg, #d96424, #8a3a10)', color: '#fff',
                     border: 'none', borderRadius: 12, padding: 'clamp(14px, 2vw, 16px) clamp(20px, 3vw, 24px)',
                     cursor: 'pointer', marginTop: 4, transition: 'opacity 0.2s',
                   }}
@@ -262,8 +262,8 @@ export default function BookDemoPage() {
       {/* Golden cut-line bottom */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, zIndex: 20,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55)',
       }} />
 
       <style>{`
@@ -271,8 +271,8 @@ export default function BookDemoPage() {
         body { -ms-overflow-style: none; scrollbar-width: none; }
         .bd-sparkle {
           position: absolute; border-radius: 50%;
-          background: #C9A84C;
-          box-shadow: 0 0 6px rgba(201,168,76,0.8), 0 0 20px rgba(201,168,76,0.3);
+          background: #d96424;
+          box-shadow: 0 0 6px rgba(217,100,36,0.8), 0 0 20px rgba(217,100,36,0.3);
           pointer-events: none; z-index: 2;
           animation: bdFloat 4s ease-in-out infinite;
         }

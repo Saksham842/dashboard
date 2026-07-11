@@ -8,7 +8,7 @@ const FLOWER_PETALS = [
   { angle: 90,  rx: 22, ry: 165, c1: '#4DD0E1', c2: '#80DEEA' },
   { angle: 120, rx: 17, ry: 138, c1: '#66BB6A', c2: '#A5D6A7' },
   { angle: 150, rx: 15, ry: 122, c1: '#4DB6AC', c2: '#B2EBF2' },
-  { angle: 180, rx: 21, ry: 148, c1: '#FF9A42', c2: '#FF6B35' },
+  { angle: 180, rx: 21, ry: 148, c1: '#FF9A42', c2: '#DDDDDD' },
   { angle: 210, rx: 14, ry: 114, c1: '#80DEEA', c2: '#4DB6AC' },
   { angle: 240, rx: 16, ry: 124, c1: '#A5D6A7', c2: '#66BB6A' },
   { angle: 270, rx: 20, ry: 154, c1: '#26C6DA', c2: '#4DD0E1' },

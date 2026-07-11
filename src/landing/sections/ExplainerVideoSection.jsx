@@ -38,7 +38,7 @@ export const ExplainerVideoSection = () => {
         marginBottom: '60vh',
         position: 'relative', 
         overflow: 'hidden',
-        borderTop: '1px solid rgba(201,168,76,0.08)',
+        borderTop: '1px solid rgba(217,100,36,0.08)',
       }}
     >
       {/* Black overlay that fades in as section scrolls past */}
@@ -57,12 +57,12 @@ export const ExplainerVideoSection = () => {
               fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
               fontWeight: 700,
-              color: '#F5F0E8',
+              color: '#EEEEEE',
               letterSpacing: '-0.02em',
               lineHeight: 1.15
             }}>
               See IntervieHire in <span style={{
-                background: 'linear-gradient(90deg, #FF6B35, #E91E8C)',
+                background: 'linear-gradient(90deg, #d96424, #8a3a10)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -84,7 +84,7 @@ export const ExplainerVideoSection = () => {
             <div style={{
               position: 'relative',
               background: '#000',
-              border: '1px solid rgba(201, 168, 76, 0.15)',
+              border: '1px solid rgba(217,100,36, 0.15)',
               borderRadius: 24,
               aspectRatio: '16/9',
               overflow: 'hidden',
@@ -109,7 +109,7 @@ export const ExplainerVideoSection = () => {
               top: 20, 
               bottom: 20,
               width: 2, 
-              background: 'rgba(201, 168, 76, 0.15)',
+              background: 'rgba(217,100,36, 0.15)',
               zIndex: 1,
             }} />
 
@@ -127,8 +127,8 @@ export const ExplainerVideoSection = () => {
                     width: 'clamp(20px, 4vw, 24px)', 
                     height: 'clamp(20px, 4vw, 24px)', 
                     borderRadius: '50%',
-                    background: '#C9A84C',
-                    border: '2px solid #C9A84C',
+                    background: '#d96424',
+                    border: '2px solid #d96424',
                     color: '#050505',
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 12, 
@@ -136,7 +136,7 @@ export const ExplainerVideoSection = () => {
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
-                    boxShadow: '0 0 15px rgba(201, 168, 76, 0.3)',
+                    boxShadow: '0 0 15px rgba(217,100,36, 0.3)',
                   }}>
                     {idx + 1}
                   </div>
@@ -145,7 +145,7 @@ export const ExplainerVideoSection = () => {
                       fontFamily: 'Space Grotesk, sans-serif', 
                       fontSize: 'clamp(15px, 2.5vw, 18px)',
                       fontWeight: 700, 
-                      color: '#F5F0E8',
+                      color: '#EEEEEE',
                       marginBottom: 4,
                     }}>{step.title}</h3>
                     <p style={{

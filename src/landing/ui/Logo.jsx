@@ -7,9 +7,9 @@ import React from 'react';
 export const Logo = ({ size = 22 }) => (
   <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Space Grotesk, sans-serif', fontSize: size, fontWeight: 700, letterSpacing: '-0.02em' }}>
     <span style={{ color: '#F5F0E8' }}>intervie</span>
-    <span style={{ background: 'linear-gradient(90deg,#FF6B35,#E91E8C)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Hire</span>
+    <span style={{ background: 'linear-gradient(90deg,#d96424, #8a3a10)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Hire</span>
     <svg style={{ marginLeft: 4 }} width={size * 0.7} height={size * 0.7} viewBox="0 0 22 22" fill="none">
-      <path d="M6 16L16 6M16 6H9M16 6V13" stroke="#FF6B35" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6 16L16 6M16 6H9M16 6V13" stroke="#DDDDDD" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   </div>
 );

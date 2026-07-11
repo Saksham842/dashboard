@@ -10,9 +10,9 @@ const cards = [
     body: "Upload resumes in bulk. Our AI automatically extracts candidates' experience, skills, and match rating against your job description constraints before the first call.",
     pills: ["AI Resume Parsing", "Semantic Skill Match", "Job Constraints Check", "Recruiter Dashboard", "Bulk Actions"],
     uiType: "parsing",
-    accent: "#FF6B35",
-    bgGradient: "linear-gradient(135deg, rgba(255,107,53,0.1) 0%, transparent 60%)",
-    border: "rgba(255,107,53,0.2)"
+    accent: "#d96424",
+    bgGradient: "linear-gradient(135deg, rgba(217,100,36, 0.12) 0%, transparent 60%)",
+    border: "rgba(217,100,36, 0.25)"
   },
   {
     num: "02",
@@ -21,9 +21,9 @@ const cards = [
     body: "An automated voice-first AI agent conducts structured, conversational pre-screens, assessing candidates on communication, presentation, and situational judgment.",
     pills: ["Conversational Voice Agent", "Tone & Fluency Analysis", "Anti-Cheating Verification", "24/7 Auto-Scheduling"],
     uiType: "voice",
-    accent: "#34D399",
-    bgGradient: "linear-gradient(135deg, rgba(52,211,153,0.1) 0%, transparent 60%)",
-    border: "rgba(52,211,153,0.2)"
+    accent: "#DDDDDD",
+    bgGradient: "linear-gradient(135deg, rgba(221, 221, 221, 0.08) 0%, transparent 60%)",
+    border: "rgba(221, 221, 221, 0.22)"
   },
   {
     num: "03",
@@ -32,9 +32,9 @@ const cards = [
     body: "Candidates solve real-world problems and write code in secure, proctored environments with support for proctored multi-language IDEs and task sandboxes.",
     pills: ["Interactive IDE", "Multi-Language Support", "AI-Powered Proctoring", "Plagiarism Detection", "Auto-Run Test Cases"],
     uiType: "code",
-    accent: "#38BDF8",
-    bgGradient: "linear-gradient(135deg, rgba(56,189,248,0.1) 0%, transparent 60%)",
-    border: "rgba(56,189,248,0.2)"
+    accent: "#d96424",
+    bgGradient: "linear-gradient(135deg, rgba(217,100,36, 0.12) 0%, transparent 60%)",
+    border: "rgba(217,100,36, 0.25)"
   },
   {
     num: "04",
@@ -43,9 +43,9 @@ const cards = [
     body: "Shortlisted candidates are paired with certified industry professionals (ex-Google tech leads, ex-Stripe engineers) who run calibrated 1-on-1 technical rounds.",
     pills: ["Verified Expert Network", "Live Coding Collab", "1-on-1 Deep Technical", "Calibrated Evaluation"],
     uiType: "expert",
-    accent: "#FBBF24",
-    bgGradient: "linear-gradient(135deg, rgba(251,191,36,0.1) 0%, transparent 60%)",
-    border: "rgba(251,191,36,0.2)"
+    accent: "#EEEEEE",
+    bgGradient: "linear-gradient(135deg, rgba(238, 238, 238, 0.08) 0%, transparent 60%)",
+    border: "rgba(238, 238, 238, 0.22)"
   },
   {
     num: "05",
@@ -54,9 +54,9 @@ const cards = [
     body: "Get standardized reports, verified credentials, interview recordings, and cheating logs. Hire candidate shortlists with complete confidence.",
     pills: ["Standardized Scoring", "Radar Skill Chart", "Cheating Detection Logs", "Structured Feedback Reports", "One-Click Hire"],
     uiType: "dashboard",
-    accent: "#C9A84C",
-    bgGradient: "linear-gradient(135deg, rgba(201,168,76,0.1) 0%, transparent 60%)",
-    border: "rgba(201,168,76,0.2)"
+    accent: "#d96424",
+    bgGradient: "linear-gradient(135deg, rgba(217,100,36, 0.12) 0%, transparent 60%)",
+    border: "rgba(217,100,36, 0.25)"
   }
 ];
 
@@ -94,7 +94,7 @@ const SeeAllFeaturesCTA = () => {
         position: 'absolute', top: '50%', left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 500, height: 200,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.08) 0%, transparent 70%)',
         pointerEvents: 'none',
       }} />
 
@@ -106,16 +106,16 @@ const SeeAllFeaturesCTA = () => {
         transform: visible ? 'translateY(0)' : 'translateY(16px)',
         transition: 'opacity 0.7s 0.15s, transform 0.7s 0.15s',
       }}>
-        <div style={{ width: 28, height: 1, background: 'rgba(201,168,76,0.4)' }} />
+        <div style={{ width: 28, height: 1, background: 'rgba(217,100,36,0.4)' }} />
         <span style={{
           fontFamily: 'Outfit, sans-serif',
           fontSize: 11,
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
-          color: '#C9A84C',
+          color: '#d96424',
           fontWeight: 600,
         }}>5 capabilities. One platform.</span>
-        <div style={{ width: 28, height: 1, background: 'rgba(201,168,76,0.4)' }} />
+        <div style={{ width: 28, height: 1, background: 'rgba(217,100,36,0.4)' }} />
       </div>
 
       {/* Headline */}
@@ -123,7 +123,7 @@ const SeeAllFeaturesCTA = () => {
         fontFamily: 'Space Grotesk, sans-serif',
         fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
         fontWeight: 700,
-        color: '#F5F0E8',
+        color: '#EEEEEE',
         letterSpacing: '-0.02em',
         lineHeight: 1.2,
         margin: '0 0 10px 0',
@@ -165,25 +165,25 @@ const SeeAllFeaturesCTA = () => {
             padding: '14px 32px',
             borderRadius: 999,
             background: hovered
-              ? 'linear-gradient(135deg, #E8C97A, #C9A84C)'
-              : 'linear-gradient(135deg, #C9A84C, #A07830)',
-            color: '#0A0A0A',
+              ? 'linear-gradient(135deg, #ba5520, #d96424)'
+              : '#d96424',
+            color: '#000000',
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 15,
             fontWeight: 700,
             letterSpacing: '-0.01em',
             textDecoration: 'none',
             boxShadow: hovered
-              ? '0 0 40px rgba(201,168,76,0.5), 0 8px 24px rgba(0,0,0,0.4)'
-              : '0 0 20px rgba(201,168,76,0.2), 0 4px 16px rgba(0,0,0,0.3)',
-            transform: hovered ? 'scale(1.04)' : 'scale(1)',
+              ? '0 0 45px rgba(217,100,36,0.6), 0 8px 24px rgba(0,0,0,0.4)'
+              : '0 0 20px rgba(217,100,36,0.25), 0 4px 16px rgba(0,0,0,0.3)',
+            transform: hovered ? 'scale(1.05) translateY(-1px)' : 'scale(1)',
             transition: 'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',
             cursor: 'pointer',
           }}
         >
           <span>Explore All Features</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#0A0A0A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#121212" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
       </div>
@@ -206,8 +206,8 @@ const SeeAllFeaturesCTA = () => {
             paddingBottom: 2,
             transition: 'color 0.2s, border-color 0.2s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.color='#C9A84C'; e.currentTarget.style.borderColor='rgba(201,168,76,0.5)'; }}
-          onMouseLeave={e => { e.currentTarget.style.color='#555550'; e.currentTarget.style.borderColor='rgba(85,85,80,0.3)'; }}
+          onMouseEnter={e => { e.currentTarget.style.color='#d96424'; e.currentTarget.style.borderColor='rgba(217,100,36,0.5)'; }}
+          onMouseLeave={e => { e.currentTarget.style.color='#546a7b'; e.currentTarget.style.borderColor='rgba(84,106,123,0.3)'; }}
         >
           Read more about IntervieHire in our blogs →
         </a>
@@ -305,8 +305,8 @@ export const SolutionSection = () => {
         return (
           <div style={{ padding: '16px', color: '#888880', fontSize: '12px', fontFamily: 'Outfit, sans-serif', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '8px', marginBottom: '12px' }}>
-              <div style={{ color: '#F5F0E8', fontWeight: 600 }}>Active Jobs &gt; Frontend Engineer</div>
-              <div style={{ color: '#FF6B35' }}>Match Rating Enabled</div>
+              <div style={{ color: '#EEEEEE', fontWeight: 600 }}>Active Jobs &gt; Frontend Engineer</div>
+              <div style={{ color: '#DDDDDD' }}>Match Rating Enabled</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1, overflow: 'hidden' }}>
               {[
@@ -325,14 +325,14 @@ export const SolutionSection = () => {
                   justifyContent: 'space-between',
                 }}>
                   <div>
-                    <div style={{ color: '#F5F0E8', fontWeight: 500, fontSize: '13px' }}>{cand.name}</div>
+                    <div style={{ color: '#EEEEEE', fontWeight: 500, fontSize: '13px' }}>{cand.name}</div>
                     <div style={{ fontSize: '11px', color: '#555550', marginTop: '2px' }}>{cand.details}</div>
                   </div>
                   <div style={{
                     padding: '4px 8px',
                     borderRadius: '999px',
                     background: cand.active ? 'rgba(255,107,53,0.1)' : 'rgba(255,255,255,0.04)',
-                    color: cand.active ? '#FF6B35' : '#888880',
+                    color: cand.active ? '#DDDDDD' : '#888880',
                     fontSize: '11px',
                     fontWeight: 600,
                   }}>{cand.score}</div>
@@ -346,7 +346,7 @@ export const SolutionSection = () => {
           <div style={{ padding: '16px', color: '#888880', fontSize: '12px', fontFamily: 'Outfit, sans-serif', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ textAlign: 'center', marginBottom: '20px', width: '100%' }}>
               <div style={{ fontSize: '11px', color: '#34D399', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Session Active • Live Stream</div>
-              <div style={{ color: '#F5F0E8', fontSize: '14px', fontWeight: 600 }}>Behavioral Assessment #02</div>
+              <div style={{ color: '#EEEEEE', fontSize: '14px', fontWeight: 600 }}>Behavioral Assessment #02</div>
             </div>
             
             <div style={{ position: 'relative', width: '110px', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '5px 0' }}>
@@ -372,7 +372,7 @@ export const SolutionSection = () => {
             <div style={{ width: '110px', background: 'rgba(255,255,255,0.01)', borderRight: '1px solid rgba(255,255,255,0.05)', padding: '12px' }}>
               <div style={{ color: '#555550', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '9px', marginBottom: '8px' }}>Workspace</div>
               <div style={{ color: '#38BDF8', marginBottom: '6px' }}>📁 src</div>
-              <div style={{ paddingLeft: '12px', color: '#F5F0E8', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ paddingLeft: '12px', color: '#EEEEEE', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ color: '#38BDF8' }}>📄 Interview.jsx</div>
                 <div>📄 App.css</div>
                 <div>📄 README.md</div>
@@ -380,16 +380,16 @@ export const SolutionSection = () => {
             </div>
             <div style={{ flex: 1, padding: '12px', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.04)', paddingBottom: '6px', marginBottom: '8px' }}>
-                <div style={{ color: '#F5F0E8' }}>Interview.jsx</div>
+                <div style={{ color: '#EEEEEE' }}>Interview.jsx</div>
                 <div style={{ color: '#38BDF8' }}>JS / React</div>
               </div>
               <div style={{ flex: 1, color: '#38BDF8', lineHeight: '1.4' }}>
-                <div><span style={{ color: '#E91E8C' }}>import</span> React <span style={{ color: '#E91E8C' }}>from</span> <span style={{ color: '#A5D6A7' }}>'react'</span>;</div>
+                <div><span style={{ color: '#d96424' }}>import</span> React <span style={{ color: '#d96424' }}>from</span> <span style={{ color: '#A5D6A7' }}>'react'</span>;</div>
                 <br/>
-                <div><span style={{ color: '#E91E8C' }}>const</span> <span style={{ color: '#F5F0E8' }}>InterviewSolution</span> = () =&gt; &#123;</div>
-                <div style={{ paddingLeft: '12px' }}><span style={{ color: '#E91E8C' }}>const</span> [score, setScore] = React.useState(<span style={{ color: '#FFB300' }}>100</span>);</div>
-                <div style={{ paddingLeft: '12px' }}><span style={{ color: '#E91E8C' }}>return</span> (</div>
-                <div style={{ paddingLeft: '24px' }}>&lt;<span style={{ color: '#E91E8C' }}>div</span> className=<span style={{ color: '#A5D6A7' }}>"candidate-ide"</span>&gt;</div>
+                <div><span style={{ color: '#d96424' }}>const</span> <span style={{ color: '#EEEEEE' }}>InterviewSolution</span> = () =&gt; &#123;</div>
+                <div style={{ paddingLeft: '12px' }}><span style={{ color: '#d96424' }}>const</span> [score, setScore] = React.useState(<span style={{ color: '#FFB300' }}>100</span>);</div>
+                <div style={{ paddingLeft: '12px' }}><span style={{ color: '#d96424' }}>return</span> (</div>
+                <div style={{ paddingLeft: '24px' }}>&lt;<span style={{ color: '#d96424' }}>div</span> className=<span style={{ color: '#A5D6A7' }}>"candidate-ide"</span>&gt;</div>
                 <div style={{ paddingLeft: '12px' }}>);</div>
                 <div>&#125;;</div>
               </div>
@@ -403,7 +403,7 @@ export const SolutionSection = () => {
         return (
           <div style={{ padding: '16px', color: '#888880', fontSize: '12px', fontFamily: 'Outfit, sans-serif', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '8px', marginBottom: '12px' }}>
-              <div style={{ color: '#F5F0E8', fontWeight: 600 }}>Technical Round Panel: System Architecture</div>
+              <div style={{ color: '#EEEEEE', fontWeight: 600 }}>Technical Round Panel: System Architecture</div>
               <div style={{ color: '#FBBF24' }}>● Live Call</div>
             </div>
             
@@ -414,7 +414,7 @@ export const SolutionSection = () => {
                   <path d="M6 20 C6 16 9 14 12 14 C15 14 18 16 18 20"/>
                 </svg>
                 <div style={{ fontSize: '10px', color: '#555550', marginTop: '6px' }}>Candidate Screen</div>
-                <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.6)', padding: '2px 6px', borderRadius: '4px', fontSize: '9px', color: '#F5F0E8' }}>Sarah Chen</div>
+                <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.6)', padding: '2px 6px', borderRadius: '4px', fontSize: '9px', color: '#EEEEEE' }}>Sarah Chen</div>
               </div>
 
               <div style={{ background: 'rgba(251,191,36,0.03)', border: '1px solid rgba(251,191,36,0.2)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
@@ -423,7 +423,7 @@ export const SolutionSection = () => {
                   <path d="M6 20 C6 16 9 14 12 14 C15 14 18 16 18 20"/>
                 </svg>
                 <div style={{ fontSize: '10px', color: '#FBBF24', marginTop: '6px' }}>Industry Lead Partner</div>
-                <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.6)', padding: '2px 6px', borderRadius: '4px', fontSize: '9px', color: '#F5F0E8' }}>Alex (ex-Google)</div>
+                <div style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.6)', padding: '2px 6px', borderRadius: '4px', fontSize: '9px', color: '#EEEEEE' }}>Alex (ex-Google)</div>
               </div>
             </div>
           </div>
@@ -432,20 +432,20 @@ export const SolutionSection = () => {
         return (
           <div style={{ padding: '16px', color: '#888880', fontSize: '12px', fontFamily: 'Outfit, sans-serif', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '8px', marginBottom: '12px' }}>
-              <div style={{ color: '#F5F0E8', fontWeight: 600 }}>Candidate Evaluation Profile</div>
-              <div style={{ color: '#C9A84C', fontWeight: 600 }}>Approved to Hire</div>
+              <div style={{ color: '#EEEEEE', fontWeight: 600 }}>Candidate Evaluation Profile</div>
+              <div style={{ color: '#d96424', fontWeight: 600 }}>Approved to Hire</div>
             </div>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '16px', flex: 1, overflow: 'hidden' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '10px' }}>
-                  <div style={{ color: '#F5F0E8', fontWeight: 600 }}>Score Distribution</div>
+                  <div style={{ color: '#EEEEEE', fontWeight: 600 }}>Score Distribution</div>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '8px' }}>
                     {[
-                      { name: "Technical Depth", val: 94, c: "#C9A84C" },
-                      { name: "System Design", val: 88, c: "#C9A84C" },
-                      { name: "Communication", val: 90, c: "#FF6B35" }
+                      { name: "Technical Depth", val: 94, c: "#d96424" },
+                      { name: "System Design", val: 88, c: "#d96424" },
+                      { name: "Communication", val: 90, c: "#DDDDDD" }
                     ].map((skill, idx) => (
                       <div key={idx}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', marginBottom: '2px' }}>
@@ -462,12 +462,12 @@ export const SolutionSection = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ background: 'rgba(201,168,76,0.04)', border: '1px solid rgba(201,168,76,0.2)', borderRadius: '8px', padding: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-                  <div style={{ color: '#C9A84C', fontSize: '24px', fontWeight: 700 }}>92%</div>
+                <div style={{ background: 'rgba(217,100,36,0.04)', border: '1px solid rgba(217,100,36,0.2)', borderRadius: '8px', padding: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                  <div style={{ color: '#d96424', fontSize: '24px', fontWeight: 700 }}>92%</div>
                   <div style={{ color: '#888880', fontSize: '10px', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Overall Rating</div>
                 </div>
                 
-                <button style={{ background: '#C9A84C', border: 'none', borderRadius: '6px', color: '#0A0A0A', fontWeight: 600, fontSize: '11px', padding: '8px 0', cursor: 'pointer' }}>
+                <button style={{ background: '#d96424', border: 'none', borderRadius: '6px', color: '#000000', fontWeight: 600, fontSize: '11px', padding: '8px 0', cursor: 'pointer' }}>
                   Hire Candidate
                 </button>
               </div>
@@ -502,7 +502,7 @@ export const SolutionSection = () => {
           fontWeight: 500,
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
-          color: '#C9A84C',
+          color: '#d96424',
           marginBottom: '12px',
         }}>
           The Solution
@@ -511,7 +511,7 @@ export const SolutionSection = () => {
           fontFamily: 'Space Grotesk, sans-serif',
           fontSize: 'clamp(2rem, 4vw, 3rem)',
           fontWeight: 700,
-          color: '#F5F0E8',
+          color: '#EEEEEE',
           letterSpacing: '-0.02em',
           lineHeight: 1.15,
           maxWidth: '720px',
@@ -558,7 +558,7 @@ export const SolutionSection = () => {
                 fontFamily: 'Outfit, sans-serif',
                 fontSize: 'clamp(11px, 1.8vw, 13px)',
                 fontWeight: 500,
-                color: activeIndex === idx ? '#F5F0E8' : '#888880',
+                color: activeIndex === idx ? '#EEEEEE' : '#888880',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
@@ -647,7 +647,7 @@ export const SolutionSection = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#F5F0E8',
+                        color: '#EEEEEE',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
                       }}
@@ -685,7 +685,7 @@ export const SolutionSection = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#F5F0E8',
+                        color: '#EEEEEE',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
                       }}
@@ -735,7 +735,7 @@ export const SolutionSection = () => {
                           padding: '4px 12px',
                           fontFamily: 'Outfit, sans-serif',
                           fontSize: '11px',
-                          color: '#F5F0E8',
+                          color: '#EEEEEE',
                         }}
                       >
                         {pill}

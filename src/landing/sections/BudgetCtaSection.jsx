@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-const T = { gold:'#C9A84C', pink:'#E8356D', cream:'#F0ECD8', muted:'#888880', bg:'#000000' };
+const T = { gold:'#d96424', teal:'#121212', pink:'#E8356D', cream:'#F0ECD8', muted:'#888880', bg:'#000000' };
 
 const fade = (visible, delay) => ({
   opacity: visible ? 1 : 0,
@@ -34,7 +34,7 @@ export const BudgetCtaSection = () => {
 
   return (
     <section ref={ref} data-scroll style={{ background:T.bg, padding:'90px clamp(16px,4vw,32px)', position:'relative', overflow:'hidden' }}>
-      <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:700, height:500, background:'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 70%)', pointerEvents:'none' }}/>
+      <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:700, height:500, background:'radial-gradient(ellipse, rgba(217,100,36,0.04) 0%, transparent 70%)', pointerEvents:'none' }}/>
 
       <div style={{ maxWidth:900, margin:'0 auto', position:'relative', zIndex:2, textAlign:'center', display:'flex', flexDirection:'column', alignItems:'center', gap:0 }}>
 
@@ -59,9 +59,9 @@ export const BudgetCtaSection = () => {
         {/* ── 3-Column Stat Bar ── */}
         <div style={{
           display:'flex', alignItems:'center',
-          border:'1px solid rgba(201,168,76,0.18)', borderRadius:20,
+          border:'1px solid rgba(217,100,36,0.18)', borderRadius:20,
           padding:'clamp(16px,2vw,24px) clamp(20px,3vw,36px)',
-          background:'linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%)',
+          background:'linear-gradient(180deg, rgba(217,100,36,0.06) 0%, transparent 100%)',
           width:'100%', maxWidth:700, marginBottom:48,
           ...fade(visible,0.3),
         }}>
@@ -76,7 +76,7 @@ export const BudgetCtaSection = () => {
                 </div>
               </div>
               {i < STATS.length - 1 && (
-                <div style={{ width:1, height:40, background:'rgba(201,168,76,0.12)', margin:'0 clamp(8px,1.5vw,20px)' }}/>
+                <div style={{ width:1, height:40, background:'rgba(217,100,36,0.12)', margin:'0 clamp(8px,1.5vw,20px)' }}/>
               )}
             </React.Fragment>
           ))}
@@ -86,13 +86,13 @@ export const BudgetCtaSection = () => {
         <Link href="/pricing" style={{
           display:'inline-flex', alignItems:'center', gap:8,
           fontFamily:'Inter,sans-serif', fontSize:13, fontWeight:600, letterSpacing:'0.04em',
-          color:T.gold, background:'rgba(201,168,76,0.08)', border:'1px solid rgba(201,168,76,0.25)',
+          color:T.gold, background:'rgba(217,100,36,0.08)', border:'1px solid rgba(217,100,36,0.25)',
           borderRadius:99, padding:'14px 32px', textDecoration:'none',
           transition:'background 0.3s, border-color 0.3s',
           ...fade(visible,0.4),
         }}
-          onMouseEnter={e => { e.currentTarget.style.background='rgba(201,168,76,0.15)'; e.currentTarget.style.borderColor='rgba(201,168,76,0.4)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background='rgba(201,168,76,0.08)'; e.currentTarget.style.borderColor='rgba(201,168,76,0.25)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background='rgba(217,100,36,0.15)'; e.currentTarget.style.borderColor='rgba(217,100,36,0.4)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background='rgba(217,100,36,0.08)'; e.currentTarget.style.borderColor='rgba(217,100,36,0.25)'; }}
         >
           See full pricing breakdown &rarr;
         </Link>

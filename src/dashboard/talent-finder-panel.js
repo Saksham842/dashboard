@@ -15,10 +15,10 @@ function injectStyle() {
   _styleInjected = true;
   // Matches the dashboard's gold + crimson glass theme (uses its CSS variables).
   const css = `
-  #jd-pane-talent{--tf-gold:var(--accent-cyan,#d4af37);--tf-gold2:var(--accent-purple,#ffc72c);--tf-red:var(--accent-indigo,#ff0d3f);
+  #jd-pane-talent{--tf-gold:var(--accent-cyan,#d96424);--tf-gold2:var(--accent-purple,#ba5520);--tf-red:var(--accent-indigo,#d96424);
     --tf-text:var(--color-text,var(--text-primary,#e8e8e8));--tf-muted:var(--color-text-muted,var(--text-muted,#9a9a9a));
     --tf-surface:var(--glass-bg,rgba(255,255,255,.04));--tf-line:var(--glass-border,rgba(255,255,255,.08));
-    --tf-grad:var(--grad-primary,linear-gradient(135deg,#d4af37 0%,#ff0d3f 50%,#ffc72c 100%))}
+    --tf-grad:var(--grad-primary,linear-gradient(135deg,#d96424 0%,#d96424 50%,#ba5520 100%))}
   .tf-wrap{display:grid;grid-template-columns:320px 1fr;gap:16px;color:var(--tf-text)}
   @media(max-width:980px){.tf-wrap{grid-template-columns:1fr}}
   .tf-card{background:var(--tf-surface);border:1px solid var(--tf-line);border-radius:14px;padding:16px;margin-bottom:14px}

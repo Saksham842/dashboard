@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
-const T = { bg:'#000', card:'#0A0A0A', white:'#F5F0E8', muted:'#888880', gold:'#C9A84C', pink:'#E91E8C', orange:'#FF6B35' };
+const T = { bg:'#000000', card:'#121212', white:'#EEEEEE', muted:'#9aaab8', gold:'#d96424', pink:'#d96424', orange:'#d96424' };
 
 const TEAM = [
   { name:'Rohit Sharma', role:'Head of Engineering', img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
@@ -41,7 +41,7 @@ const FounderCard = ({ name, role, bio, image, delay }) => {
     }}>
       <div style={{
         aspectRatio:'1/1', borderRadius:20, overflow:'hidden',
-        border:'1px solid rgba(201,168,76,0.15)',
+        border:'1px solid rgba(217,100,36,0.15)',
         boxShadow:'0 8px 32px rgba(0,0,0,0.6)',
         position:'relative'
       }}>
@@ -73,7 +73,7 @@ const TeamCard = ({ name, role, img, idx }) => {
 
   return (
     <div ref={ref} style={{
-      background:T.card, borderRadius:16, border:'1px solid rgba(201,168,76,0.06)',
+      background:T.card, borderRadius:16, border:'1px solid rgba(217,100,36,0.06)',
       overflow:'hidden', cursor:'pointer',
       opacity: visible ? 1 : 0,
       transform: visible ? 'translateY(0)' : 'translateY(30px)',
@@ -108,7 +108,7 @@ const GalleryItem = ({ src, idx }) => {
   return (
     <div ref={ref} style={{
       borderRadius:14, overflow:'hidden',
-      border:'1px solid rgba(201,168,76,0.08)',
+      border:'1px solid rgba(217,100,36,0.08)',
       opacity: visible ? 1 : 0,
       transform: visible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
       transition: `all 0.9s cubic-bezier(0.16,1,0.3,1) ${idx * 0.1}s`
@@ -127,24 +127,24 @@ export const AboutFounderSection = () => {
       {/* Golden cut-line top */}
       <div style={{
         position:'absolute', top:0, left:0, right:0, height:1, zIndex:20,
-        background:'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow:'0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+        background:'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow:'0 0 40px 2px rgba(217,100,36,0.55), 0 4px 80px rgba(217,100,36,0.18)',
       }} />
 
       {/* ── Section 1: Hero ── */}
-      <section data-scroll style={{ background:T.bg, padding:'clamp(140px,18vh,220px) clamp(16px,4vw,48px) clamp(60px,8vw,100px)', borderTop:'1px solid rgba(201,168,76,0.08)' }}>
+      <section data-scroll style={{ background:T.bg, padding:'clamp(140px,18vh,220px) clamp(16px,4vw,48px) clamp(60px,8vw,100px)', borderTop:'1px solid rgba(217,100,36,0.08)' }}>
         <div style={{ maxWidth:900, margin:'0 auto', textAlign:'center' }}>
           <div style={{
             display:'inline-flex', alignItems:'center', gap:12, marginBottom:24,
             padding:'6px 16px', borderRadius:100, fontSize:'0.75rem', fontWeight:700,
             textTransform:'uppercase', letterSpacing:'0.12em',
-            background:'rgba(201,168,76,0.1)', border:'1px solid rgba(201,168,76,0.2)', color:T.gold
+            background:'rgba(217,100,36,0.1)', border:'1px solid rgba(217,100,36,0.2)', color:T.gold
           }}>
             About Us
           </div>
           <h2 style={{ fontFamily:'Space Grotesk,sans-serif', fontSize:'clamp(2.4rem,5.5vw,4rem)', fontWeight:700, color:T.white, letterSpacing:'-0.02em', lineHeight:1.08, margin:0 }}>
             The Story Behind{' '}
-            <span style={{ background:'linear-gradient(90deg, #FF6B35, #E91E8C)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>intervieHire.</span>
+            <span style={{ background:'linear-gradient(90deg, #d96424, #8a3a10)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>intervieHire.</span>
           </h2>
           <p style={{ fontFamily:'Outfit,sans-serif', fontSize:'clamp(15px,2vw,18px)', color:T.muted, lineHeight:1.7, maxWidth:650, margin:'48px auto 0' }}>
             Hiring technical candidates requires immense time from your engineering leads, often pulling them away from building core product. We observed this friction firsthand and set out to automate evaluations without sacrificing quality or candidate experience.
@@ -163,7 +163,7 @@ export const AboutFounderSection = () => {
               display:'inline-flex', alignItems:'center', gap:12, marginBottom:16,
               padding:'6px 16px', borderRadius:100, fontSize:'0.75rem', fontWeight:700,
               textTransform:'uppercase', letterSpacing:'0.12em',
-              background:'rgba(201,168,76,0.1)', border:'1px solid rgba(201,168,76,0.2)', color:T.gold
+              background:'rgba(217,100,36,0.1)', border:'1px solid rgba(217,100,36,0.2)', color:T.gold
             }}>
               Meet the Founders
             </div>
@@ -203,7 +203,7 @@ export const AboutFounderSection = () => {
               display:'inline-flex', alignItems:'center', gap:12, marginBottom:16,
               padding:'6px 16px', borderRadius:100, fontSize:'0.75rem', fontWeight:700,
               textTransform:'uppercase', letterSpacing:'0.12em',
-              background:'rgba(201,168,76,0.1)', border:'1px solid rgba(201,168,76,0.2)', color:T.gold
+              background:'rgba(217,100,36,0.1)', border:'1px solid rgba(217,100,36,0.2)', color:T.gold
             }}>
               Our Team
             </div>
@@ -218,14 +218,14 @@ export const AboutFounderSection = () => {
       </section>
 
       {/* ── Section 4: Gallery ── */}
-      <section data-scroll style={{ background:T.bg, padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)', borderBottom:'1px solid rgba(201,168,76,0.08)' }}>
+      <section data-scroll style={{ background:T.bg, padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)', borderBottom:'1px solid rgba(217,100,36,0.08)' }}>
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:'clamp(32px,5vw,56px)' }}>
             <div style={{
               display:'inline-flex', alignItems:'center', gap:12, marginBottom:16,
               padding:'6px 16px', borderRadius:100, fontSize:'0.75rem', fontWeight:700,
               textTransform:'uppercase', letterSpacing:'0.12em',
-              background:'rgba(201,168,76,0.1)', border:'1px solid rgba(201,168,76,0.2)', color:T.gold
+              background:'rgba(217,100,36,0.1)', border:'1px solid rgba(217,100,36,0.2)', color:T.gold
             }}>
               Life at IntervieHire
             </div>

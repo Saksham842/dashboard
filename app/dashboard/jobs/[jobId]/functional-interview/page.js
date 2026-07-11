@@ -1,8 +1,5 @@
 'use client';
 
-// Functional Interview stage. Content is rendered by the persistent vanilla-JS
-// surface; DashboardShell's navigateToPath() reads this route's slug and
-// activates the matching job-detail tab. See src/dashboard/job-stages.js.
-export default function FunctionalInterviewPage() {
+export default function JobsPage() {
   return null;
 }

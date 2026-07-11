@@ -38,7 +38,7 @@ const plans = [
     ],
     cta: 'Subscribe Now',
     badge: 'Most Popular',
-    color: '#C9A84C',
+    color: '#d96424',
   },
   {
     name: 'Enterprise',
@@ -57,7 +57,7 @@ const plans = [
     ],
     cta: 'Subscribe Now',
     badge: null,
-    color: '#E91E8C',
+    color: '#d96424',
   },
 ];
 
@@ -102,24 +102,24 @@ export default function PricingPage() {
       {/* Golden cut-line top */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 20,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55), 0 4px 80px rgba(201,168,76,0.18)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55), 0 4px 80px rgba(217,100,36,0.18)',
       }} />
 
       {/* Background glows */}
       <div style={{
         position: 'absolute', top: '15%', left: '50%', width: 900, height: 600,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.08) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1, transform: 'translateX(-50%)',
       }} />
       <div style={{
         position: 'absolute', bottom: '5%', right: '5%', width: 400, height: 400,
-        background: 'radial-gradient(ellipse, rgba(233,30,140,0.05) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.05) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1,
       }} />
       <div style={{
         position: 'absolute', top: '50%', left: '3%', width: 350, height: 350,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(217,100,36,0.04) 0%, transparent 65%)',
         pointerEvents: 'none', zIndex: 1,
       }} />
 
@@ -146,12 +146,12 @@ export default function PricingPage() {
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '6px 16px', borderRadius: 100,
               fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-              background: 'rgba(201,168,76,0.1)',
-              border: '1px solid rgba(201,168,76,0.2)',
-              color: '#C9A84C', marginBottom: 12,
+              background: 'rgba(217,100,36,0.1)',
+              border: '1px solid rgba(217,100,36,0.2)',
+              color: '#d96424', marginBottom: 12,
             }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ marginRight: 2 }}>
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#C9A84C" />
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#d96424" />
               </svg>
               Pricing
             </div>
@@ -163,7 +163,7 @@ export default function PricingPage() {
             }}>
               Simple, transparent{' '}
               <span style={{
-                background: 'linear-gradient(90deg, #C9A84C, #E8C97A)',
+                background: 'linear-gradient(90deg, #d96424, #ba5520)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>pricing</span>
@@ -196,7 +196,7 @@ export default function PricingPage() {
                     <div className="pp-badge">
                       <div className="pp-badge-inner">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ marginRight: 4 }}>
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#C9A84C" />
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#d96424" />
                         </svg>
                         {plan.badge}
                       </div>
@@ -207,7 +207,7 @@ export default function PricingPage() {
                     <h3 style={{
                       fontFamily: 'Space Grotesk, sans-serif',
                       fontSize: 'clamp(16px, 1.5vw, 20px)', fontWeight: 700,
-                      color: isPopular ? '#C9A84C' : '#F5F0E8',
+                      color: isPopular ? '#d96424' : '#F5F0E8',
                       letterSpacing: '-0.01em', margin: '0 0 2px',
                     }}>{plan.name}</h3>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 12 }}>
@@ -232,8 +232,8 @@ export default function PricingPage() {
                     {plan.features.map((f, fi) => (
                       <li key={fi} className="pp-feature-item" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-                          <circle cx="8" cy="8" r="7" stroke="#C9A84C" strokeWidth="1.2" opacity="0.3" />
-                          <path d="M5 8.5L7 10.5L11 6" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <circle cx="8" cy="8" r="7" stroke="#d96424" strokeWidth="1.2" opacity="0.3" />
+                          <path d="M5 8.5L7 10.5L11 6" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span style={{ fontSize: 13, color: isPopular ? '#e0ddd5' : '#999990', lineHeight: 1.4 }}>{f}</span>
                       </li>
@@ -261,7 +261,7 @@ export default function PricingPage() {
         {/* Separator */}
         <div style={{
           height: 1,
-          background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.3) 20%, rgba(255,255,255,0.5) 50%, rgba(201,168,76,0.3) 80%, transparent 100%)',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.3) 20%, rgba(255,255,255,0.5) 50%, rgba(217,100,36,0.3) 80%, transparent 100%)',
           marginBottom: 'clamp(48px, 6vh, 64px)',
         }} />
 
@@ -275,13 +275,13 @@ export default function PricingPage() {
             display: 'inline-flex', alignItems: 'center', gap: 6,
             padding: '6px 16px', borderRadius: 100,
             fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-            background: 'rgba(201,168,76,0.1)',
-            border: '1px solid rgba(201,168,76,0.2)',
-            color: '#C9A84C', marginBottom: 12,
+            background: 'rgba(217,100,36,0.1)',
+            border: '1px solid rgba(217,100,36,0.2)',
+            color: '#d96424', marginBottom: 12,
           }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="22 4 12 14.01 9 11.01" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#d96424" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <polyline points="22 4 12 14.01 9 11.01" stroke="#d96424" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Included in Every Plan
           </div>
@@ -293,7 +293,7 @@ export default function PricingPage() {
           }}>
             The full{' '}
             <span style={{
-              background: 'linear-gradient(90deg, #C9A84C, #E8C97A)',
+              background: 'linear-gradient(90deg, #d96424, #ba5520)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>Lina</span>{' '}
@@ -318,7 +318,7 @@ export default function PricingPage() {
               animation: includedVisible ? `ppFeatIn 0.7s cubic-bezier(0.16,1,0.3,1) ${0.1 + i * 0.08}s forwards` : 'none',
             }}>
               <div className="pp-feat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d={feat.icon} />
                 </svg>
               </div>
@@ -347,15 +347,15 @@ export default function PricingPage() {
         {/* Floating sparkles for CTA */}
         <div style={{
           position: 'absolute', top: '-10%', left: '10%', width: 12, height: 12,
-          borderRadius: '50%', background: '#C9A84C', pointerEvents: 'none',
-          boxShadow: '0 0 12px rgba(201,168,76,0.6)',
+          borderRadius: '50%', background: '#d96424', pointerEvents: 'none',
+          boxShadow: '0 0 12px rgba(217,100,36,0.6)',
           opacity: ctaVisible ? 1 : 0,
           animation: ctaVisible ? 'ctaSparkle1 3s ease-in-out infinite 0.5s' : 'none',
         }} />
         <div style={{
           position: 'absolute', bottom: '20%', right: '5%', width: 8, height: 8,
-          borderRadius: '50%', background: '#C9A84C', pointerEvents: 'none',
-          boxShadow: '0 0 10px rgba(201,168,76,0.5)',
+          borderRadius: '50%', background: '#d96424', pointerEvents: 'none',
+          boxShadow: '0 0 10px rgba(217,100,36,0.5)',
           opacity: ctaVisible ? 1 : 0,
           animation: ctaVisible ? 'ctaSparkle2 4s ease-in-out infinite 1s' : 'none',
         }} />
@@ -373,7 +373,7 @@ export default function PricingPage() {
           }}>
             Ready to{' '}
             <span style={{
-              background: 'linear-gradient(90deg, #C9A84C, #E8C97A)',
+              background: 'linear-gradient(90deg, #d96424, #ba5520)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>join us?</span>
@@ -388,14 +388,14 @@ export default function PricingPage() {
             onClick={() => window.location.href = '/book-demo'}
             style={{
               fontFamily: 'Outfit, sans-serif', fontSize: 16, fontWeight: 700,
-              background: 'linear-gradient(135deg, #C9A84C, #d4b85a)',
+              background: 'linear-gradient(135deg, #d96424, #ba5520)',
               color: '#000', border: 'none', borderRadius: 12,
               padding: '16px 36px', cursor: 'pointer',
-              boxShadow: '0 0 30px rgba(201,168,76,0.25)',
+              boxShadow: '0 0 30px rgba(217,100,36,0.25)',
               transition: 'transform 0.25s ease, box-shadow 0.25s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.boxShadow = '0 0 45px rgba(201,168,76,0.4)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 0 30px rgba(201,168,76,0.25)'; }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.boxShadow = '0 0 45px rgba(217,100,36,0.4)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 0 30px rgba(217,100,36,0.25)'; }}
           >
             Book a Demo →
           </button>
@@ -409,8 +409,8 @@ export default function PricingPage() {
       {/* Golden cut-line bottom */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, zIndex: 20,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55)',
       }} />
 
       <style>{`
@@ -441,15 +441,15 @@ export default function PricingPage() {
         .pp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
 
         .pp-card--popular {
-          background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.01) 100%);
-          border-color: rgba(201,168,76,0.3);
-          box-shadow: 0 0 40px rgba(201,168,76,0.08), 0 10px 30px rgba(0,0,0,0.4);
+          background: linear-gradient(180deg, rgba(217,100,36,0.06) 0%, rgba(217,100,36,0.01) 100%);
+          border-color: rgba(217,100,36,0.3);
+          box-shadow: 0 0 40px rgba(217,100,36,0.08), 0 10px 30px rgba(0,0,0,0.4);
           transform: scale(1.04);
           z-index: 3;
         }
         .pp-card--popular:hover {
-          border-color: rgba(201,168,76,0.5);
-          box-shadow: 0 0 60px rgba(201,168,76,0.15), 0 20px 60px rgba(0,0,0,0.5);
+          border-color: rgba(217,100,36,0.5);
+          box-shadow: 0 0 60px rgba(217,100,36,0.15), 0 20px 60px rgba(0,0,0,0.5);
           transform: scale(1.04) translateY(-6px);
         }
 
@@ -457,7 +457,7 @@ export default function PricingPage() {
           position: absolute; top: -60px; left: 50%;
           transform: translateX(-50%); width: 200px; height: 200px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(217,100,36,0.15) 0%, transparent 70%);
           pointer-events: none;
           animation: ppGlowPulse 3s ease-in-out infinite;
         }
@@ -466,10 +466,10 @@ export default function PricingPage() {
         .pp-badge-inner {
           display: inline-flex; align-items: center;
           padding: 5px 14px; border-radius: 100px;
-          background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-          border: 1px solid rgba(201,168,76,0.3);
+          background: linear-gradient(135deg, rgba(217,100,36,0.15), rgba(217,100,36,0.05));
+          border: 1px solid rgba(217,100,36,0.3);
           font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
-          color: #C9A84C; text-transform: uppercase;
+          color: #d96424; text-transform: uppercase;
           animation: ppBadgePulse 2.5s ease-in-out infinite;
         }
 
@@ -484,11 +484,11 @@ export default function PricingPage() {
         }
         .pp-cta:hover { transform: scale(1.03); }
         .pp-cta--primary {
-          background: linear-gradient(135deg, #C9A84C, #d4b85a);
+          background: linear-gradient(135deg, #d96424, #ba5520);
           color: #000;
-          box-shadow: 0 0 20px rgba(201,168,76,0.3);
+          box-shadow: 0 0 20px rgba(217,100,36,0.3);
         }
-        .pp-cta--primary:hover { box-shadow: 0 0 30px rgba(201,168,76,0.5); }
+        .pp-cta--primary:hover { box-shadow: 0 0 30px rgba(217,100,36,0.5); }
         .pp-cta--secondary {
           background: rgba(255,255,255,0.04);
           color: #F5F0E8;
@@ -498,8 +498,8 @@ export default function PricingPage() {
 
         .pp-sparkle {
           position: absolute; border-radius: 50%;
-          background: #C9A84C;
-          box-shadow: 0 0 6px rgba(201,168,76,0.8);
+          background: #d96424;
+          box-shadow: 0 0 6px rgba(217,100,36,0.8);
           pointer-events: none; z-index: 2;
           animation: ppSparkle 3s ease-in-out infinite;
         }
@@ -514,8 +514,8 @@ export default function PricingPage() {
           50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
         }
         @keyframes ppBadgePulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.2); }
-          50% { box-shadow: 0 0 20px 4px rgba(201,168,76,0.15); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(217,100,36,0.2); }
+          50% { box-shadow: 0 0 20px 4px rgba(217,100,36,0.15); }
         }
         @keyframes ppSparkle {
           0%, 100% { opacity: 0; transform: scale(0); }
@@ -540,12 +540,12 @@ export default function PricingPage() {
           padding: clamp(16px, 2vw, 20px);
           border-radius: 14px;
           background: rgba(255,255,255,0.015);
-          border: 1px solid rgba(201,168,76,0.06);
+          border: 1px solid rgba(217,100,36,0.06);
           transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease, border-color 0.3s ease, background 0.3s ease;
         }
         .pp-feat-card:hover {
           transform: translateY(-4px);
-          border-color: rgba(201,168,76,0.15);
+          border-color: rgba(217,100,36,0.15);
           background: rgba(255,255,255,0.03);
           box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
@@ -558,13 +558,13 @@ export default function PricingPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(201,168,76,0.08);
-          border: 1px solid rgba(201,168,76,0.1);
+          background: rgba(217,100,36,0.08);
+          border: 1px solid rgba(217,100,36,0.1);
           transition: background 0.3s ease, border-color 0.3s ease;
         }
         .pp-feat-card:hover .pp-feat-icon {
-          background: rgba(201,168,76,0.15);
-          border-color: rgba(201,168,76,0.25);
+          background: rgba(217,100,36,0.15);
+          border-color: rgba(217,100,36,0.25);
         }
 
         @keyframes ppFeatIn {

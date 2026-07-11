@@ -33,7 +33,7 @@ const plans = [
     ],
     cta: 'Start Free Trial',
     badge: 'Most Popular',
-    color: '#C9A84C',
+    color: '#d96424',
   },
   {
     name: 'Enterprise',
@@ -50,14 +50,14 @@ const plans = [
     ],
     cta: 'Contact Sales',
     badge: null,
-    color: '#E91E8C',
+    color: '#d96424',
   },
 ];
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <circle cx="8" cy="8" r="7" stroke="#C9A84C" strokeWidth="1.2" opacity="0.3" />
-    <path d="M5 8.5L7 10.5L11 6" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="8" cy="8" r="7" stroke="#d96424" strokeWidth="1.2" opacity="0.3" />
+    <path d="M5 8.5L7 10.5L11 6" stroke="#d96424" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -90,14 +90,14 @@ export const PricingSection = () => {
       padding: 'clamp(80px, 10vw, 120px) clamp(16px, 4vw, 48px)',
       position: 'relative',
       overflow: 'hidden',
-      borderTop: '1px solid rgba(201,168,76,0.08)',
-      borderBottom: '1px solid rgba(201,168,76,0.08)',
+      borderTop: '1px solid rgba(217,100,36,0.08)',
+      borderBottom: '1px solid rgba(217,100,36,0.08)',
     }}>
       {/* Golden glow top */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(201,168,76,0.5) 80%, transparent 100%)',
-        boxShadow: '0 0 40px 2px rgba(201,168,76,0.55)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(217,100,36,0.5) 20%, rgba(255,255,255,0.95) 50%, rgba(217,100,36,0.5) 80%, transparent 100%)',
+        boxShadow: '0 0 40px 2px rgba(217,100,36,0.55)',
         zIndex: 2, pointerEvents: 'none',
       }} />
 
@@ -118,21 +118,21 @@ export const PricingSection = () => {
             display: 'inline-flex', alignItems: 'center',
             padding: '6px 16px', borderRadius: 100,
             fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase',
-            background: 'rgba(201,168,76,0.1)',
-            border: '1px solid rgba(201,168,76,0.2)',
-            color: '#C9A84C', marginBottom: 12,
+            background: 'rgba(217,100,36,0.1)',
+            border: '1px solid rgba(217,100,36,0.2)',
+            color: '#d96424', marginBottom: 12,
           }}>
             <span style={{ marginRight: 6 }}>🏆</span> Pricing
           </div>
           <h2 style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700,
-            color: '#F5F0E8', letterSpacing: '-0.02em',
+            color: '#EEEEEE', letterSpacing: '-0.02em',
             lineHeight: 1.15, margin: '0 auto',
           }}>
             Simple, transparent{' '}
             <span style={{
-              background: 'linear-gradient(90deg, #C9A84C, #E8C97A)',
+              background: 'linear-gradient(90deg, #d96424, #ba5520)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>pricing</span>
@@ -177,7 +177,7 @@ export const PricingSection = () => {
                   <div className="pr-badge">
                     <div className="pr-badge-inner">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ marginRight: 4 }}>
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#C9A84C" />
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#d96424" />
                       </svg>
                       {plan.badge}
                     </div>
@@ -189,14 +189,14 @@ export const PricingSection = () => {
                   <h3 style={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 'clamp(18px, 1.8vw, 22px)', fontWeight: 700,
-                    color: isPopular ? '#C9A84C' : '#F5F0E8',
+                    color: isPopular ? '#d96424' : '#EEEEEE',
                     letterSpacing: '-0.01em', margin: '0 0 4px',
                   }}>{plan.name}</h3>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 16 }}>
                     <span style={{
                       fontFamily: 'Space Grotesk, sans-serif',
                       fontSize: 'clamp(36px, 4vw, 48px)', fontWeight: 700,
-                      color: '#F5F0E8', letterSpacing: '-0.03em',
+                      color: '#EEEEEE', letterSpacing: '-0.03em',
                     }}>{plan.price}</span>
                     {plan.period && (
                       <span style={{
@@ -277,16 +277,16 @@ export const PricingSection = () => {
         }
 
         .pr-card--popular {
-          background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.01) 100%);
-          border-color: rgba(201,168,76,0.3);
-          box-shadow: 0 0 40px rgba(201,168,76,0.08), 0 10px 30px rgba(0,0,0,0.4);
+          background: linear-gradient(180deg, rgba(217,100,36,0.06) 0%, rgba(217,100,36,0.01) 100%);
+          border-color: rgba(217,100,36,0.3);
+          box-shadow: 0 0 40px rgba(217,100,36,0.08), 0 10px 30px rgba(0,0,0,0.4);
           transform: scale(1.04);
           z-index: 3;
         }
 
         .pr-card--popular:hover {
-          border-color: rgba(201,168,76,0.5);
-          box-shadow: 0 0 60px rgba(201,168,76,0.15), 0 20px 60px rgba(0,0,0,0.5);
+          border-color: rgba(217,100,36,0.5);
+          box-shadow: 0 0 60px rgba(217,100,36,0.15), 0 20px 60px rgba(0,0,0,0.5);
           transform: scale(1.04) translateY(-6px);
         }
 
@@ -298,7 +298,7 @@ export const PricingSection = () => {
           width: 200px;
           height: 200px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(217,100,36,0.15) 0%, transparent 70%);
           pointer-events: none;
           animation: prGlowPulse 3s ease-in-out infinite;
         }
@@ -314,13 +314,13 @@ export const PricingSection = () => {
           align-items: center;
           padding: 6px 16px;
           border-radius: 100px;
-          background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-          border: 1px solid rgba(201,168,76,0.3);
+          background: linear-gradient(135deg, rgba(217,100,36,0.15), rgba(217,100,36,0.05));
+          border: 1px solid rgba(217,100,36,0.3);
           font-family: 'Outfit', sans-serif;
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.05em;
-          color: #C9A84C;
+          color: #d96424;
           text-transform: uppercase;
           animation: prBadgePulse 2.5s ease-in-out infinite;
         }
@@ -357,18 +357,18 @@ export const PricingSection = () => {
         }
 
         .pr-cta--primary {
-          background: linear-gradient(135deg, #C9A84C, #d4b85a);
+          background: linear-gradient(135deg, #d96424, #ba5520);
           color: #000;
-          box-shadow: 0 0 20px rgba(201,168,76,0.3);
+          box-shadow: 0 0 20px rgba(217,100,36,0.3);
         }
 
         .pr-cta--primary:hover {
-          box-shadow: 0 0 30px rgba(201,168,76,0.5);
+          box-shadow: 0 0 30px rgba(217,100,36,0.5);
         }
 
         .pr-cta--secondary {
           background: rgba(255,255,255,0.04);
-          color: #F5F0E8;
+          color: #EEEEEE;
           border: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -380,8 +380,8 @@ export const PricingSection = () => {
         .pr-sparkle {
           position: absolute;
           border-radius: 50%;
-          background: #C9A84C;
-          box-shadow: 0 0 6px rgba(201,168,76,0.8);
+          background: #d96424;
+          box-shadow: 0 0 6px rgba(217,100,36,0.8);
           pointer-events: none;
           animation: prSparkle 3s ease-in-out infinite;
         }
@@ -403,8 +403,8 @@ export const PricingSection = () => {
         }
 
         @keyframes prBadgePulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.2); }
-          50% { box-shadow: 0 0 20px 4px rgba(201,168,76,0.15); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(217,100,36,0.2); }
+          50% { box-shadow: 0 0 20px 4px rgba(217,100,36,0.15); }
         }
 
         @keyframes prSparkle {
