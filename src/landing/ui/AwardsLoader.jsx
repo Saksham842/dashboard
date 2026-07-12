@@ -164,7 +164,7 @@ export const AwardsLoader = () => (
       }
 
       .al-logo-row {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: Outfit, sans-serif;
         font-size: clamp(40px, 8vw, 64px);
         font-weight: 700;
         letter-spacing: -0.03em;

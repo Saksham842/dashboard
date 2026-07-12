@@ -1,18 +1,20 @@
-export { HeroSection } from './HeroSection';
-export { TheProblemSection } from './TheProblemSection';
-export { TransitionSection } from './TransitionSection';
-export { DemoVideoSection } from './DemoVideoSection';
-export { SolutionSection } from './SolutionSection';
-export { ExplainerVideoSection } from './ExplainerVideoSection';
-export { CalculatorSection } from './CalculatorSection';
-export { SolvingForSection } from './SolvingForSection';
-export { ManifestoSection } from './ManifestoSection';
-export { HiringChaosSection } from './HiringChaosSection';
-export { BudgetCtaSection } from './BudgetCtaSection';
-export { FAQSection } from './FAQSection';
-export { AboutFounderSection } from './AboutFounderSection';
-export { BlogsSection } from './BlogsSection';
-export { ContactSection } from './ContactSection';
-export { FooterCTA } from './FooterCTA';
-export { PricingSection } from './PricingSection';
-export { default as LinaInterviewerSection } from './LinaInterviewerSection';
+// ─── Sections Master Barrel ───────────────────────────────────────────────────
+// Single entry point for ALL section imports across the entire site.
+// Do NOT import directly from individual section files — always import from here.
+
+// Landing page sections
+export * from './landing';
+
+// Dedicated page sections
+export * from './features';
+export * from './pricing';
+export * from './pilot';
+
+// Resource page sections
+export * from './resources';
+
+// Shared across multiple pages
+export * from './shared';
+
+// Temp (not yet active — move to a page folder to activate)
+// export * from './temp';

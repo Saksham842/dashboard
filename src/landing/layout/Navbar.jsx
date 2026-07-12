@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Logo } from '../ui';
-import { useMediaQuery } from '../hooks/useMediaQuery';
+import { useMediaQuery } from '../hooks';
 import { NAV_LINKS, DROPDOWN_LINKS } from '../constants';
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────

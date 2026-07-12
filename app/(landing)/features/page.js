@@ -1,4 +1,4 @@
-import FeaturesPage from '../../../src/landing/FeaturesPage';
+import { FeaturesPage } from '../../../src/landing/pages';
 
 export default function Features() {
   return <FeaturesPage />;

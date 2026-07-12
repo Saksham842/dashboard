@@ -1,5 +1,5 @@
-import AboutFounderResourcePage from '../../../../src/landing/resources/AboutFounderPage';
+import { AboutFounderPage } from '../../../../src/landing/pages';
 
 export default function AboutFounder() {
-  return <AboutFounderResourcePage />;
+  return <AboutFounderPage />;
 }

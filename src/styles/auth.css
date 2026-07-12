@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    intervieHire — Auth Screens  (Split-Panel Edition)
    Black bg · Gold accents · Sliding welcome panel
-   Space Grotesk + Outfit
+   Outfit
 ═══════════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
@@ -20,7 +20,7 @@
   --faint:        #3A3830;
   --line:         rgba(217,100,36,0.10);
   --ease:         cubic-bezier(0.16,1,0.3,1);
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-display: Outfit, sans-serif;
   --font-body:    'Outfit', sans-serif;
 }
 

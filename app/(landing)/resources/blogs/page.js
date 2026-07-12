@@ -1,5 +1,5 @@
-import BlogsResourcePage from '../../../../src/landing/resources/BlogsPage';
+import { BlogsPage } from '../../../../src/landing/pages';
 
 export default function Blogs() {
-  return <BlogsResourcePage />;
+  return <BlogsPage />;
 }

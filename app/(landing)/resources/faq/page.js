@@ -1,5 +1,5 @@
-import FaqResourcePage from '../../../../src/landing/resources/FaqPage';
+import { FaqPage } from '../../../../src/landing/pages';
 
 export default function Faq() {
-  return <FaqResourcePage />;
+  return <FaqPage />;
 }
